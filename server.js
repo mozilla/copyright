@@ -174,6 +174,10 @@ module.exports = function(options) {
       throw err;
     }
 
+    // We have these routes specifically for production where it's possible that
+    // a CDN index.html may refer to an outdated CSS/JS file that doesn't exist
+    server.route(require('./lib/hashed-file-routes')());
+
     server.route([{
       method: 'GET',
       path: '/{params*}',
