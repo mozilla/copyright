@@ -8,15 +8,17 @@ module.exports = React.createClass({
     return (
       <div className="header">
         <div className="header-content">
-          <h1>
-            {this.context.intl.formatMessage({id: 'main_title'})}
-          </h1>
-          <p>
-            {this.context.intl.formatMessage({id: 'tagline'})}
-          </p>
-          <a href="#">
-            {this.context.intl.formatMessage({id: 'get_involved_button'})}
-          </a>
+          <div className="header-content-container">
+            <h1>
+              {this.context.intl.formatMessage({id: 'main_title'})}
+            </h1>
+            <p>
+              {this.context.intl.formatMessage({id: 'tagline'})}
+            </p>
+            <a href="#">
+              {this.context.intl.formatMessage({id: 'get_involved_button'})}
+            </a>
+          </div>
         </div>
         <div className="header-image"></div>
       </div>
