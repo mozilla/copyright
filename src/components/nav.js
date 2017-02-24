@@ -11,13 +11,13 @@ module.exports = React.createClass({
           <div className="nav-logo-container">
             <a href="#" className="nav-logo"></a>
           </div>
-          <a className="nav-link">
+          <a href="#" className="nav-link">
             {this.context.intl.formatMessage({id: 'nav_copyright_campaign'})}
           </a>
-          <a className="nav-link">
+          <a href="#" className="nav-link">
             {this.context.intl.formatMessage({id: 'nav_more_resources'})}
           </a>
-          <a className="nav-link">
+          <a href="#" className="nav-link">
             {this.context.intl.formatMessage({id: 'nav_get_involved'})}
           </a>
         </div>

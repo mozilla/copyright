@@ -6,14 +6,20 @@
     display: inline-flex;
     .header-content-container {
       margin: auto;
+      width: 100%;
+      max-width: 480px;
     }
   }
   .header-image {
+    height: 100%;
     display: inline-block;
+    background-image: url("/assets/images/header.png");
+    background-position: center center;
   }
   .header-content,
   .header-image {
     width: 50%;
+    vertical-align: top;
   }
   border-bottom: solid 1px #CFCFCF;
 }
