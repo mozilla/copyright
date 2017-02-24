@@ -15,7 +15,7 @@ module.exports = React.createClass({
             <p>
               {this.context.intl.formatMessage({id: 'tagline'})}
             </p>
-            <a href="#">
+            <a className="button" href="#">
               {this.context.intl.formatMessage({id: 'get_involved_button'})}
             </a>
           </div>

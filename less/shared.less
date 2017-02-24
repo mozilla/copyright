@@ -1,9 +1,41 @@
-.page {
-  background: #FFFFFF;
-}
-
 html {
   font-family: Arvo;
 }
 
 * { Box-sizing: Border-box }
+
+.page {
+  background: #FFFFFF;
+}
+
+.button {
+  height: 42px;
+  padding: 0.7rem 2.5rem 0.7rem 1rem;
+  cursor: pointer;
+  background: #17FFFF;
+  font-weight: bold;
+  display: inline-block;
+  position: relative;
+  text-decoration: none;
+  color: inherit;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 1.7rem;
+    height: 1.2rem;
+    font-size: 1rem;
+    background-image: url("/assets/images/icon-arrow-right.svg");
+    background-repeat: no-repeat;
+    background-position: 0.7rem 0.24rem;
+    transition: margin 0.3s;
+  }
+
+  &:hover {
+    background: #17FFFF;
+
+    &::after {
+      margin-left: 0.2rem;
+    }
+  }
+}
