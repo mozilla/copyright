@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormattedHTMLMessage } from 'react-intl';
+import { FormattedMessage } from 'react-intl';
 
 module.exports = React.createClass({
   contextTypes: {
@@ -31,8 +31,12 @@ module.exports = React.createClass({
         </label>
         <input/>
         <div className="privacy-policy">
-          <FormattedHTMLMessage
+          <FormattedMessage
             id='sign_up_notice'
+            values={{
+              linkTerms: (<a href="#">{this.context.intl.formatMessage({id: 'link_tos'})}</a>),
+              linkPrivacyPolicy: (<a href="#">{this.context.intl.formatMessage({id: 'link_pp'})}</a>)
+            }}
           />
         </div>
         <button>

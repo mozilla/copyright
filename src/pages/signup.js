@@ -13,10 +13,12 @@ var Signup = React.createClass({
     }
     return (
       <div className={className}>
-        <Nav/>
-        <Header/>
-        <FormBody/>
-        <SignupForm/>
+        <div className="page">
+          <Nav/>
+          <Header/>
+          <FormBody/>
+          <SignupForm/>
+        </div>
         <Footer/>
       </div>
     );
