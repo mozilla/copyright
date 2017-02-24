@@ -11,7 +11,7 @@ module.exports = React.createClass({
           <div className="nav-logo-container">
             <a href="#" className="nav-logo"></a>
           </div>
-          <a href="#" className="nav-link">
+          <a href="#" className="nav-link active">
             {this.context.intl.formatMessage({id: 'nav_copyright_campaign'})}
           </a>
           <a href="#" className="nav-link">

@@ -7,14 +7,22 @@
     display: flex;
     position: fixed;
     align-items: center;
-    box-shadow: 0px 1px 4px #CFCFCF;
+    border-bottom: 1px solid #CFCFCF;
     .nav-logo-container {
       border-right: 1px solid #CFCFCF;
       padding: 16px;
       margin-right: 12px;
     }
     .nav-link {
-      padding: 0 28px;
+      margin: 0 28px;
+      text-decoration: none;
+      color: #000000;
+      opacity: 0.5;
+      font-weight: 600;
+      &:hover,
+      &.active {
+        opacity: 1;
+      }
     }
     .nav-logo {
       height: 33px;
