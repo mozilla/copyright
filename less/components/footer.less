@@ -3,9 +3,24 @@ footer {
     width: 960px;
     max-width: 100%;
     margin: 50px auto;
+    .org-info-container {
+      color: rgba(255, 255, 255, 0.8);
+      font-size: 14px;
+      a {
+        color: rgba(255, 255, 255, 1);
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
     .footer-links {
       text-align: center;
       a {
+        opacity: 0.8;
+        &:hover {
+          opacity: 1;
+        }
         color: #17FFFF;
         text-decoration: none;
         margin: 0 10px;
