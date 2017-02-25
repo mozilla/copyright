@@ -1,25 +1,23 @@
 .nav-container {
-   height: 65px;
+  height: 146px;
   .nav {
     background: #FFFFFF;
-    height: 65px;
+    height: 146px;
     width: 100%;
-    display: flex;
+    .nav-logo-container {
+      padding: 16px;
+    }
     z-index: 1;
     position: fixed;
-    align-items: center;
     border-bottom: 1px solid #CFCFCF;
-    .nav-logo-container {
-      border-right: 1px solid #CFCFCF;
-      padding: 16px;
-      margin-right: 12px;
-    }
     .nav-link {
-      margin: 0 28px;
+      margin: 8px 10px;
       text-decoration: none;
       color: #000000;
       opacity: 0.5;
+      display: block;
       font-weight: 600;
+      font-size: 14px;
       &:hover,
       &.active {
         opacity: 1;
@@ -33,6 +31,30 @@
       background-repeat: no-repeat;
       background-position: left center;
       background-size: 100% auto;
+    }
+  }
+  @media screen and (min-width: 768px) {
+    height: 65px;
+    .nav {
+      height: 65px;
+      display: flex;
+      align-items: center;
+      .nav-link {
+        display: inline;
+      }
+      .nav-logo-container {
+        border-right: 1px solid #CFCFCF;
+        padding: 16px;
+        margin-right: 12px;
+      }
+    }
+  }
+  @media screen and (min-width: 992px) {
+    .nav {
+      .nav-link {
+        font-size: 16px;
+        margin: 8px 28px;
+      }
     }
   }
 }
