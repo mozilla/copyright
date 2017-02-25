@@ -1,9 +1,12 @@
 footer {
+  margin: 0 15px;
   .footer-contents {
+    text-align: center;
     width: 960px;
     max-width: 100%;
     margin: 50px auto;
     .org-info-container {
+      text-align: center;
       color: rgba(255, 255, 255, 0.8);
       font-size: 14px;
       a {
@@ -15,15 +18,17 @@ footer {
       }
     }
     .footer-links {
-      text-align: center;
+      text-align: left;
+      display: inline-block;
       a {
+        display: block;
         opacity: 0.8;
         &:hover {
           opacity: 1;
         }
         color: #17FFFF;
         text-decoration: none;
-        margin: 0 10px;
+        margin: 10px;
         position: relative;
         padding-left: 26px;
         &.privacy {
@@ -62,13 +67,14 @@ footer {
     }
   }
   .org-info {
+    text-align: center;
     color: #FFFFFF;
     width: 100%;
     max-width: 560px;
-    display: flex;
     margin: 32px auto;
     align-items: center;
     .logo-container {
+      margin-bottom: 20px;
       padding-right: 24px;
     }
     .logo {
@@ -80,6 +86,26 @@ footer {
       background-position: left center;
       background-size: 100% auto;
       margin: 0 auto;
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    .footer-contents {
+      .footer-links {
+        text-align: center;
+        a {
+          display: inline;
+        }
+      }
+    }
+    .org-info {
+      display: flex;
+      .org-info-container {
+        text-align: left;
+      }
+      .logo-container {
+        margin-bottom: 0;
+      }
     }
   }
 }
