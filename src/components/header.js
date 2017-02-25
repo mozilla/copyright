@@ -7,6 +7,7 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div className="header">
+        <div className="header-image"></div>
         <div className="header-content">
           <div className="header-content-container">
             <h1>
@@ -20,7 +21,6 @@ module.exports = React.createClass({
             </a>
           </div>
         </div>
-        <div className="header-image"></div>
       </div>
     );
   }

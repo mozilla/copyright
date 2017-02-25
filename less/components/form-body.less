@@ -1,10 +1,10 @@
 .form-body-container {
-  width: ~"calc(100% - 445px)";
   vertical-align: top;
-  border-right: 1px solid #CFCFCF;
+  margin: 54px 0 54px 0;
   .form-body {
-    margin: 64px 0 144px 0;
-    padding: 0 174px 0 174px;
+    width: 100%;
+    max-width: 992px;
+    padding: 0 15px 0 15px;
     .horizontal-rule {
       margin-top: 50px;
       width: 68px;
@@ -23,6 +23,21 @@
         margin-top: 8px;
         margin-right: 12px;
       }
+    }
+  }
+
+  @media screen and (min-width: 992px) {
+    margin: 0;
+    width: ~"calc(100% - 445px)";
+    border-right: 1px solid #CFCFCF;
+    .form-body {
+      margin: 64px auto 144px auto;
+      padding: 0 55px 0 55px;
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    .form-body {
+      padding: 0 84px 0 84px;
     }
   }
 }

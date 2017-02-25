@@ -1,9 +1,8 @@
 .signup-form-container {
-  width: 445px;
   vertical-align: top;
+  margin: 54px 0 54px 0;
   .signup-form {
-    margin: 64px 0 144px 0;
-    padding: 0 84px 0 84px;
+    padding: 0 15px 0 15px;
   }
   input {
     width: 100%;
@@ -15,6 +14,19 @@
     &:focus {
       border-color: #17FFFF;
       position: relative;
+    }
+  }
+  @media screen and (min-width: 992px) {
+    width: 445px;
+    margin: 0;
+    .signup-form {
+      margin: 64px 0 144px 0;
+      padding: 0 55px 0 55px;
+    }
+  }
+  @media screen and (min-width: 1200px) {
+    .signup-form {
+      padding: 0 84px 0 84px;
     }
   }
 }
