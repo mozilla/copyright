@@ -15,23 +15,11 @@ module.exports = React.createClass({
           <p>
             {this.context.intl.formatMessage({id: 'take_action_description'})}
           </p>
-          <label>
-            {this.context.intl.formatMessage({id: 'first_name'})}
-          </label>
-          <input/>
-          <label>
-            {this.context.intl.formatMessage({id: 'last_name'})}
-          </label>
-          <input/>
-          <label>
-            {this.context.intl.formatMessage({id: 'email'})}
-          </label>
-          <input/>
-          <label>
-            {this.context.intl.formatMessage({id: 'country'})}
-          </label>
-          <input/>
-          <div className="privacy-policy">
+          <input placeholder={this.context.intl.formatMessage({id: 'first_name'})}/>
+          <input placeholder={this.context.intl.formatMessage({id: 'last_name'})}/>
+          <input placeholder={this.context.intl.formatMessage({id: 'email'})}/>
+          <input placeholder={this.context.intl.formatMessage({id: 'country'})}/>
+          <p className="privacy-policy">
             <FormattedMessage
               id='sign_up_notice'
               values={{
@@ -39,8 +27,8 @@ module.exports = React.createClass({
                 linkPrivacyPolicy: (<a href="#">{this.context.intl.formatMessage({id: 'link_pp'})}</a>)
               }}
             />
-          </div>
-          <button>
+          </p>
+          <button className="button">
             {this.context.intl.formatMessage({id: 'sign_up_button'})}
           </button>
         </div>
