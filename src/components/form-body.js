@@ -32,9 +32,10 @@ module.exports = React.createClass({
           <h4>
             {this.context.intl.formatMessage({id: 'copyright_matters'})}
           </h4>
-          <h3>
+          <div className="horizontal-rule"></div>
+          <h2>
             {this.context.intl.formatMessage({id: 'now_what_title'})}
-          </h3>
+          </h2>
           <h4>
             {this.context.intl.formatMessage({id: 'now_what_tagline'})}
           </h4>
