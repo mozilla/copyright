@@ -16,7 +16,7 @@ var Signup = React.createClass({
         <div className="page">
           <div id="about" className="nav-anchor nav-offset"></div>
           <ScrollNav/>
-          <Header signupDomain=""/>
+          <Header/>
           <div className="signup-container">
             <FormBody/>
             <SignupForm/>
