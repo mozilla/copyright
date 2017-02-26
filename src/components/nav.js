@@ -16,7 +16,7 @@ var MenuLink = React.createClass({
   }
 });
 
-module.exports = React.createClass({
+var ScrollNav = React.createClass({
   contextTypes: {
     intl: React.PropTypes.object
   },
@@ -75,24 +75,65 @@ module.exports = React.createClass({
     }
   },
   render: function() {
-    var active = this.state.active;
+    return (
+      <SimpleNav activate={this.activate} active={this.state.active}
+        links={[
+          {
+            text: this.context.intl.formatMessage({id: `nav_copyright_campaign`}),
+            item: `about`,
+            link: `#about`
+          },
+          {
+            text: this.context.intl.formatMessage({id: `nav_more_resources`}),
+            item: `resources`,
+            link: `/resources`
+          },
+          {
+            text: this.context.intl.formatMessage({id: `nav_get_involved`}),
+            item: `get-involved`,
+            link: `#get-involved`
+          }
+        ]}
+      />
+    );
+  }
+});
+
+var SimpleNav = React.createClass({
+  contextTypes: {
+    intl: React.PropTypes.object
+  },
+  render: function() {
+    var active = this.props.active || ``;
+    var activate = this.props.activate || function() {};
     return (
       <div className="nav-container">
         <div className="nav">
           <div className="nav-logo-container">
             <a href="https://mozilla.org/" className="nav-logo"></a>
           </div>
-          <MenuLink item="about" active={active} activate={this.activate} href={this.props.signupDomain + "#about"}>
-            {this.context.intl.formatMessage({id: 'nav_copyright_campaign'})}
-          </MenuLink>
-          <MenuLink item="resources" active={active} activate={this.activate} href="/resources">
-            {this.context.intl.formatMessage({id: 'nav_more_resources'})}
-          </MenuLink>
-          <MenuLink item="get-involved" active={active} activate={this.activate} href={this.props.signupDomain + "#get-involved"}>
-            {this.context.intl.formatMessage({id: 'nav_get_involved'})}
-          </MenuLink>
+          {
+            this.props.links.map((linkObj, index) => {
+              return (
+                <MenuLink key={index}
+                  activate={activate}
+                  active={active}
+                  item={linkObj.item}
+                  href={linkObj.link}
+                >
+                  {linkObj.text}
+                </MenuLink>
+              );
+            })
+          }
         </div>
       </div>
     );
   }
 });
+
+
+module.exports = {
+  SimpleNav,
+  ScrollNav
+};
