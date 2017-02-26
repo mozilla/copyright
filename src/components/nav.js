@@ -75,25 +75,28 @@ var ScrollNav = React.createClass({
     }
   },
   render: function() {
+    var links = [
+      {
+        text: this.context.intl.formatMessage({id: `nav_copyright_campaign`}),
+        item: `about`,
+        link: `#about`
+      },
+      {
+        text: this.context.intl.formatMessage({id: `nav_get_involved`}),
+        item: `get-involved`,
+        link: `#get-involved`
+      }
+    ];
+    if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
+      links.splice(1, 0, {
+        text: this.context.intl.formatMessage({id: `nav_more_resources`}),
+        item: `resources`,
+        link: `/resources`
+      });
+    }
     return (
       <SimpleNav activate={this.activate} active={this.state.active}
-        links={[
-          {
-            text: this.context.intl.formatMessage({id: `nav_copyright_campaign`}),
-            item: `about`,
-            link: `#about`
-          },
-          {
-            text: this.context.intl.formatMessage({id: `nav_more_resources`}),
-            item: `resources`,
-            link: `/resources`
-          },
-          {
-            text: this.context.intl.formatMessage({id: `nav_get_involved`}),
-            item: `get-involved`,
-            link: `#get-involved`
-          }
-        ]}
+        links={links}
       />
     );
   }

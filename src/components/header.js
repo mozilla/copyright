@@ -16,7 +16,7 @@ module.exports = React.createClass({
             <p>
               {this.context.intl.formatMessage({id: 'tagline'})}
             </p>
-            <a className="button" href={this.props.signupDomain + "#get-involved"}>
+            <a className="button" href="#get-involved">
               {this.context.intl.formatMessage({id: 'get_involved_button'})}
             </a>
           </div>
