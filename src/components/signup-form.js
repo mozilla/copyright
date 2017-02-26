@@ -8,6 +8,7 @@ module.exports = React.createClass({
   render: function() {
     return (
       <div className="signup-form-container">
+        <div id="get-involved" className="nav-anchor nav-offset"></div>
         <div className="signup-form">
           <h3>
             {this.context.intl.formatMessage({id: 'take_action_headline'})}

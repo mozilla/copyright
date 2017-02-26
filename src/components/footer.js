@@ -19,13 +19,13 @@ var Footer = React.createClass({
             <a href="#" className="footer-link conversation">
               {this.context.intl.formatMessage({id: 'join_the_conversation'})}
             </a>
-            <a href="#" className="footer-link legal">
+            <a href="https://www.mozilla.org/about/legal/terms/mozilla/" className="footer-link legal">
               {this.context.intl.formatMessage({id: 'legal'})}
             </a>
-            <a href="#" className="footer-link privacy">
+            <a href="https://www.mozilla.org/privacy/websites/" className="footer-link privacy">
               {this.context.intl.formatMessage({id: 'privacy_policy'})}
             </a>
-            <a href="#" className="footer-link donate">
+            <a href="https://donate.mozilla.org/" className="footer-link donate">
               {this.context.intl.formatMessage({id: 'donate'})}
             </a>
           </div>
