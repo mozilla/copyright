@@ -14,8 +14,9 @@ var Signup = React.createClass({
     return (
       <div className={className}>
         <div className="page">
-          <Nav/>
-          <Header/>
+          <div id="about" className="nav-anchor nav-offset"></div>
+          <Nav signupDomain=""/>
+          <Header signupDomain=""/>
           <div className="signup-container">
             <FormBody/>
             <SignupForm/>
