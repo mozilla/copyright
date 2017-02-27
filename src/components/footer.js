@@ -10,13 +10,13 @@ var Footer = React.createClass({
       <footer>
         <div className="footer-contents">
           <div className="footer-links">
-            <a href="#" className="footer-link contact">
+            <a href="https://www.mozilla.org/contact/" className="footer-link contact">
               {this.context.intl.formatMessage({id: 'contact_us'})}
             </a>
             <a href="#" className="footer-link share">
               {this.context.intl.formatMessage({id: 'share_this_page'})}
             </a>
-            <a href="#" className="footer-link conversation">
+            <a href="https://twitter.com/Mozilla" className="footer-link conversation">
               {this.context.intl.formatMessage({id: 'join_the_conversation'})}
             </a>
             <a href="https://www.mozilla.org/about/legal/terms/mozilla/" className="footer-link legal">
