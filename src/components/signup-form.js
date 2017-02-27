@@ -2,10 +2,21 @@ import React from 'react';
 import { FormattedMessage } from 'react-intl';
 import { setEmailError, setEmail, setFirstName, setLastName, setCountry } from '../actions';
 import { connect } from 'react-redux';
+import classnames from "classnames";
+
+var NOT_SUBMITTING = 0;
+var SIGNUP_SUBMITTING = 1;
 
 var Signup = React.createClass({
+  mixins: [require('../mixins/basket.js')],
   contextTypes: {
     intl: React.PropTypes.object
+  },
+  getInitialState: function() {
+    return {
+      signupError: "",
+      submitting: NOT_SUBMITTING
+    };
   },
   firstNameChange: function(e) {
     this.props.setFirstName(e.target.value);
@@ -19,7 +30,21 @@ var Signup = React.createClass({
   countryChange: function(e) {
     this.props.setCountry(e.target.value);
   },
+  onSubmit: function() {
+    var valid = true;
+
+    if (!this.props.email.trim()) {
+      valid = false;
+      this.props.setEmailError(this.context.intl.formatMessage({id: "please_complete"}));
+    } else if (!this.emailInput.validity.valid) {
+      valid = false;
+      this.props.setEmailError(this.context.intl.formatMessage({id: "email_invalid"}));
+    }
+  },
   render: function() {
+    var emailClassName = classnames({
+      "invalid": !!this.props.emailError
+    });
     return (
       <div className="signup-form-container">
         <div id="get-involved" className="nav-anchor nav-offset"></div>
@@ -32,7 +57,7 @@ var Signup = React.createClass({
           </p>
           <input autoComplete="off" type='text' value={this.props.firstName} onChange={this.firstNameChange} placeholder={this.context.intl.formatMessage({id: 'first_name'})}/>
           <input autoComplete="off" type='text' value={this.props.lastName} onChange={this.lastNameChange} placeholder={this.context.intl.formatMessage({id: 'last_name'})}/>
-          <input autoComplete="off" type='email' value={this.props.email} onChange={this.emailChange} required placeholder={this.context.intl.formatMessage({id: 'email'})}/>
+          <input autoComplete="off" ref={(input) => { this.emailInput = input; }} type='email' className={emailClassName} value={this.props.email} onChange={this.emailChange} required placeholder={this.context.intl.formatMessage({id: 'email'})}/>
           <select autoComplete="off" required value={this.props.country} onChange={this.countryChange}>
             <option value="">{this.context.intl.formatMessage({id: 'country'})}</option>
             <option value="AT">Austria</option>
@@ -65,6 +90,8 @@ var Signup = React.createClass({
             <option value="GB">United Kingdom</option>
             <option value="other" data-other="">Other</option>
           </select>
+          <p className="error-message">{this.props.emailError}</p>
+          <p className="error-message">{this.state.signupError}</p>
           <p className="privacy-policy">
             <FormattedMessage
               id='sign_up_notice'
@@ -74,7 +101,7 @@ var Signup = React.createClass({
               }}
             />
           </p>
-          <button className="button">
+          <button onClick={this.onSubmit} className="button">
             {this.context.intl.formatMessage({id: 'sign_up_button'})}
           </button>
         </div>
