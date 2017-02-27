@@ -27,7 +27,7 @@ a {
 
 .button {
   height: 42px;
-  padding: 0.7rem 2.5rem 0.7rem 1rem;
+  width: 100%;
   cursor: pointer;
   background: #17FFFF;
   font-weight: bold;
@@ -38,23 +38,46 @@ a {
   border: none;
   font-family: inherit;
 
-  &::after {
-    content: '';
-    position: absolute;
-    width: 1.7rem;
-    height: 1.2rem;
-    font-size: 1rem;
-    background-image: url("/assets/images/icon-arrow-right.svg");
-    background-repeat: no-repeat;
-    background-position: 0.7rem 0.24rem;
-    transition: margin 0.3s;
-  }
-
-  &:hover {
-    background: #17FFFF;
-
+  &.arrow {
+    padding: 0.7rem 2.5rem 0.7rem 1rem;
     &::after {
-      margin-left: 0.2rem;
+      content: '';
+      position: absolute;
+      width: 1.7rem;
+      height: 1.2rem;
+      font-size: 1rem;
+      background-image: url("/assets/images/icon-arrow-right.svg");
+      background-repeat: no-repeat;
+      background-position: 0.7rem 0.24rem;
+      transition: margin 0.3s;
+    }
+
+    &:hover {
+      background: #17FFFF;
+
+      &::after {
+        margin-left: 0.2rem;
+      }
     }
   }
+
+  &.submitting {
+    &::after {
+      content: '';
+      position: absolute;
+      animation: spin 1s linear infinite; /* CSS3 */
+      margin-top: -15px;
+      margin-left: -15px;
+      height: 20px;
+      width: 20px;
+      border: 5px solid #FFFFFF;
+      border-right: 5px solid #000000;
+      border-radius: 50%;
+    }
+  }
+}
+
+@keyframes spin { /* CSS3 */
+	0%   { transform: rotate(0deg); }
+	100% { transform: rotate(360deg); }
 }
