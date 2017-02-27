@@ -19,23 +19,20 @@
     &:focus {
       border-color: #17FFFF;
     }
+    margin-bottom: -1px;
+    position: relative;
+    &.invalid {
+      z-index: 1;
+    }
+    &:focus {
+      z-index: 2;
+    }
   }
   select {
     &:invalid {
-      box-shadow: none;
       color: #767676;
     }
     background: #FFFFFF;
-  }
-  input {
-    margin-bottom: -1px;
-    &.invalid {
-      position: relative;
-    }
-    &:focus {
-      position: relative;
-      z-index: 1;
-    }
   }
   @media screen and (min-width: 992px) {
     width: 445px;
