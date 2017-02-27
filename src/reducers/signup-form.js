@@ -1,22 +1,15 @@
 import assign from 'object-assign';
 
 const initialState = {
-  privacyPolicy: false,
-  email: '',
-  emailError: ""
+  email: ``,
+  emailError: ``,
+  firstName: ``,
+  lastName: ``,
+  country: ``
 };
 
 const signupApp = (state = initialState, action) => {
   switch (action.type) {
-  case 'SET_PRIVACY_POLICY':
-    return assign({}, state, {
-      privacyPolicy: action.data,
-      privacyPolicyError: ""
-    });
-  case 'SET_PRIVACY_POLICY_ERROR':
-    return assign({}, state, {
-      privacyPolicyError: action.data
-    });
   case 'SET_EMAIL':
     return assign({}, state, {
       email: action.data,
@@ -25,6 +18,18 @@ const signupApp = (state = initialState, action) => {
   case 'SET_EMAIL_ERROR':
     return assign({}, state, {
       emailError: action.data
+    });
+  case 'SET_FIRST_NAME':
+    return assign({}, state, {
+      firstName: action.data
+    });
+  case 'SET_LAST_NAME':
+    return assign({}, state, {
+      lastName: action.data
+    });
+  case 'SET_COUNTRY':
+    return assign({}, state, {
+      country: action.data
     });
   default:
     return state;

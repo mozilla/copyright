@@ -11,9 +11,14 @@ module.exports = function(queryString, locale) {
   }
 
   return {
+    initialState: {
+      firstName: queryString.firstName || "",
+      lastName: queryString.lastName || "",
+      email: queryString.email || "",
+      country: queryString.country || ""
+    },
     values: {
-      test: test,
-      email: queryString.email || ""
+      test: test
     }
   };
 };
