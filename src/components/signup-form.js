@@ -54,6 +54,15 @@ var Signup = React.createClass({
     var emailClassName = classnames({
       "invalid": !!this.props.emailError
     });
+    var buttonClassName = classnames(`button`, {
+      "submitting": this.state.submitting === SIGNUP_SUBMITTING,
+      "arrow": this.state.submitting === NOT_SUBMITTING
+    });
+    var buttonText = this.context.intl.formatMessage({id: 'sign_up_button'});
+    if (this.state.submitting) {
+      buttonText = ``;
+    }
+
     return (
       <div className="signup-form-container">
         <div id="get-involved" className="nav-anchor nav-offset"></div>
@@ -110,8 +119,8 @@ var Signup = React.createClass({
               }}
             />
           </p>
-          <button onClick={this.onSubmit} className="button">
-            {this.context.intl.formatMessage({id: 'sign_up_button'})}
+          <button onClick={this.onSubmit} className={buttonClassName}>
+            {buttonText}
           </button>
         </div>
       </div>
