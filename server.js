@@ -94,6 +94,8 @@ module.exports = function(options) {
           payload: {
             locale: Joi.string().min(2).max(12).required(),
             email: Joi.string().email().required(),
+            firstName: Joi.string().allow(''),
+            lastName: Joi.string().allow(''),
             country: Joi.string().allow('')
           }
         },

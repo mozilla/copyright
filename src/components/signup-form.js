@@ -40,6 +40,15 @@ var Signup = React.createClass({
       valid = false;
       this.props.setEmailError(this.context.intl.formatMessage({id: "email_invalid"}));
     }
+
+    if (valid) {
+      this.basket({
+        email: this.props.email,
+        firstName: this.props.firstName,
+        lastName: this.props.lastName,
+        country: this.props.country
+      });
+    }
   },
   render: function() {
     var emailClassName = classnames({
