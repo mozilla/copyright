@@ -30,10 +30,41 @@ var Signup = React.createClass({
           <p>
             {this.context.intl.formatMessage({id: 'take_action_description'})}
           </p>
-          <input value={this.props.firstName} onChange={this.firstNameChange} placeholder={this.context.intl.formatMessage({id: 'first_name'})}/>
-          <input value={this.props.lastName} onChange={this.lastNameChange} placeholder={this.context.intl.formatMessage({id: 'last_name'})}/>
-          <input value={this.props.email} onChange={this.emailChange} type="email" required placeholder={this.context.intl.formatMessage({id: 'email'})}/>
-          <input value={this.props.country} onChange={this.countryChange} placeholder={this.context.intl.formatMessage({id: 'country'})}/>
+          <input autoComplete="off" type='text' value={this.props.firstName} onChange={this.firstNameChange} placeholder={this.context.intl.formatMessage({id: 'first_name'})}/>
+          <input autoComplete="off" type='text' value={this.props.lastName} onChange={this.lastNameChange} placeholder={this.context.intl.formatMessage({id: 'last_name'})}/>
+          <input autoComplete="off" type='email' value={this.props.email} onChange={this.emailChange} required placeholder={this.context.intl.formatMessage({id: 'email'})}/>
+          <select autoComplete="off" required value={this.props.country} onChange={this.countryChange}>
+            <option value="">Country*</option>
+            <option value="AT">Austria</option>
+            <option value="BE">Belgium</option>
+            <option value="BG">Bulgaria</option>
+            <option value="HR">Croatia</option>
+            <option value="CY">Cyprus</option>
+            <option value="CZ">Czech Republic</option>
+            <option value="DK">Denmark</option>
+            <option value="EE">Estonia</option>
+            <option value="FI">Finland</option>
+            <option value="FR">France</option>
+            <option value="DE">Germany</option>
+            <option value="GR">Greece</option>
+            <option value="HU">Hungary</option>
+            <option value="IE">Ireland</option>
+            <option value="IT">Italy</option>
+            <option value="LV">Latvia</option>
+            <option value="LT">Lithuania</option>
+            <option value="LU">Luxembourg</option>
+            <option value="MT">Malta</option>
+            <option value="NL">Netherlands</option>
+            <option value="PL">Poland</option>
+            <option value="PT">Portugal</option>
+            <option value="RO">Romania</option>
+            <option value="SK">Slovakia</option>
+            <option value="SI">Slovenia</option>
+            <option value="ES">Spain</option>
+            <option value="SE">Sweden</option>
+            <option value="GB">United Kingdom</option>
+            <option value="other" data-other="">Other</option>
+          </select>
           <p className="privacy-policy">
             <FormattedMessage
               id='sign_up_notice'

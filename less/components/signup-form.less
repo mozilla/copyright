@@ -4,24 +4,37 @@
   .signup-form {
     padding: 0 15px 0 15px;
   }
-  input {
+  input, select {
     width: 100%;
     display: block;
     height: 52px;
     border: 1px solid #CFCFCF;
     padding: 14px;
-    margin-bottom: -1px;
+    &:invalid {
+      box-shadow: none;
+    }
     &.invalid {
       border-color: #FF0000;
-      position: relative;
     }
     &:focus {
       border-color: #17FFFF;
-      position: relative;
-      z-index: 1;
     }
+  }
+  select {
     &:invalid {
       box-shadow: none;
+      color: #767676;
+    }
+    background: #FFFFFF;
+  }
+  input {
+    margin-bottom: -1px;
+    &.invalid {
+      position: relative;
+    }
+    &:focus {
+      position: relative;
+      z-index: 1;
     }
   }
   @media screen and (min-width: 992px) {
