@@ -96,7 +96,7 @@ module.exports = function(options) {
             lang: Joi.string().min(2).max(12).required(),
             newsletters: Joi.string().required(),
             trigger_welcome: Joi.any().valid('N').required(),
-            source_url: Joi.any().valid('https://dontbreaktheinter.net/').required(),
+            source_url: Joi.any().valid('https://changecopyright.org/').required(),
             email: Joi.string().email().required(),
             country: Joi.string().allow('')
           }
