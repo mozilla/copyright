@@ -26,7 +26,6 @@ var ScrollNav = React.createClass({
     return {active};
   },
   componentDidMount: function() {
-    this.onScroll();
     document.addEventListener(`scroll`, this.onScroll);
   },
   componentWillUnmount: function() {
