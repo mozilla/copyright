@@ -1,7 +1,7 @@
 import React from 'react';
 
 var optimizelyActive = process.env.OPTIMIZELY_ACTIVE || 'yes';
-var cookieDomain = process.env.FULL_SUBDOMAIN_FOR_COOKIE || 'dontbreaktheinter.net';
+var cookieDomain = process.env.FULL_SUBDOMAIN_FOR_COOKIE || 'changecopyright.org';
 
 var OptimizelySubdomain = React.createClass({
   cookieScript: function() { return {__html: "window['optimizely'] = window['optimizely'] || []; window['optimizely'].push(['setCookieDomain', '" + cookieDomain + "']);"}; },

@@ -58,7 +58,7 @@ var Index = React.createClass({
           <link rel="preconnect" href="https://www.google-analytics.com" />
           <link rel="preconnect" href="https://fonts.gstatic.com" />
           <link rel="preconnect" href="https://206878104.log.optimizely.com" />
-          <title>dontbreaktheinter.net | {metaData.site_title}</title>
+          <title>changecopyright.org | {metaData.site_title}</title>
           <OptimizelySubdomain/>
           <Optimizely/>
           <link rel="icon" href={this.props.favicon} type="image/x-icon"/>
