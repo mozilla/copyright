@@ -28,17 +28,17 @@ var Signup = React.createClass({
           <SimpleNav active="resources"
             links={[
               {
-                text: this.context.intl.formatMessage({id: `nav_copyright_campaign`}),
+                text: this.context.intl.formatMessage({id: `nav_copyright_campaign2`}),
                 item: `about`,
                 link: `/signup#about`
               },
               {
-                text: this.context.intl.formatMessage({id: `nav_more_resources`}),
+                text: `More Resources`,
                 item: `resources`,
                 link: `/resources`
               },
               {
-                text: this.context.intl.formatMessage({id: `nav_get_involved`}),
+                text: this.context.intl.formatMessage({id: `nav_get_involved2`}),
                 item: `get-involved`,
                 link: `/signup#get-involved`
               }
