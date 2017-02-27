@@ -77,19 +77,19 @@ var ScrollNav = React.createClass({
   render: function() {
     var links = [
       {
-        text: this.context.intl.formatMessage({id: `nav_copyright_campaign`}),
+        text: this.context.intl.formatMessage({id: `nav_copyright_campaign2`}),
         item: `about`,
         link: `#about`
       },
       {
-        text: this.context.intl.formatMessage({id: `nav_get_involved`}),
+        text: this.context.intl.formatMessage({id: `nav_get_involved2`}),
         item: `get-involved`,
         link: `#get-involved`
       }
     ];
     if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
       links.splice(1, 0, {
-        text: this.context.intl.formatMessage({id: `nav_more_resources`}),
+        text: `More Resources`,
         item: `resources`,
         link: `/resources`
       });

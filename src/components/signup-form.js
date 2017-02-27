@@ -25,7 +25,7 @@ var Signup = React.createClass({
         <div id="get-involved" className="nav-anchor nav-offset"></div>
         <div className="signup-form">
           <h3>
-            {this.context.intl.formatMessage({id: 'take_action_headline'})}
+            {this.context.intl.formatMessage({id: 'take_action_headline2'})}
           </h3>
           <p>
             {this.context.intl.formatMessage({id: 'take_action_description'})}
