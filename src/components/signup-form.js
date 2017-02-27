@@ -34,7 +34,7 @@ var Signup = React.createClass({
           <input autoComplete="off" type='text' value={this.props.lastName} onChange={this.lastNameChange} placeholder={this.context.intl.formatMessage({id: 'last_name'})}/>
           <input autoComplete="off" type='email' value={this.props.email} onChange={this.emailChange} required placeholder={this.context.intl.formatMessage({id: 'email'})}/>
           <select autoComplete="off" required value={this.props.country} onChange={this.countryChange}>
-            <option value="">Country*</option>
+            <option value="">{this.context.intl.formatMessage({id: 'country'})}</option>
             <option value="AT">Austria</option>
             <option value="BE">Belgium</option>
             <option value="BG">Bulgaria</option>
