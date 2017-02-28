@@ -112,7 +112,7 @@ var Signup = React.createClass({
           <p className="error-message">{this.state.signupError}</p>
           <p className="privacy-policy">
             <FormattedMessage
-              id='sign_up_notice'
+              id='sign_up_notice2'
               values={{
                 linkTerms: (<a href="https://www.mozilla.org/about/legal/terms/mozilla/">{this.context.intl.formatMessage({id: 'link_tos'})}</a>),
                 linkPrivacyPolicy: (<a href="https://www.mozilla.org/privacy/">{this.context.intl.formatMessage({id: 'link_pp'})}</a>)
