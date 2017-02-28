@@ -1,6 +1,5 @@
 var signup = require('./signup');
 var boom = require('boom');
-var basket = require('../lib/basket-queue.js');
 
 var routes = {
   'signup': function(request, reply) {
