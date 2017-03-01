@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from "classnames";
+import enabledLocales from '../data/locales.js';
 
 var MenuLink = React.createClass({
   onClick: function() {
@@ -128,7 +129,20 @@ var SimpleNav = React.createClass({
               );
             })
           }
+          <div className="nav-lang-selector">
+            <select>
+            {
+              module.exports = function(enabledLocales, locale) {
+                var localeName = enabledLocales[locale];
+                return (
+                  <option value={locale} lang={locale}>{localeName}</option>
+                );
+              }
+            }
+            </select>
+          </div>
         </div>
+
       </div>
     );
   }
