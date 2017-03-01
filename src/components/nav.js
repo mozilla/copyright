@@ -132,12 +132,16 @@ var SimpleNav = React.createClass({
           <div className="nav-lang-selector">
             <select>
             {
-              module.exports = function(enabledLocales, locale) {
+              enabledLocales.keys().map((locale, index) => {
                 var localeName = enabledLocales[locale];
+                var selected = " ";
+                if (index == this.context.intl.locale) {
+                  selected = 'selected=""';
+                }
                 return (
-                  <option value={locale} lang={locale}>{localeName}</option>
+                  <option value={locale} {selected} lang={locale}>{localeName}</option>
                 );
-              }
+              })
             }
             </select>
           </div>
