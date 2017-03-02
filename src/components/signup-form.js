@@ -50,10 +50,10 @@ var Signup = React.createClass({
         country: this.props.country
       });
       ga.event({
-      category: "Signup",
-      action: "Submitted the form",
-      label: "Copyright"
-    }); 
+        category: "Signup",
+        action: "Submitted the form",
+        label: "Copyright"
+      }); 
     }
   },
   render: function() {
