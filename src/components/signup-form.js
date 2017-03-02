@@ -3,6 +3,7 @@ import { FormattedMessage } from 'react-intl';
 import { setEmailError, setEmail, setFirstName, setLastName, setCountry } from '../actions';
 import { connect } from 'react-redux';
 import classnames from "classnames";
+import ga from 'react-ga';
 
 var NOT_SUBMITTING = 0;
 var SIGNUP_SUBMITTING = 1;
@@ -48,6 +49,11 @@ var Signup = React.createClass({
         lastName: this.props.lastName,
         country: this.props.country
       });
+      ga.event({
+        category: "Signup",
+        action: "Submitted the form",
+        label: "Copyright"
+      }); 
     }
   },
   render: function() {
