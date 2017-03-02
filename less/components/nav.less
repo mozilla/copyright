@@ -27,18 +27,14 @@
       position: absolute;
       right: 0;
       top: 0;
-      margin-left: auto;
       select {
         border: none;
         box-shadow: none;
         background-color: transparent;
         height: 65px;
-        font-size: 16px;
+        font-size: 14px;
         font-family: Arvo;
         font-weight: 600;
-        &:invalid {
-          color: #767676;
-        }
       }
     }
     .nav-logo {
@@ -67,10 +63,6 @@
         padding: 16px;
         margin-right: 12px;
       }
-      .nav-lang-selector {
-        display: inline-block;
-        margin-left: auto;
-      }
     }
   }
   @media screen and (min-width: 992px) {
@@ -78,6 +70,9 @@
       .nav-link {
         font-size: 16px;
         margin: 8px 28px;
+      }
+      .nav-lang-selector select {
+        font-size: 16px;
       }
     }
   }
