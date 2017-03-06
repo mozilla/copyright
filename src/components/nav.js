@@ -91,7 +91,7 @@ var ScrollNav = React.createClass({
       links.splice(1, 0, {
         text: `More Resources`,
         item: `resources`,
-        link: `/resources`
+        link: `/en-US/resources`
       });
     }
     return (
