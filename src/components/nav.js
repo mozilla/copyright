@@ -130,7 +130,7 @@ var SimpleNav = React.createClass({
             })
           }
           <div className="nav-lang-selector">
-            <Dropdown id='myDropdown'
+            <Dropdown id='lang-selector'
               options={enabledLocales}
               value={this.context.intl.locale}
               labelField='description'
