@@ -4,7 +4,30 @@
   .signup-form {
     padding: 0 15px 0 15px;
   }
+  h3 {
+    font-size: 1.5rem;
+    font-weight: 400;
+  }
+  p {
+    font-size: 0.9375rem;
+    line-height: 1.4375rem;
+  }
+  label {
+    font-family: Fira Sans Condensed;
+    color: #5b555c;
+    font-size: 0.75rem;
+  }
+  .privacy-policy {
+    font-family: Fira Sans Condensed;
+    font-size: 0.75rem;
+    line-height: 1.2rem;
+    color: #5b555c;
+    margin: 20px 0;
+  }
   input, select {
+    font-family: Fira Sans Condensed;
+    letter-spacing: 0.03rem;
+    color: #5b555c;
     width: 100%;
     display: block;
     height: 52px;
@@ -34,17 +57,37 @@
     }
     background: #FFFFFF;
   }
+  .get-involved {
+    display: none;
+    &:after {
+      display: none;
+    }
+  }
+  @media screen and (max-width: 992px) {
+    .sticky .get-involved {
+      position: fixed;
+      display: flex;
+      bottom: 0;
+      left: 0;
+      right: 0;
+    }
+  }
   @media screen and (min-width: 992px) {
     width: 445px;
     margin: 0;
     .signup-form {
+      width: 100%;
       margin: 64px 0 144px 0;
       padding: 0 55px 0 55px;
     }
   }
   @media screen and (min-width: 1200px) {
     .signup-form {
+      width: 100%;
       padding: 0 84px 0 84px;
     }
+  }
+  @media screen and (min-width: 1800px) {
+    width: 645px;
   }
 }
