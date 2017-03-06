@@ -1,16 +1,18 @@
-module.exports = {
-  'cs': 'Čeština',
-  'de': 'Deutsch',
-  'el': 'Ελληνικά',
-  'en-US': 'English (US)',
-  'es': 'Español',
-  'et': 'Eesti keel',
-  'fr': 'Français',
-  'fy-NL': 'Frysk',
-  'ga-IE': 'Gaeilge',
-  'hu': 'magyar',
-  'it': 'Italiano',
-  'nl': 'Nederlands',
-  'pt-PT': 'Português (Europeu)',
-  'sv-SE': 'Svenska'
-};
+module.exports = [
+    {
+        description: 'Français',
+        code: 'fr'
+    },
+    {
+        description: 'English (US)',
+        code: 'en-US'
+    },
+    {
+        description: 'This is option C',
+        code: 'c'
+    },
+    {
+        description: 'This is option D',
+        code: 'd'
+    }
+];
