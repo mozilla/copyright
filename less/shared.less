@@ -1,12 +1,29 @@
 html {
   font-family: Arvo;
   scroll-behavior: smooth;
+  font-size: 16px;
+  @media screen and (min-width: 768px) {
+    font-size: 20px;
+  }
+  @media screen and (min-width: 1920px) {
+    font-size: 24px;
+  }
 }
 
 * { box-sizing: border-box }
 
 .page {
   background: #FFFFFF;
+}
+
+p {
+  color: #4A4A4A;
+  line-height: 1.625rem;
+}
+
+h4 {
+  font-size: 1.25rem;
+  font-weight: 400;
 }
 
 a {
@@ -25,18 +42,32 @@ a {
   color: #FF0000;
 }
 
+a.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  &.arrow {
+    padding: 0.7rem 1rem 0.7rem 1rem;
+  }
+}
+
 .button {
-  height: 42px;
+  height: 50px;
   width: 100%;
   cursor: pointer;
   background: #17FFFF;
-  font-weight: bold;
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.01875rem;
   display: inline-block;
   position: relative;
   text-decoration: none;
   color: inherit;
   border: none;
+  font-family: Fira Sans Condensed;
+  font-weight: bold;
   font-family: inherit;
+  text-align: center;
 
   &.arrow {
     padding: 0.7rem 2.5rem 0.7rem 1rem;

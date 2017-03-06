@@ -1,10 +1,11 @@
 footer {
   margin: 0 15px;
+  font-family: Fira Sans Condensed;
   .footer-contents {
     text-align: center;
-    width: 960px;
+    width: 1200px;
     max-width: 100%;
-    margin: 50px auto;
+    margin: 60px auto;
     .org-info-container {
       text-align: center;
       color: rgba(255, 255, 255, 0.8);
@@ -22,6 +23,7 @@ footer {
       display: inline-block;
       a {
         display: block;
+        font-size: 0.875rem;
         opacity: 0.8;
         &:hover {
           opacity: 1;
@@ -80,12 +82,13 @@ footer {
     text-align: center;
     color: #FFFFFF;
     width: 100%;
-    max-width: 560px;
+    max-width: 750px;
     margin: 32px auto;
     align-items: center;
     .logo-container {
       margin-bottom: 20px;
       padding-right: 24px;
+      flex-shrink: 0;
     }
     .logo {
       height: 33px;
@@ -99,7 +102,7 @@ footer {
     }
   }
 
-  @media screen and (min-width: 992px) {
+  @media screen and (min-width: 900px) {
     .footer-contents {
       .footer-links {
         text-align: center;
@@ -112,6 +115,8 @@ footer {
       display: flex;
       .org-info-container {
         text-align: left;
+        font-size: 0.875rem;
+        line-height: 1.2rem;
       }
       .logo-container {
         margin-bottom: 0;

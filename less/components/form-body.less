@@ -12,16 +12,24 @@
       background: #17FFFF;
     }
     .form-description {
-      font-size: 20px;
-      line-height: 34px;
+      font-size: 1.25rem;
+      line-height: 1.75rem;
       margin-bottom: 50px;
       &::first-letter {
         color: #17FFFF;
         font-weight: 600;
         float: left;
-        font-size: 108px;
-        margin-top: 8px;
-        margin-right: 12px;
+        font-size: 5.5rem;
+        margin-top: 0.5rem;
+        margin-right: 0.5rem;
+      }
+      @media screen and (max-width: 400px) {
+        font-size: 1rem;
+        &::first-letter {
+          font-size: 3.5rem;
+          margin-top: 0.3rem;
+          margin-right: 0.3rem;
+        }
       }
     }
   }
