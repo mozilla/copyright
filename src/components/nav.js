@@ -102,17 +102,6 @@ var ScrollNav = React.createClass({
   }
 });
 
-
-var dropDownOnChange = function(change) {
-  alert('onChangeForSelect:\noldValue: ' +
-          change.oldValue +
-          '\nnewValue: '
-          + change.newValue);
-  window.location.href=
-  location.reload(true);
-};
-
-
 var SimpleNav = React.createClass({
   contextTypes: {
     intl: React.PropTypes.object
@@ -153,6 +142,11 @@ var SimpleNav = React.createClass({
     );
   }
 });
+
+var dropDownOnChange = function(change) {
+  var url = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port: '');
+  window.location.href = url + '/' + change.newValue;
+};
 
 var Dropdown = React.createClass({
   propTypes: {
