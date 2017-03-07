@@ -97,7 +97,16 @@ var ScrollNav = React.createClass({
     return (
       <SimpleNav activate={this.activate} active={this.state.active}
         links={links}
-      />
+      >
+        <div className="nav-lang-selector">
+          <Dropdown id='lang-selector'
+            options={enabledLocales}
+            value={this.context.intl.locale}
+            labelField='description'
+            valueField='code'
+            onChange={dropDownOnChange}/>
+        </div>
+      </SimpleNav>
     );
   }
 });
@@ -129,14 +138,7 @@ var SimpleNav = React.createClass({
               );
             })
           }
-          <div className="nav-lang-selector">
-            <Dropdown id='lang-selector'
-              options={enabledLocales}
-              value={this.context.intl.locale}
-              labelField='description'
-              valueField='code'
-              onChange={dropDownOnChange}/>
-          </div>
+          {this.props.children}
         </div>
       </div>
     );
