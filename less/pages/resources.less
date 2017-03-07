@@ -21,19 +21,51 @@
   h4 {
     margin-bottom: 4px;
   }
+  .link-like,
+  a {
+    box-decoration-break: clone;
+    padding: 0 2px;
+    text-decoration: none;
+  }
+  .link-like {
+    display: inline-block;
+    margin-bottom: 4px;
+  }
+  .read {
+    .link-like,
+    a {
+      background: #fee601;
+    }
+  }
+  .watch {
+    .link-like,
+    a {
+      background: #BFE7FA;
+    }
+  }
+  .chat-follow {
+    .link-like,
+    a {
+      background: #FCA8FF;
+    }
+  }
   .resources-container {
     @media screen and (max-width: 430px) {
       width: 100%;
     }
     margin: 0 -15px;
     .resource-container {
+      .resource-content-container {
+
+      }
+      overflow: hidden;
+      padding: 15px 25px;
       display: inline-block;
       max-width: 400px;
       width: 100%;
       min-height: 400px;
-      background: #F4F4F4;
-      border: solid 1px #969696;
       margin: 0 15px 30px 15px;
+      box-shadow: 0px 2px 8px #C9C9C9;
     }
     &.chat-follow-container {
       .resource-container {
