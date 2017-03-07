@@ -197,20 +197,21 @@ var Dropdown = React.createClass({
   },
 
   render: function() {
-    var self = this;
-    var options = self.props.options.map(function(option) {
-      return (
-        <option key={option[self.props.valueField]} value={option[self.props.valueField]}>
-          {option[self.props.labelField]}
-        </option>
-      )
-    });
     return (
       <select id={this.props.id}
-          className='form-control'
-          value={this.state.selected}
-          onChange={this.handleChange}>
-        {options}
+        className='form-control'
+        value={this.state.selected}
+        onChange={this.handleChange}
+      >
+      {
+        this.props.options.map((option) => {
+          return (
+            <option key={option[this.props.valueField]} value={option[this.props.valueField]}>
+              {option[this.props.labelField]}
+            </option>
+          )
+        })
+      }
       </select>
     )
   },
