@@ -1,5 +1,6 @@
 import React from 'react';
 import classnames from "classnames";
+import enabledLocales from '../data/locales.js';
 
 var MenuLink = React.createClass({
   onClick: function() {
@@ -90,7 +91,7 @@ var ScrollNav = React.createClass({
       links.splice(1, 0, {
         text: `More Resources`,
         item: `resources`,
-        link: `/resources`
+        link: `/en-US/resources`
       });
     }
     return (
@@ -128,12 +129,104 @@ var SimpleNav = React.createClass({
               );
             })
           }
+          <div className="nav-lang-selector">
+            <Dropdown id='lang-selector'
+              options={enabledLocales}
+              value={this.context.intl.locale}
+              labelField='description'
+              valueField='code'
+              onChange={dropDownOnChange}/>
+          </div>
         </div>
       </div>
     );
   }
 });
 
+var dropDownOnChange = function(change) {
+  var url = location.protocol + '//' + location.hostname + (location.port ? ':' + location.port: '');
+  window.location.href = url + '/' + change.newValue;
+};
+
+var Dropdown = React.createClass({
+  propTypes: {
+    id: React.PropTypes.string.isRequired,
+    options: React.PropTypes.array.isRequired,
+    value: React.PropTypes.oneOfType(
+      [
+        React.PropTypes.number,
+        React.PropTypes.string
+      ]
+    ),
+    valueField: React.PropTypes.string,
+    labelField: React.PropTypes.string,
+    onChange: React.PropTypes.func
+  },
+
+  getDefaultProps: function() {
+    return {
+      value: null,
+      valueField: 'value',
+      labelField: 'label',
+      onChange: null
+    };
+  },
+
+  getInitialState: function() {
+    var selected = this.getSelectedFromProps(this.props);
+    return {
+      selected: selected
+    }
+  },
+
+  componentWillReceiveProps: function(nextProps) {
+    var selected = this.getSelectedFromProps(nextProps);
+    this.setState({
+      selected: selected
+    });
+  },
+
+  getSelectedFromProps(props) {
+    var selected;
+    if (props.value === null && props.options.length !== 0) {
+      selected = props.options[0][props.valueField];
+    } else {
+      selected = props.value;
+    }
+    return selected;
+  },
+
+  render: function() {
+    return (
+      <select id={this.props.id}
+        className='form-control'
+        value={this.state.selected}
+        onChange={this.handleChange}
+      >
+      {
+        this.props.options.map((option) => {
+          return (
+            <option key={option[this.props.valueField]} value={option[this.props.valueField]}>
+              {option[this.props.labelField]}
+            </option>
+          )
+        })
+      }
+      </select>
+    )
+  },
+
+  handleChange: function(e) {
+    if (this.props.onChange) {
+      var change = {
+        oldValue: this.state.selected,
+        newValue: e.target.value
+      }
+      this.props.onChange(change);
+    }
+    this.setState({selected: e.target.value});
+  }
+});
 
 module.exports = {
   SimpleNav,
