@@ -1,6 +1,6 @@
 import React from 'react';
 import { FormattedMessage } from 'react-intl';
-import { setEmailError, setEmail, setFirstName, setLastName, setCountry } from '../actions';
+import { setEmailError, setEmail, setFirstName, setLastName, setCountry, setSignupCheckbox, setSignupCheckboxError, setPrivacyCheckbox, setPrivacyCheckboxError } from '../actions';
 import { connect } from 'react-redux';
 import classnames from "classnames";
 import StickyContainer from './sticky-container.js';
@@ -31,6 +31,12 @@ var Signup = React.createClass({
   countryChange: function(e) {
     this.props.setCountry(e.target.value);
   },
+  signupCheckboxChange: function(e) {
+    this.props.setSignupCheckbox(e.target.checked);
+  },
+  privacyCheckboxChange: function(e) {
+    this.props.setPrivacyCheckbox(e.target.checked);
+  },
   onSubmit: function() {
     var valid = true;
 
@@ -44,6 +50,16 @@ var Signup = React.createClass({
     } else if (!this.emailInput.validity.valid) {
       valid = false;
       this.props.setEmailError(this.context.intl.formatMessage({id: "email_invalid"}));
+    }
+
+    if (!this.props.privacyCheckbox) {
+      valid = false;
+      this.props.setPrivacyCheckboxError(this.context.intl.formatMessage({id: "please_complete"}));
+    }
+
+    if (!this.props.signupCheckbox) {
+      valid = false;
+      this.props.setSignupCheckboxError(this.context.intl.formatMessage({id: "please_complete"}));
     }
 
     if (valid) {
@@ -73,7 +89,6 @@ var Signup = React.createClass({
     if (this.state.submitting) {
       buttonText = ``;
     }
-
     return (
       <div className="signup-form-container">
         <div id="get-involved" className="nav-anchor nav-offset"></div>
@@ -130,15 +145,21 @@ var Signup = React.createClass({
           </select>
           <p className="error-message">{this.props.emailError}</p>
           <p className="error-message">{this.state.signupError}</p>
-          <p className="privacy-policy">
+          <label>
+            <input className="checkbox" autoComplete="off" onChange={this.signupCheckboxChange} value={this.props.signupCheckbox} type="checkbox"></input>
+            {this.context.intl.formatMessage({id: 'signup_checkbox'})}
+          </label>
+          <p className="privacy-error error-message">{this.props.signupCheckboxError}</p>
+          <label>
+            <input className="checkbox" autoComplete="off" onChange={this.privacyCheckboxChange} value={this.props.privacyCheckbox} type="checkbox"></input>
             <FormattedMessage
-              id='sign_up_notice2'
+              id='sign_up_notice'
               values={{
-                linkTerms: (<a href="https://www.mozilla.org/about/legal/terms/mozilla/">{this.context.intl.formatMessage({id: 'link_tos'})}</a>),
                 linkPrivacyPolicy: (<a href="https://www.mozilla.org/privacy/websites/">{this.context.intl.formatMessage({id: 'link_pp'})}</a>)
               }}
             />
-          </p>
+          </label>
+          <p className="privacy-error error-message">{this.props.privacyCheckboxError}</p>
           <button onClick={this.onSubmit} className={buttonClassName}>
             {buttonText}
           </button>
@@ -155,7 +176,11 @@ function(state) {
     emailError: state.signupForm.emailError,
     firstName: state.signupForm.firstName,
     lastName: state.signupForm.lastName,
-    country: state.signupForm.country
+    country: state.signupForm.country,
+    signupCheckbox: state.signupForm.signupCheckbox,
+    signupCheckboxError: state.signupForm.signupCheckboxError,
+    privacyCheckbox: state.signupForm.privacyCheckbox,
+    privacyCheckboxError: state.signupForm.privacyCheckboxError
   };
 },
 function(dispatch) {
@@ -174,6 +199,18 @@ function(dispatch) {
     },
     setCountry: function(data) {
       dispatch(setCountry(data));
+    },
+    setSignupCheckbox: function(data) {
+      dispatch(setSignupCheckbox(data));
+    },
+    setSignupCheckboxError: function(data) {
+      dispatch(setSignupCheckboxError(data));
+    },
+    setPrivacyCheckbox: function(data) {
+      dispatch(setPrivacyCheckbox(data));
+    },
+    setPrivacyCheckboxError: function(data) {
+      dispatch(setPrivacyCheckboxError(data));
     }
   };
 })(Signup);
