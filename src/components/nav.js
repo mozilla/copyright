@@ -19,7 +19,10 @@ var ScrollNav = React.createClass({
     intl: React.PropTypes.object
   },
   getInitialState: function() {
-    var active = window.location.hash.replace(`#`, ``) || `about`;
+    var active = `about`;
+    if (typeof window === `object`) {
+      active = window.location.hash.replace(`#`, ``) || `about`;
+    }
 
     return {active};
   },
