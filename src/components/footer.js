@@ -6,6 +6,10 @@ var Footer = React.createClass({
     intl: React.PropTypes.object
   },
   render: function() {
+    var shareLink = "/" + this.context.intl.locale + "/share";
+    if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
+      shareLink = "http://share.mozilla.org/352/179362";
+    }
     return (
       <footer>
         <div className="footer-contents">
@@ -13,7 +17,7 @@ var Footer = React.createClass({
             <a href="https://www.mozilla.org/contact/" className="footer-link contact">
               {this.context.intl.formatMessage({id: 'contact_us'})}
             </a>
-            <a href="#" className="footer-link share">
+            <a href={shareLink} className="footer-link share">
               {this.context.intl.formatMessage({id: 'share_this_page'})}
             </a>
             <a href="https://twitter.com/Mozilla" className="footer-link follow">

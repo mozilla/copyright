@@ -15,7 +15,7 @@ var BasketMixin = {
       action: "Submitted the form",
       label: "copyright"
     });
-    var page = '/' + this.context.intl.locale + location;
+    var page = location;
     window.location = page;
   },
   signupError: function(result) {
@@ -33,7 +33,11 @@ var BasketMixin = {
     submit(url, props, success, error);
   },
   signupSuccess: function(result) {
-    this.doSignupSuccess(result, '/share/');
+    var shareLink = "/" + this.context.intl.locale + "/share";
+    if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
+      shareLink = "http://share.mozilla.org/352/179362";
+    }
+    this.doSignupSuccess(result, shareLink);
   },
   basket: function(props) {
     this.doSignup("/api/signup/basket", props, this.signupSuccess, this.signupError);
