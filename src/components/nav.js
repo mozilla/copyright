@@ -87,27 +87,13 @@ var ScrollNav = React.createClass({
         href: `#get-involved`
       }
     ];
-    if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
-      links.splice(1, 0, {
-        text: `More Resources`,
-        item: `resources`,
-        href: `/en-US/resources`
-      });
-    }
 
     return (
-      <SimpleNav active={this.state.active}
+      <SimpleNav
+        active={this.state.active}
         links={links}
-      >
-        <div className="nav-lang-selector">
-          <Dropdown id='lang-selector'
-            options={enabledLocales}
-            value={this.context.intl.locale}
-            labelField='description'
-            valueField='code'
-            onChange={dropDownOnChange}/>
-        </div>
-      </SimpleNav>
+        useLangPicker={this.props.useLangPicker}
+      />
     );
   }
 });
@@ -118,6 +104,40 @@ var SimpleNav = React.createClass({
   },
   render: function() {
     var active = this.props.active || ``;
+    var links = this.props.links || [
+      {
+        text: this.context.intl.formatMessage({id: `nav_copyright_campaign2`}),
+        item: `about`,
+        href: `/signup#about`
+      },
+      {
+        text: this.context.intl.formatMessage({id: `nav_get_involved2`}),
+        item: `get-involved`,
+        href: `/signup#get-involved`
+      }
+    ];
+    if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
+      links.splice(1, 0, {
+        text: `More Resources`,
+        item: `resources`,
+        href: `/en-US/resources`
+      });
+    }
+
+    var langPicker = null;
+    if (this.props.useLangPicker) {
+      langPicker = (
+        <div className="nav-lang-selector">
+          <Dropdown id='lang-selector'
+            options={enabledLocales}
+            value={this.context.intl.locale}
+            labelField='description'
+            valueField='code'
+            onChange={dropDownOnChange}
+          />
+        </div>
+      );
+    }
     return (
       <div className="nav-container">
         <div className="nav">
@@ -125,7 +145,7 @@ var SimpleNav = React.createClass({
             <a href="https://mozilla.org/" className="nav-logo"></a>
           </div>
           {
-            this.props.links.map((linkObj, index) => {
+            links.map((linkObj, index) => {
               return (
                 <MenuLink key={index}
                   active={active}
@@ -137,7 +157,7 @@ var SimpleNav = React.createClass({
               );
             })
           }
-          {this.props.children}
+          {langPicker}
         </div>
       </div>
     );
