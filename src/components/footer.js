@@ -23,7 +23,7 @@ var Footer = React.createClass({
               {this.context.intl.formatMessage({id: 'legal'})}
             </a>
             <a href="https://www.mozilla.org/privacy/websites/" className="footer-link privacy">
-              {this.context.intl.formatMessage({id: 'privacy_policy'})}
+              {this.context.intl.formatMessage({id: 'privacy'})}
             </a>
             <a href="https://donate.mozilla.org/" className="footer-link donate">
               {this.context.intl.formatMessage({id: 'donate'})}
