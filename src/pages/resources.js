@@ -221,25 +221,7 @@ var Resources = React.createClass({
     return (
       <div className={className}>
         <div className="page">
-          <SimpleNav active="resources"
-            links={[
-              {
-                text: this.context.intl.formatMessage({id: `nav_copyright_campaign2`}),
-                item: `about`,
-                href: `/signup#about`
-              },
-              {
-                text: `More Resources`,
-                item: `resources`,
-                href: `/en-US/resources`
-              },
-              {
-                text: this.context.intl.formatMessage({id: `nav_get_involved2`}),
-                item: `get-involved`,
-                href: `/signup#get-involved`
-              }
-            ]}
-          />
+          <SimpleNav active="resources"/>
           <div className="resources-page-container">
             <div className="resources-page">
               <h2>Resources</h2>

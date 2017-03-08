@@ -13,6 +13,7 @@ var routes = (
           <Route key={locale} path={locale}>
             <IndexRoute component={require('./pages/signup.js')}/>
             <Route path='signup' component={require('./pages/signup.js')}/>
+            <Route path='share' component={require('./pages/share.js')}/>
             <Route path='resources' component={require('./pages/resources.js')}/>
             <Redirect from="*" to={"/" + locale} />
           </Route>
