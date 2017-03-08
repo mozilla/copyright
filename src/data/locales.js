@@ -1,7 +1,19 @@
 module.exports = [
   {
+      description: 'Asturianu',
+      code: 'ast'
+  },
+  {
+      description: 'Български',
+      code: 'bg'
+  },
+  {
       description: 'Čeština',
       code: 'cs'
+  },
+  {
+      description: 'Dansk',
+      code: 'da'
   },
   {
       description: 'Deutsch',
@@ -24,6 +36,10 @@ module.exports = [
       code: 'et'
   },
   {
+      description: 'suomi',
+      code: 'fi'
+  },
+  {
       description: 'Français',
       code: 'fr'
   },
@@ -36,6 +52,10 @@ module.exports = [
       code: 'ga-IE'
   },
   {
+      description: 'Hrvatski',
+      code: 'hr'
+  },
+  {
       description: 'magyar',
       code: 'hu'
   },
@@ -44,12 +64,36 @@ module.exports = [
       code: 'it'
   },
   {
+      description: 'lietuvių kalba',
+      code: 'lt'
+  },
+  {
+      description: 'Latviešu',
+      code: 'lv'
+  },
+  {
       description: 'Nederlands',
       code: 'nl'
   },
   {
+      description: 'Polski',
+      code: 'pl'
+  },
+  {
       description: 'Português (Europeu)',
       code: 'pt-PT'
+  },
+  {
+      description: 'Română',
+      code: 'ro'
+  },
+  {
+      description: 'slovenčina',
+      code: 'sk'
+  },
+  {
+      description: 'Slovenščina',
+      code: 'sl'
   },
   {
       description: 'Svenska',
