@@ -3,16 +3,13 @@ import classnames from "classnames";
 import enabledLocales from '../data/locales.js';
 
 var MenuLink = React.createClass({
-  onClick: function() {
-    this.props.activate(this.props.item);
-  },
   render: function() {
     var className = classnames(`nav-link`, {
       "active": this.props.active === this.props.item
     });
 
     return (
-      <a className={className} onClick={this.onClick} href={this.props.href}>{this.props.children}</a>
+      <a className={className} href={this.props.href}>{this.props.children}</a>
     );
   }
 });
@@ -22,7 +19,7 @@ var ScrollNav = React.createClass({
     intl: React.PropTypes.object
   },
   getInitialState: function() {
-    var active = ``;
+    var active = window.location.hash.replace(`#`, ``) || `about`;
 
     return {active};
   },
@@ -34,7 +31,7 @@ var ScrollNav = React.createClass({
   },
   onScroll: function() {
     var links = [].slice.call(document.querySelectorAll(`.nav-anchor`));
-    var hash = window.location.hash.replace(`#`, ``);
+    var hash = this.state.active;
     var active = ``;
     var scrollY = window.scrollY;
 
@@ -79,23 +76,24 @@ var ScrollNav = React.createClass({
       {
         text: this.context.intl.formatMessage({id: `nav_copyright_campaign2`}),
         item: `about`,
-        link: `#about`
+        href: `#about`
       },
       {
         text: this.context.intl.formatMessage({id: `nav_get_involved2`}),
         item: `get-involved`,
-        link: `#get-involved`
+        href: `#get-involved`
       }
     ];
     if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
       links.splice(1, 0, {
         text: `More Resources`,
         item: `resources`,
-        link: `/en-US/resources`
+        href: `/en-US/resources`
       });
     }
+
     return (
-      <SimpleNav activate={this.activate} active={this.state.active}
+      <SimpleNav active={this.state.active}
         links={links}
       >
         <div className="nav-lang-selector">
@@ -117,7 +115,6 @@ var SimpleNav = React.createClass({
   },
   render: function() {
     var active = this.props.active || ``;
-    var activate = this.props.activate || function() {};
     return (
       <div className="nav-container">
         <div className="nav">
@@ -128,10 +125,9 @@ var SimpleNav = React.createClass({
             this.props.links.map((linkObj, index) => {
               return (
                 <MenuLink key={index}
-                  activate={activate}
                   active={active}
                   item={linkObj.item}
-                  href={linkObj.link}
+                  href={linkObj.href}
                 >
                   {linkObj.text}
                 </MenuLink>

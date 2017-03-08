@@ -192,7 +192,7 @@ var Resource = React.createClass({
           seperator = "";
         }
         return (
-          <span><a href={author.link}>{author.name}</a>{seperator}</span>
+          <span key={"author-" + index}><a href={author.link}>{author.name}</a>{seperator}</span>
         );
       });
       author = (<h4>By {author}</h4>);
@@ -226,17 +226,17 @@ var Resources = React.createClass({
               {
                 text: this.context.intl.formatMessage({id: `nav_copyright_campaign2`}),
                 item: `about`,
-                link: `/signup#about`
+                href: `/signup#about`
               },
               {
                 text: `More Resources`,
                 item: `resources`,
-                link: `/resources`
+                href: `/en-US/resources`
               },
               {
                 text: this.context.intl.formatMessage({id: `nav_get_involved2`}),
                 item: `get-involved`,
-                link: `/signup#get-involved`
+                href: `/signup#get-involved`
               }
             ]}
           />
