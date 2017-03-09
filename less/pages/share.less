@@ -13,4 +13,30 @@
       text-align: center;
     }
   }
+  .share-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    max-width: 115px;
+    .share-button {
+      color: #FFFFFF;
+      height: 30px;
+      width: 30px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-decoration: none;
+      &.email-button {
+        background: #7DD226;
+      }
+      &.facebook-button {
+        background: #32529E;
+      }
+      &.twitter-button {
+        background: #50B2FF;
+      }
+    }
+  }
 }

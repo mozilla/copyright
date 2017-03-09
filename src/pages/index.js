@@ -20,7 +20,7 @@ var Index = React.createClass({
         localesData.push(fs.readFileSync(Path.join(__dirname, '../../node_modules/react-intl/locale-data/' + locale.split('-')[0] + '.js'), 'utf8'));
       });
     }
-    if (metaData.current_url.indexOf('thank-you') !== -1) {
+    if (metaData.current_url.indexOf('share') !== -1) {
       robots = 'noindex, nofollow';
     }
     var fileHashes = JSON.parse(fs.readFileSync(Path.join(__dirname, '../../public/webpack-assets.json')));
@@ -36,6 +36,7 @@ var Index = React.createClass({
     if (this.props.locale) {
       polyfillLocale = '&locale=' + this.props.locale;
     }
+
     return (
       <html>
         <head>
@@ -44,15 +45,15 @@ var Index = React.createClass({
           <meta name="viewport" content="width=device-width, initial-scale=1"/>
           <meta name='robots' content={robots}/>
           <meta property="og:type" content="website" />
-          <meta property="og:title" content={metaData.title} />
+          <meta property="og:title" content={metaData.fbTitle} />
           <meta property="og:site_name" content={metaData.site_name} />
           <meta property="og:url" content={metaData.site_url} />
-          <meta property="og:description" content={metaData.desc} />
+          <meta property="og:description" content={metaData.fbDesc} />
           <meta property="og:image" content={metaData.facebook_image} />
           <meta name="twitter:card" content="summary_large_image" />
           <meta name="twitter:site" content="@mozilla" />
-          <meta name="twitter:title" content={metaData.title} />
-          <meta name="twitter:description" content={metaData.desc} />
+          <meta name="twitter:title" content={metaData.twTitle} />
+          <meta name="twitter:description" content={metaData.twShare} />
           <meta name="twitter:image" content={metaData.twitter_image} />
 
           <link rel="preconnect" href="https://www.google-analytics.com" />
