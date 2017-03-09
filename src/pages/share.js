@@ -21,7 +21,7 @@ var Signup = React.createClass({
     var emailBody1 = this.context.intl.formatMessage({id: 'share_email_body_1'});
     var emailBody2 = this.context.intl.formatMessage({id: 'share_email_body_2'}, {emailLink: appURL +'/'});
     var emailBody3 = this.context.intl.formatMessage({id: 'share_email_body_3'});
-    var emailShareURL = 'mailto:someone@example.com?subject='+ emailSubject +'&body='+ emailBody1 + `%0D%0A` + emailBody2 + `%0D%0A` + emailBody3 +'';
+    var emailShareURL = 'mailto:someone@example.com?subject='+ emailSubject +'&body='+ emailBody1 + `%0D%0A%0D%0A` + emailBody2 + `%0D%0A%0D%0A` + emailBody3 +'';
 
     return (
       <div className={className}>
