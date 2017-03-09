@@ -9,14 +9,12 @@ var Index = React.createClass({
   render: function() {
     var metaData = this.props.metaData;
     var robots = 'index, follow';
-    var googleFonts = "https://fonts.googleapis.com/css?family=Arvo:600,400,300,300italic|Fira+Sans+Condensed:200,300,400,700";
+    var googleFonts = "https://fonts.googleapis.com/css?family=Fira+Sans:600,400,300,300italic|Fira+Sans+Condensed:200,300,400,700&subset=latin-ext";
 
     var localesData = [];
     if (this.props.localesInfo.length) {
       this.props.localesInfo.forEach(function(locale) {
-        if (locale === "cs") {
-          googleFonts += "&subset=latin-ext";
-        }
+
         localesData.push(fs.readFileSync(Path.join(__dirname, '../../node_modules/react-intl/locale-data/' + locale.split('-')[0] + '.js'), 'utf8'));
       });
     }
