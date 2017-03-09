@@ -87,6 +87,13 @@ var ScrollNav = React.createClass({
         href: `#get-involved`
       }
     ];
+    if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
+      links.splice(1, 0, {
+        text: `More Resources`,
+        item: `resources`,
+        href: `/en-US/resources`
+      });
+    }
 
     return (
       <SimpleNav
@@ -102,47 +109,65 @@ var SimpleNav = React.createClass({
   contextTypes: {
     intl: React.PropTypes.object
   },
+  getInitialState: function() {
+    return {
+      navOpen: false
+    };
+  },
+  onBarsClick: function() {
+    this.setState({
+      navOpen: !this.state.navOpen
+    });
+  },
   render: function() {
     var active = this.props.active || ``;
-    var links = this.props.links || [
-      {
-        text: this.context.intl.formatMessage({id: `nav_copyright_campaign2`}),
-        item: `about`,
-        href: `/signup#about`
-      },
-      {
-        text: this.context.intl.formatMessage({id: `nav_get_involved2`}),
-        item: `get-involved`,
-        href: `/signup#get-involved`
+    var links = this.props.links;
+    if (!links) {
+      links = this.props.links || [
+        {
+          text: this.context.intl.formatMessage({id: `nav_copyright_campaign2`}),
+          item: `about`,
+          href: `/signup#about`
+        },
+        {
+          text: this.context.intl.formatMessage({id: `nav_get_involved2`}),
+          item: `get-involved`,
+          href: `/signup#get-involved`
+        }
+      ];
+      if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
+        links.splice(1, 0, {
+          text: `More Resources`,
+          item: `resources`,
+          href: `/en-US/resources`
+        });
       }
-    ];
-    if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
-      links.splice(1, 0, {
-        text: `More Resources`,
-        item: `resources`,
-        href: `/en-US/resources`
-      });
     }
+
+    var navClassName = classnames(`nav`, {
+      "open": this.state.navOpen
+    });
 
     var langPicker = null;
     if (this.props.useLangPicker) {
       langPicker = (
-        <div className="nav-lang-selector">
-          <Dropdown id='lang-selector'
-            options={enabledLocales}
-            value={this.context.intl.locale}
-            labelField='description'
-            valueField='code'
-            onChange={dropDownOnChange}
-          />
-        </div>
+        <Dropdown id='lang-selector'
+          options={enabledLocales}
+          value={this.context.intl.locale}
+          labelField='description'
+          valueField='code'
+          onChange={dropDownOnChange}
+        />
       );
     }
     return (
       <div className="nav-container">
-        <div className="nav">
+        <div className={navClassName}>
           <div className="nav-logo-container">
             <a href="https://mozilla.org/" className="nav-logo"></a>
+          </div>
+          <div onClick={this.onBarsClick} className="bars-container">
+            <i className="fa fa-bars fa-2x"></i>
           </div>
           {
             links.map((linkObj, index) => {

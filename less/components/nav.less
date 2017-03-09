@@ -1,41 +1,55 @@
 .nav-container {
-  height: 146px;
   .nav {
+    height: 65px;
+    overflow: hidden;
+    &.open {
+      height: auto;
+    }
     background: #FFFFFF;
-    height: 146px;
     width: 100%;
     .nav-logo-container {
       padding: 16px;
     }
-    z-index: 3;
-    position: fixed;
     border-bottom: 1px solid #CFCFCF;
-    .nav-link {
+    .nav-link,
+    select {
       margin: 8px 10px;
+      font-size: 0.8rem;
+      display: block;
+      font-weight: 600;
+      text-align: center;
+    }
+    .bars-container {
+      display: inline-flex;
+      height: 65px;
+      width: 65px;
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      right: 0;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-link {
       text-decoration: none;
       color: #000000;
       opacity: 0.5;
-      display: block;
-      font-weight: 600;
-      font-size: 14px;
       &:hover,
       &.active {
         opacity: 1;
       }
     }
-    .nav-lang-selector {
-      position: absolute;
-      right: 0;
-      top: 0;
-      select {
-        border: none;
-        box-shadow: none;
-        background-color: transparent;
-        height: 65px;
-        font-size: 14px;
-        font-family: Arvo, sans-serif;
-        font-weight: 600;
-        cursor: pointer;
+    select {
+      border: none;
+      box-shadow: none;
+      background-color: transparent;
+      font-family: Arvo, sans-serif;
+      cursor: pointer;
+      margin-left: auto;
+      margin-right: auto;
+      option {
+        padding: 0;
+        text-align: left;
       }
     }
     .nav-logo {
@@ -51,11 +65,20 @@
   @media screen and (min-width: 768px) {
     height: 65px;
     .nav {
+      z-index: 3;
+      position: fixed;
       height: 65px;
       display: flex;
       align-items: center;
       .nav-link {
         display: inline;
+      }
+      .bars-container {
+        display: none;
+      }
+      select {
+        margin-right: 0;
+        text-align: left;
       }
       .nav-logo-container {
         border-right: 1px solid #CFCFCF;
@@ -67,11 +90,7 @@
   @media screen and (min-width: 992px) {
     .nav {
       .nav-link {
-        font-size: 16px;
         margin: 8px 28px;
-      }
-      .nav-lang-selector select {
-        font-size: 16px;
       }
     }
   }
