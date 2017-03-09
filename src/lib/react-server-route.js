@@ -30,12 +30,15 @@ function routeFileContent(locales) {
     function generateHTML(renderProps) {
       var messages = getMessages(locale);
       var favicon = "/assets/images/favicon.png";
-      var twitterImage = "/assets/images/EOY_Twitter_v8_EN.d1bb5d2a5ce35859d038df852d9e6a0a811beaac.png";
-      var facebookImage = "/assets/images/EOY_facebook_v1.a152496406bad899d1a920f6d6b9f507.png";
-      var siteUrl = locale + '/';
+      var twitterImage = "/assets/images/Copyright-social-01.jpg";
+      var facebookImage = "/assets/images/Copyright-social-01.jpg";
+      var siteUrl = url.resolve(process.env.APPLICATION_URI, locale + '/')
       var localesInfo = [locale];
       var query = queryParser(request.query);
-      var desc = messages.i_care_about_copyright;
+
+      var fbDesc = messages.fb_share_desc_a.replace("{fbLink}", siteUrl);
+      var fbTitle =  messages.fb_share_title_a;
+      var twShare = messages.twitter_share_a.replace("{twitterLink}", siteUrl);;
 
       function createElement(Component, props) {
         // make sure you pass all the props in!
@@ -59,11 +62,13 @@ function routeFileContent(locales) {
           favicon={favicon}
           metaData={{
             current_url: location,
-            desc: desc,
-            title: messages.support_mozilla,
+            fbDesc,
+            fbTitle,
+            twShare,
+            title: ``,
             site_name: 'mozilla.org',
-            site_url: url.resolve(process.env.APPLICATION_URI, siteUrl),
-            site_title: messages.give_to_mozilla,
+            site_url: siteUrl,
+            site_title: ``,
             facebook_image: process.env.APPLICATION_URI + facebookImage,
             twitter_image: process.env.APPLICATION_URI + twitterImage
           }}
