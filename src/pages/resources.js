@@ -54,7 +54,7 @@ var readResources = [
     authorLink: "https://medium.com/eu-copyright-reform"
   }, {
     title: "Mozilla position on the Commission proposal for a directive on copyright in the digital single market",
-    titleLink: "https://drive.google.com/drive/folders/0BybHRPPm37TJLUYyOHRxclViRkU?usp=sharing",
+    titleLink: "https://drive.google.com/file/d/0BybHRPPm37TJS0R6cFRpa0x5SmdGWk82YjN2M1Bla19hN3hZ/view",
     paragraph: "A one-pager that summarises Mozilla’s position on the European Commission’s proposal for a directive on copyright in the digital single market.",
     author: "Mozilla",
     authorLink: "https://www.mozilla.org/"
