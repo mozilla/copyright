@@ -9,7 +9,9 @@ var signupRoutes = function(transaction, callback) {
     trigger_welcome: 'N',
     source_url: 'https://changecopyright.org/',
     email: transaction.email,
-    country: transaction.country
+    country: transaction.country,
+    first_name: transaction.firstName,
+    last_name: transaction.lastName
   };
 
   hatchet.send("send_post_request", {

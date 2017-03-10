@@ -98,7 +98,9 @@ module.exports = function(options) {
             trigger_welcome: Joi.any().valid('N').required(),
             source_url: Joi.any().valid('https://changecopyright.org/').required(),
             email: Joi.string().email().required(),
-            country: Joi.string().allow('')
+            country: Joi.string().allow(''),
+            first_name: Joi.string().allow(''),
+            last_name: Joi.string().allow('')
           }
         }
       }
