@@ -9,6 +9,7 @@ var Index = React.createClass({
   render: function() {
     var metaData = this.props.metaData;
     var robots = 'index, follow';
+    var googleFonts = "https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:200,300,400,700&subset=latin-ext";
 
     var localesData = [];
     if (this.props.localesInfo.length) {
@@ -73,6 +74,7 @@ var Index = React.createClass({
         <body>
           <div id="my-app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
           <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css"/>
+          <link rel="stylesheet" href={googleFonts}/>
           <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" rel="stylesheet"/>
           <script src={'/api/polyfill.js?features=Event,CustomEvent,Promise' + polyfillLocale}></script>
           <script src={'/' + fileHashes.main.js} ></script>
