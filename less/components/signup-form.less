@@ -2,7 +2,10 @@
   vertical-align: top;
   margin: 54px 0 54px 0;
   .signup-form {
-    padding: 0 15px 0 15px;
+    padding: 0 20px;
+    max-width: 800px;
+    display: block;
+    margin: 0 auto;
   }
   .checkbox {
     width: auto;
@@ -37,7 +40,10 @@
     color: #5b555c;
     width: 100%;
     display: block;
-    height: 52px;
+    height: 57px;
+    @media screen and (min-width: 1800px) {
+      height: 70px;
+    }
     border: 1px solid #CFCFCF;
     padding: 14px;
     &:invalid {
@@ -80,7 +86,7 @@
     }
   }
   @media screen and (min-width: 992px) {
-    width: 445px;
+    width: 600px;
     margin: 0;
     .signup-form {
       width: 100%;
