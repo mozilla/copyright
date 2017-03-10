@@ -1,6 +1,14 @@
 import React from 'react';
 import classnames from "classnames";
-import enabledLocales from '../data/locales.js';
+import localesDataArr from '../data/locales.js';
+import locales from '../../public/locales.json';
+var enabledLocales = [];
+
+localesDataArr.forEach(function(localeData) {
+  if (locales[localeData.code]) {
+    enabledLocales.push(localeData);
+  }
+});
 
 var MenuLink = React.createClass({
   render: function() {
