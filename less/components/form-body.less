@@ -53,3 +53,15 @@
     }
   }
 }
+
+html[lang="cs"] .form-body-container .form-body .form-description {
+  &::first-letter {
+    float: none;
+    margin-right: 0;
+  }
+  @media screen and (max-width: 400px) {
+    &::first-letter {
+      margin-right: 0;
+    }
+  }
+}

@@ -36,7 +36,7 @@ var Index = React.createClass({
     }
 
     return (
-      <html>
+      <html lang={this.props.locale}>
         <head>
           <meta charSet="UTF-8"/>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge"/>
