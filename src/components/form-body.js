@@ -42,9 +42,6 @@ module.exports = React.createClass({
           <p>
             {this.context.intl.formatMessage({id: 'now_what_description'})}
           </p>
-          <a className="get-involved button arrow" href="#get-involved">
-            {this.context.intl.formatMessage({id: 'get_involved_button'})}
-          </a>
         </div>
       </div>
     );
