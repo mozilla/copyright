@@ -98,5 +98,9 @@ module.exports = [
   {
       description: 'Svenska',
       code: 'sv-SE'
+  },
+  {
+      description: 'Українська',
+      code: 'uk'
   }
 ];
