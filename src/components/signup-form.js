@@ -79,11 +79,12 @@ var Signup = React.createClass({
   },
   render: function() {
     var supportedLocales = require('../../node_modules/localized-countries/languages.json');
-    var countryLocale = 'en';
-    if (supportedLocales.indexOf(this.context.intl.locale) >= 0) {
-      countryLocale = this.context.intl.locale;
+    var selectedLocale = 'en';
+    var targetLocale = this.context.intl.locale.replace(/-/g , "_");
+    if (supportedLocales.indexOf(targetLocale) >= 0) {
+      selectedLocale = targetLocale;
     }
-    var localizedCountriesAll = require('../../node_modules/localized-countries/data/' + countryLocale + '.json');
+    var localizedCountriesAll = require('../../node_modules/localized-countries/data/' + selectedLocale + '.json');
     var siteCountries = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB'];
     var localizedCountries = {};
     for (var i = 0; i < siteCountries.length; i++) {
