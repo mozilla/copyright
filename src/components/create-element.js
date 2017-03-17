@@ -7,7 +7,14 @@ import reducer from '../reducers';
 var createElement = React.createClass({
   propTypes: {
     locale: React.PropTypes.string.isRequired,
-    messages: React.PropTypes.object.isRequired
+    messages: React.PropTypes.object.isRequired,
+    localizedCountries: React.PropTypes.object.isRequired
+  },
+  getChildContext: function() {
+    return { localizedCountries:  this.props.localizedCountries};
+  },
+  childContextTypes: {
+    localizedCountries: React.PropTypes.object
   },
   render: function() {
     return (

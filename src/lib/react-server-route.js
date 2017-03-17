@@ -43,7 +43,7 @@ function routeFileContent(locales) {
       function createElement(Component, props) {
         // make sure you pass all the props in!
         return (
-          <CreateElement {...query.initialState} locale={locale} messages={messages}>
+          <CreateElement localizedCountries={{}} {...query.initialState} locale={locale} messages={messages}>
             <Component {...props} {...query.values} />
           </CreateElement>
         );
