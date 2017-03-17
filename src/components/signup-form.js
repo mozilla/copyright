@@ -78,12 +78,16 @@ var Signup = React.createClass({
     return this.stickyContainer.getClientRects()[0].top + this.stickyContent.offsetHeight + window.scrollY - window.innerHeight;
   },
   render: function() {
-    var englishCountries = require('localized-countries')(this.context.intl.locale);
-    var countryList = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB'];
+    var supportedLocales = require('../../node_modules/localized-countries/languages.json');
+    var countryLocale = 'en';
+    if (supportedLocales.indexOf(this.context.intl.locale) >= 0) {
+      countryLocale = this.context.intl.locale;
+    }
+    var localizedCountriesAll = require('../../node_modules/localized-countries/data/' + countryLocale + '.json');
+    var siteCountries = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB'];
     var localizedCountries = {};
-
-    for (var i = 0; i < countryList.length; i++) {
-      localizedCountries[englishCountries.get(countryList[i])] = countryList[i];
+    for (var i = 0; i < siteCountries.length; i++) {
+      localizedCountries[localizedCountriesAll[siteCountries[i]]] = siteCountries[i];
     }
 
     var emailClassName = classnames({
