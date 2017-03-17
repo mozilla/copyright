@@ -11,7 +11,8 @@ var SIGNUP_SUBMITTING = 1;
 var Signup = React.createClass({
   mixins: [require('../mixins/basket.js')],
   contextTypes: {
-    intl: React.PropTypes.object
+    intl: React.PropTypes.object,
+    localizedCountries: React.PropTypes.object
   },
   getInitialState: function() {
     return {
@@ -131,6 +132,7 @@ var Signup = React.createClass({
     var emailClassName = classnames({
       "invalid": !!this.props.emailError
     });
+
     var buttonClassName = classnames(`button`, {
       "submitting": this.state.submitting === SIGNUP_SUBMITTING,
       "arrow": this.state.submitting === NOT_SUBMITTING
@@ -139,6 +141,9 @@ var Signup = React.createClass({
     if (this.state.submitting) {
       buttonText = ``;
     }
+
+    var localizedCountries = this.context.localizedCountries;
+
     return (
       <div  ref={(element) => { this.formContainerElement = element; }} className="signup-form-container">
         <div id="get-involved" className="nav-anchor nav-offset"></div>
@@ -163,35 +168,12 @@ var Signup = React.createClass({
           <input autoComplete="off" ref={(input) => { this.emailInput = input; }} type='email' className={emailClassName} value={this.props.email} onChange={this.emailChange} required placeholder={this.context.intl.formatMessage({id: 'email'})}/>
           <select autoComplete="off" required value={this.props.country} onChange={this.countryChange}>
             <option value="">{this.context.intl.formatMessage({id: 'country'})}</option>
-            <option value="AT">Austria</option>
-            <option value="BE">Belgium</option>
-            <option value="BG">Bulgaria</option>
-            <option value="HR">Croatia</option>
-            <option value="CY">Cyprus</option>
-            <option value="CZ">Czech Republic</option>
-            <option value="DK">Denmark</option>
-            <option value="EE">Estonia</option>
-            <option value="FI">Finland</option>
-            <option value="FR">France</option>
-            <option value="DE">Germany</option>
-            <option value="GR">Greece</option>
-            <option value="HU">Hungary</option>
-            <option value="IE">Ireland</option>
-            <option value="IT">Italy</option>
-            <option value="LV">Latvia</option>
-            <option value="LT">Lithuania</option>
-            <option value="LU">Luxembourg</option>
-            <option value="MT">Malta</option>
-            <option value="NL">Netherlands</option>
-            <option value="PL">Poland</option>
-            <option value="PT">Portugal</option>
-            <option value="RO">Romania</option>
-            <option value="SK">Slovakia</option>
-            <option value="SI">Slovenia</option>
-            <option value="ES">Spain</option>
-            <option value="SE">Sweden</option>
-            <option value="GB">United Kingdom</option>
-            <option value="other" data-other="">Other</option>
+            {
+              Object.keys(localizedCountries).sort().map(function(name, index) {
+                return <option key={localizedCountries[name]} value={localizedCountries[name]}>{name}</option>;
+              })
+            }
+            <option value="other" data-other="">{this.context.intl.formatMessage({id: 'country_other'})}</option>
           </select>
           <p className="error-message">{this.props.emailError}</p>
           <p className="error-message">{this.state.signupError}</p>

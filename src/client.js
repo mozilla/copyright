@@ -20,7 +20,7 @@ function createElement(Component, props) {
   });
 
   return (
-    <CreateElement {...query.initialState} locale={locale} messages={messages}>
+    <CreateElement localizedCountries={window.localizedCountries[locale]} {...query.initialState} locale={locale} messages={messages}>
       <Component {...props} {...query.values} />
     </CreateElement>
   );

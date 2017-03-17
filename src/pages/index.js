@@ -18,6 +18,28 @@ var Index = React.createClass({
         localesData.push(fs.readFileSync(Path.join(__dirname, '../../node_modules/react-intl/locale-data/' + locale.split('-')[0] + '.js'), 'utf8'));
       });
     }
+
+
+    var l10nCountryData = {};
+    var supportedLocales = require('../../node_modules/localized-countries/languages.json');
+    var siteCountries = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB'];
+    if (this.props.localesInfo.length) {
+      this.props.localesInfo.forEach(function(locale) {
+        var targetLocale = locale.replace(/-/g , "_");
+        var selectedLocale = 'en';
+        if (supportedLocales.indexOf(targetLocale) >= 0) {
+          selectedLocale = targetLocale;
+        }
+        var localizedCountriesAll = require('../../node_modules/localized-countries/data/' + selectedLocale + '.json');
+        var localizedCountries = {};
+        for (var i = 0; i < siteCountries.length; i++) {
+          localizedCountries[localizedCountriesAll[siteCountries[i]]] = siteCountries[i];
+        }
+        l10nCountryData[locale] = localizedCountries;
+        l10nCountryData = "var localizedCountries = " + JSON.stringify(l10nCountryData) + ";";
+      });
+    }
+
     if (metaData.current_url.indexOf('share') !== -1) {
       robots = 'noindex, nofollow';
     }
@@ -63,6 +85,7 @@ var Index = React.createClass({
           <link rel="icon" href={this.props.favicon} type="image/x-icon"/>
           <link rel="stylesheet" href={'/' + fileHashes.main.css}/>
           <script dangerouslySetInnerHTML={{__html: ga}}></script>
+          <script dangerouslySetInnerHTML={{__html: l10nCountryData}}></script>
           {
             localesData.map((localeData, index) => {
               return (
