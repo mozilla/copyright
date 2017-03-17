@@ -78,6 +78,7 @@ var Signup = React.createClass({
     return this.stickyContainer.getClientRects()[0].top + this.stickyContent.offsetHeight + window.scrollY - window.innerHeight;
   },
   render: function() {
+    var siteCountries = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB'];
     var supportedLocales = require('../../node_modules/localized-countries/languages.json');
     var selectedLocale = 'en';
     var targetLocale = this.context.intl.locale.replace(/-/g , "_");
@@ -85,7 +86,6 @@ var Signup = React.createClass({
       selectedLocale = targetLocale;
     }
     var localizedCountriesAll = require('../../node_modules/localized-countries/data/' + selectedLocale + '.json');
-    var siteCountries = ['AT', 'BE', 'BG', 'HR', 'CY', 'CZ', 'DK', 'EE', 'FI', 'FR', 'DE', 'GR', 'HU', 'IE', 'IT', 'LV', 'LT', 'LU', 'MT', 'NL', 'PL', 'PT', 'RO', 'SK', 'SI', 'ES', 'SE', 'GB'];
     var localizedCountries = {};
     for (var i = 0; i < siteCountries.length; i++) {
       localizedCountries[localizedCountriesAll[siteCountries[i]]] = siteCountries[i];
