@@ -11,7 +11,7 @@ import getMessages from './lib/get-messages.js';
 
 function createElement(Component, props) {
   var locale = window.location.pathname.split("/")[1];
-  var query = queryParser(props.location.query, locale);
+  var query = queryParser(props.location.query);
   var ReactIntlLocaleData = window.ReactIntlLocaleData;
   var messages = getMessages(locale);
 

@@ -4,6 +4,7 @@ import { setEmailError, setEmail, setFirstName, setLastName, setCountry, setSign
 import { connect } from 'react-redux';
 import classnames from "classnames";
 import StickyContainer from './sticky-container.js';
+import reactGA from 'react-ga';
 
 var NOT_SUBMITTING = 0;
 var SIGNUP_SUBMITTING = 1;
@@ -80,6 +81,11 @@ var Signup = React.createClass({
     this.props.setEmail(e.target.value);
   },
   countryChange: function(e) {
+    reactGA.event({
+      category: "Signup",
+      action: "Form Step",
+      label: "Country Focus"
+    });
     this.props.setCountry(e.target.value);
   },
   signupCheckboxChange: function(e) {
@@ -98,22 +104,47 @@ var Signup = React.createClass({
     if (!this.props.email.trim()) {
       valid = false;
       this.props.setEmailError(this.context.intl.formatMessage({id: "please_complete"}));
+      reactGA.event({
+        category: "Signup",
+        action: "Form Error",
+        label: "Empty Email Error"
+      });
     } else if (!this.emailInput.validity.valid) {
       valid = false;
       this.props.setEmailError(this.context.intl.formatMessage({id: "email_invalid"}));
+      reactGA.event({
+        category: "Signup",
+        action: "Form Error",
+        label: "Invalid Email Error"
+      });
     }
 
     if (!this.props.privacyCheckbox) {
       valid = false;
       this.props.setPrivacyCheckboxError(this.context.intl.formatMessage({id: "please_complete"}));
+      reactGA.event({
+        category: "Signup",
+        action: "Form Error",
+        label: "Privacy Policy Error"
+      });
     }
 
     if (!this.props.signupCheckbox) {
       valid = false;
       this.props.setSignupCheckboxError(this.context.intl.formatMessage({id: "please_complete"}));
+      reactGA.event({
+        category: "Signup",
+        action: "Form Error",
+        label: "Opt-in Error"
+      });
     }
 
     if (valid) {
+      reactGA.event({
+        category: "Signup",
+        action: "Submitting the form",
+        label: "Copyright"
+      });
       this.basket({
         email: this.props.email,
         firstName: this.props.firstName,
@@ -122,11 +153,53 @@ var Signup = React.createClass({
       });
     }
   },
+  mobileGetInvolved: function() {
+    reactGA.event({
+      category: "Signup",
+      action: "Form Step",
+      label: "Get Involved Clicked"
+    });
+  },
   getPosition: function() {
     if (!this.stickyContainer) {
       return 0;
     }
     return this.stickyContainer.getClientRects()[0].top + this.stickyContent.offsetHeight + window.scrollY - window.innerHeight;
+  },
+  onFirstNameInputClick: function() {
+    reactGA.event({
+      category: "Signup",
+      action: "Form Step",
+      label: "First Name Focus"
+    });
+  },
+  onLastNameInputClick: function() {
+    reactGA.event({
+      category: "Signup",
+      action: "Form Step",
+      label: "Last Name Focus"
+    });
+  },
+  onEmailInputClick: function() {
+    reactGA.event({
+      category: "Signup",
+      action: "Form Step",
+      label: "Email Focus"
+    });
+  },
+  onPrivacyCheckboxClick: function() {
+    reactGA.event({
+      category: "Signup",
+      action: "Form Step",
+      label: "Privacy Checkbox Focus"
+    });
+  },
+  onSignupCheckboxClick: function() {
+    reactGA.event({
+      category: "Signup",
+      action: "Form Step",
+      label: "Opt-in Checkbox Focus"
+    });
   },
   render: function() {
     var emailClassName = classnames({
@@ -157,15 +230,15 @@ var Signup = React.createClass({
           <div ref={(element) => { this.stickyContainer = element; }}>
             <StickyContainer className="sticky-container" stickyTo={this.getPosition}>
               <div className="sticky-content" ref={(element) => { this.stickyContent = element; }}>
-                <a className="get-involved button arrow" href="#get-involved">
+                <a onClick={this.mobileGetInvolved} className="get-involved button arrow" href="#get-involved">
                   {this.context.intl.formatMessage({id: 'get_involved_button'})}
                 </a>
               </div>
             </StickyContainer>
           </div>
-          <input autoComplete="off" type='text' value={this.props.firstName} onChange={this.firstNameChange} placeholder={this.context.intl.formatMessage({id: 'first_name'})}/>
-          <input autoComplete="off" type='text' value={this.props.lastName} onChange={this.lastNameChange} placeholder={this.context.intl.formatMessage({id: 'last_name'})}/>
-          <input autoComplete="off" ref={(input) => { this.emailInput = input; }} type='email' className={emailClassName} value={this.props.email} onChange={this.emailChange} required placeholder={this.context.intl.formatMessage({id: 'email'})}/>
+          <input onClick={this.onFirstNameInputClick} autoComplete="off" type='text' value={this.props.firstName} onChange={this.firstNameChange} placeholder={this.context.intl.formatMessage({id: 'first_name'})}/>
+          <input onClick={this.onLastNameInputClick} autoComplete="off" type='text' value={this.props.lastName} onChange={this.lastNameChange} placeholder={this.context.intl.formatMessage({id: 'last_name'})}/>
+          <input onClick={this.onEmailInputClick} autoComplete="off" ref={(input) => { this.emailInput = input; }} type='email' className={emailClassName} value={this.props.email} onChange={this.emailChange} required placeholder={this.context.intl.formatMessage({id: 'email'})}/>
           <select autoComplete="off" required value={this.props.country} onChange={this.countryChange}>
             <option value="">{this.context.intl.formatMessage({id: 'country'})}</option>
             {
@@ -178,12 +251,12 @@ var Signup = React.createClass({
           <p className="error-message">{this.props.emailError}</p>
           <p className="error-message">{this.state.signupError}</p>
           <label>
-            <input className="checkbox" autoComplete="off" onChange={this.signupCheckboxChange} value={this.props.signupCheckbox} type="checkbox"></input>
+            <input onClick={this.onSignupCheckboxClick} className="checkbox" autoComplete="off" onChange={this.signupCheckboxChange} value={this.props.signupCheckbox} type="checkbox"></input>
             {this.context.intl.formatMessage({id: 'signup_checkbox'})}
           </label>
           <p className="privacy-error error-message">{this.props.signupCheckboxError}</p>
           <label>
-            <input className="checkbox" autoComplete="off" onChange={this.privacyCheckboxChange} value={this.props.privacyCheckbox} type="checkbox"></input>
+            <input onClick={this.onPrivacyCheckboxClick} className="checkbox" autoComplete="off" onChange={this.privacyCheckboxChange} value={this.props.privacyCheckbox} type="checkbox"></input>
             <FormattedMessage
               id='sign_up_notice'
               values={{

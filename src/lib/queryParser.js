@@ -1,8 +1,4 @@
-function isNumber(item) {
-  return !isNaN(parseInt(item, 10));
-}
-
-module.exports = function(queryString, locale) {
+module.exports = function(queryString) {
   queryString = queryString || {};
   var test = queryString.test;
 
