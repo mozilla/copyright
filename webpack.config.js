@@ -38,9 +38,11 @@ module.exports = {
         APPLICATION_URI: process.env.APPLICATION_URI,
         OPTIMIZELY_ID: process.env.OPTIMIZELY_ID,
         OPTIMIZELY_ACTIVE: process.env.OPTIMIZELY_ACTIVE,
-        FULL_SUBDOMAIN_FOR_COOKIE: process.env.FULL_SUBDOMAIN_FOR_COOKIE
+        FULL_SUBDOMAIN_FOR_COOKIE: process.env.FULL_SUBDOMAIN_FOR_COOKIE,
+        NODE_ENV: process.env.NODE_ENV
       })
     }),
+    new webpack.optimize.UglifyJsPlugin(),
     new webpack.ProvidePlugin({
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     }),
