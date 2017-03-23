@@ -7,7 +7,7 @@ import FormBody from '../components/form-body.js';
 
 var readResources = [
   {
-    title: "Innovator’s Take Action",
+    title: "Innovators Take Action",
     titleLink: "http://www.innovatorsact.eu/",
     paragraph: "EU Copyright Reform is coming. The question is whether it will leave space for competitive startups.",
     author: "Allied for Startups",
