@@ -76,6 +76,10 @@ module.exports = [
       code: 'nl'
   },
   {
+      description: 'Norsk nynorsk',
+      code: 'nn-NO'
+  },
+  {
       description: 'Polski',
       code: 'pl'
   },
