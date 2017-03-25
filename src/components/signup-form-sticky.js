@@ -5,8 +5,15 @@ var Signup = React.createClass({
     intl: React.PropTypes.object
   },
   getInitialState: function() {
+    var previousViewportTop = 0;
+    var navHeight = 65;
+    if (typeof window === 'object') {
+      previousViewportTop = window.scrollY + navHeight;
+    }
     return {
-      formTop: 0
+      formTop: 0,
+      formPosition: "absolute",
+      previousViewportTop
     };
   },
   componentDidMount: function() {
@@ -20,49 +27,74 @@ var Signup = React.createClass({
     if (window.innerWidth <= 992 ) {
       return;
     }
-    var formTop = 0;
+    var formTop = this.state.formTop;
+    var formPosition = this.state.formPosition;
     var viewportPadding = 30;
-    var navHeight = 64;
+    var navHeight = 65;
     var formBottomPadding = 144;
-    var topPadding = viewportPadding + navHeight;
+    var formTopPadding = 64;
     var formHeight = this.formElement.offsetHeight;
-    var formPaddingHeight = formHeight + formBottomPadding;
-    var formViewHeight = formHeight + viewportPadding;
-    var windowHeight = window.innerHeight;
-    var viewportTop = window.scrollY;
+    var formPaddingHeight = formTopPadding + formHeight + formBottomPadding;
+    var formViewHeight = viewportPadding + formHeight + viewportPadding;
+    var windowHeight = window.innerHeight - navHeight;
+    var viewportTop = window.scrollY + navHeight;
+    var previousViewportTop = this.state.previousViewportTop;
+    var delta = previousViewportTop - viewportTop;
     var viewportBottom = viewportTop + windowHeight;
     var formContainerHeight = this.formContainerElement.offsetHeight;
     var formContainerTop = this.formContainerElement.offsetTop;
     var formElementTop = this.formElement.offsetTop;
-
-    // Sticks the form to the top of the viewport.
-    // If the viewport top is above the form top.
-    // Or the viewport is larger then the form.
-    if (formPaddingHeight < windowHeight || viewportTop < formElementTop - topPadding) {
-      formTop = viewportTop - (formContainerTop - topPadding);
-      if (formTop < 0) {
-        formTop = 0;
-      } else if (formTop + formPaddingHeight > formContainerHeight) {
-        formTop = formContainerHeight - formPaddingHeight;
-      }
-      this.setState({ formTop });
-      return;
-    // Sticks the form to the bottom of the viewport.
-    // If the viewport bottom is below the form bottom.
-    } else if (viewportBottom > formElementTop + formViewHeight) {
-      formTop = viewportBottom - (formContainerTop + formViewHeight);
-      if (formTop + formPaddingHeight > formContainerHeight) {
-        formTop = formContainerHeight - formPaddingHeight;
-      }
-      this.setState({ formTop });
-      return;
+    var visibleFormHeight = formViewHeight;
+    if (visibleFormHeight > windowHeight) {
+      visibleFormHeight = windowHeight;
     }
+
+    // If the view is above the form container,
+    // just plop the form at the top of the container.
+    if (viewportTop <= formContainerTop + viewportPadding) {
+      formPosition = "absolute";
+      formTop = 0;
+    // If the form bottom is touching the bottom of the container,
+    // just plop the form at the bottom of the container.
+    } else if (viewportTop - (formContainerTop + viewportPadding) + visibleFormHeight >= formContainerHeight - formBottomPadding) {
+      formPosition = "absolute";
+      formTop = formContainerHeight - formPaddingHeight;
+    // If the form height can fit in the viewport height,
+    // just stick it to the top.
+    } else if (formViewHeight <= windowHeight) {
+      formPosition = "fixed";
+      formTop = navHeight + viewportPadding - formTopPadding;
+    } else if (formPosition === "absolute") {
+      // Scroll down.
+      // If the form bottom is at the bottom of the viewport,
+      // position fix it to the bottom of the viewport.
+      if (delta < 0 && viewportBottom - formContainerTop >= formElementTop + formHeight + viewportPadding) {
+        formPosition = "fixed";
+        formTop = windowHeight - ( formHeight + viewportPadding );
+      // Scroll up.
+      // If the form top is at the top of the viewport,
+      // position fix it to the top of the viewport.
+      } else if (delta > 0 && viewportTop - formContainerTop <= formElementTop - viewportPadding) {
+        formPosition = "fixed";
+        formTop = navHeight + viewportPadding - formTopPadding;
+      }
+    } else if (formPosition === "fixed") {
+      // Scroll up or down.
+      // If the scroll is inside the form,
+      // make the form absolute positioned.
+      if ((delta < 0 && formElementTop >= formTopPadding - viewportPadding) || (delta > 0 && formElementTop <= navHeight - viewportPadding)) {
+        formTop = viewportTop - formContainerTop - formTopPadding - navHeight + formElementTop;
+        formPosition = "absolute";
+      }
+    }
+
+    this.setState({ formTop, formPosition, previousViewportTop: viewportTop });
   },
   render: function() {
     return (
       <div  ref={(element) => { this.formContainerElement = element; }} className="signup-form-container">
         <div id="get-involved" className="nav-anchor nav-offset"></div>
-        <div ref={(element) => { this.formElement = element; }} className="signup-form" style={{marginTop: this.state.formTop + "px"}}>
+        <div ref={(element) => { this.formElement = element; }} className="signup-form" style={{top: this.state.formTop + "px", position: this.state.formPosition}}>
           {this.props.children}
         </div>
       </div>

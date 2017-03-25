@@ -42,7 +42,6 @@ module.exports = {
         NODE_ENV: process.env.NODE_ENV
       })
     }),
-    new webpack.optimize.UglifyJsPlugin(),
     new webpack.ProvidePlugin({
       'fetch': 'imports?this=>global!exports?global.fetch!whatwg-fetch'
     }),
