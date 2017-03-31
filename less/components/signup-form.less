@@ -88,23 +88,29 @@
   @media screen and (min-width: 992px) {
     width: 600px;
     margin: 0;
+    position: relative;
     .signup-form {
-      width: 100%;
-      margin: 0 0 144px 0;
+      width: 600px;
+      margin: 64px 0 144px 0;
       padding: 0 55px 0 55px;
       h3 {
-        margin-top: 64px;
+        margin-top: 0;
       }
-      transition: margin-top ease-out 1s;
+      position: absolute;
+      top: 0;
+      right: 0;
     }
   }
   @media screen and (min-width: 1200px) {
     .signup-form {
-      width: 100%;
+      width: 600px;
       padding: 0 84px 0 84px;
     }
   }
   @media screen and (min-width: 1800px) {
     width: 645px;
+    .signup-form {
+      width: 645px;
+    }
   }
 }
