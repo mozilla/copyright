@@ -1,119 +1,28 @@
-.signup-form-container {
-  vertical-align: top;
-  margin: 54px 0 54px 0;
-  .signup-form {
-    padding: 0 20px;
-    max-width: 800px;
-    display: block;
-    margin: 0 auto;
-    @media screen and (max-width: 992px) {
-      position: static !important;
-    }
-  }
-  .checkbox {
-    width: auto;
-    display: inline;
-    height: auto;
-    margin-right: 5px;
-  }
-  h3 {
-    font-size: 1.5rem;
-    font-weight: 400;
-  }
-  p {
-    font-size: 0.9375rem;
-    line-height: 1.4375rem;
-  }
-  label {
-    font-family: Fira Sans Condensed, sans-serif;
-    color: #5b555c;
-    font-size: 0.75rem;
-  }
-  .privacy-policy {
-    font-family: Fira Sans Condensed, sans-serif;
-    font-size: 0.75rem;
-    line-height: 1.2rem;
-    color: #5b555c;
-    margin: 20px 0;
-  }
-  input, select {
-    font-family: Fira Sans Condensed, sans-serif;
-    letter-spacing: 0.03rem;
-    font-size: 0.9rem;
-    color: #5b555c;
-    width: 100%;
-    display: block;
-    height: 57px;
-    @media screen and (min-width: 1800px) {
-      height: 70px;
-    }
-    border: 1px solid #CFCFCF;
-    padding: 14px;
-    &:invalid {
-      box-shadow: none;
-    }
-    &.invalid {
-      border-color: #FF0000;
-    }
-    &:focus {
-      border-color: #17FFFF;
-    }
-    margin-bottom: -1px;
-    position: relative;
-    &.invalid {
-      z-index: 1;
-    }
-    &:focus {
-      z-index: 2;
-    }
-  }
-  select {
-    &:invalid {
-      color: #767676;
-    }
-    background: #FFFFFF;
-  }
-  .get-involved {
-    display: none;
-    &:after {
-      display: none;
-    }
-  }
-  @media screen and (max-width: 992px) {
-    .sticky .get-involved {
-      position: fixed;
-      display: flex;
-      bottom: 0;
-      left: 0;
-      right: 0;
-    }
-  }
-  @media screen and (min-width: 992px) {
-    width: 600px;
-    margin: 0;
-    position: relative;
-    .signup-form {
-      width: 600px;
-      margin: 64px 0 144px 0;
-      padding: 0 55px 0 55px;
-      h3 {
-        margin-top: 0;
+.signup-form-background {
+  padding: 25px 0;
+  .signup-form-container {
+    display: flex;
+    .email-input {
+      border: none;
+      height: 40px;
+      display: inline-block;
+      padding-left: 12px;
+      vertical-align: bottom;
+      border: 1px solid #000000;
+      &:invalid {
+        box-shadow: none;
       }
-      position: absolute;
-      top: 0;
-      right: 0;
     }
-  }
-  @media screen and (min-width: 1200px) {
-    .signup-form {
-      width: 600px;
-      padding: 0 84px 0 84px;
+    .checkbox {
+      margin-right: 0.4rem;
     }
-  }
-  @media screen and (min-width: 1800px) {
-    width: 645px;
-    .signup-form {
-      width: 645px;
+    .signup-button {
+      display: inline-block;
+      background: #000000;
+      vertical-align: bottom;
+    }
+    .no-wrap {
+      white-space: nowrap;
     }
   }
 }

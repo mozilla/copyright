@@ -40,6 +40,7 @@ a {
 
 .error-message {
   color: #FF0000;
+  font-style: italic;
 }
 
 p.error-message {
@@ -52,52 +53,27 @@ a.button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  &.arrow {
-    padding: 0.7rem 1rem 0.7rem 1rem;
-  }
 }
 
-.button {
-  height: 50px;
-  width: 100%;
+button {
+  height: 40px;
+  margin: 0 auto;
+  padding: 0 50px;
   cursor: pointer;
-  background: #17FFFF;
+  background: #000000;
   font-weight: 400;
   font-size: 0.875rem;
   letter-spacing: 0.01875rem;
-  display: inline-block;
+  display: block;
   position: relative;
   text-decoration: none;
-  color: inherit;
+  color: #FFFFFF;
   border: none;
   font-family: Fira Sans Condensed, sans-serif;
   font-weight: bold;
   text-align: center;
   @media screen and (min-width: 1800px) {
     height: 70px;
-  }
-
-  &.arrow {
-    padding: 0.7rem 2.5rem 0.7rem 1rem;
-    &::after {
-      content: '';
-      position: absolute;
-      width: 1.7rem;
-      height: 1.2rem;
-      font-size: 1rem;
-      background-image: url("/assets/images/icon-arrow-right.svg");
-      background-repeat: no-repeat;
-      background-position: 0.7rem 0.24rem;
-      transition: margin 0.3s;
-    }
-
-    &:hover {
-      background: #17FFFF;
-
-      &::after {
-        margin-left: 0.2rem;
-      }
-    }
   }
 
   &.submitting {
@@ -114,6 +90,13 @@ a.button {
       border-radius: 50%;
     }
   }
+}
+
+section {
+  width: 100%;
+  max-width: 1050px;
+  margin: 0 auto;
+  padding: 0 25px;
 }
 
 @keyframes spin { /* CSS3 */
