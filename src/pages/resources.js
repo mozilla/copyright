@@ -3,7 +3,6 @@ import Footer from '../components/footer.js';
 import Header from '../components/header.js';
 import { SimpleNav } from '../components/nav.js';
 import SignupForm from '../components/signup-form.js';
-import FormBody from '../components/form-body.js';
 
 var readResources = [
   {
@@ -93,7 +92,7 @@ var watchResources = [
       {
         name: "Communia",
         link: "http://www.communia-association.org/"
-      }, 
+      },
       {
         name: "EDRi",
         link: "https://edri.org/"

@@ -9,7 +9,7 @@ var Impact = React.createClass({
   render: function() {
     return (
       <div className="impact-item-container">
-        <img height="126" width="126" src="/assets/images/126x126.jpg"/>
+        <img height="219" width="237" src={this.props.icon}/>
         <div>
           <h2>{this.props.header}</h2>
           <p>{this.props.children}</p>
@@ -40,7 +40,7 @@ var Signup = React.createClass({
             </h1>
             <Impact
               header={this.context.intl.formatMessage({id: 'explanation_technologist'})}
-              icon=""
+              icon="/assets/images/01_Technologist.png"
             >
               {this.context.intl.formatMessage({id: 'explanation_technologist_desc'})}
               &nbsp;
@@ -48,7 +48,7 @@ var Signup = React.createClass({
             </Impact>
             <Impact
               header={this.context.intl.formatMessage({id: 'explanation_creator_innovator'})}
-              icon=""
+              icon="/assets/images/02_Creator.png"
             >
               {this.context.intl.formatMessage({id: 'explanation_creator_innovator_desc'})}
               &nbsp;
@@ -56,7 +56,7 @@ var Signup = React.createClass({
             </Impact>
             <Impact
               header={this.context.intl.formatMessage({id: 'explanation_scientists_librarian'})}
-              icon=""
+              icon="/assets/images/03_Librarian.png"
             >
               {this.context.intl.formatMessage({id: 'explanation_scientists_librarian_desc'})}
               &nbsp;
