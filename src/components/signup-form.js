@@ -124,7 +124,12 @@ var Signup = React.createClass({
       "invalid": !!this.props.emailError
     });
 
-    var buttonClassName = classnames(`button signup-button`, {
+    var desktopButtonClassName = classnames(`desktop-button button signup-button`, {
+      "submitting": this.state.submitting === SIGNUP_SUBMITTING,
+      "arrow": this.state.submitting === NOT_SUBMITTING
+    });
+
+    var mobileButtonClassName = classnames(`mobile-button button signup-button`, {
       "submitting": this.state.submitting === SIGNUP_SUBMITTING,
       "arrow": this.state.submitting === NOT_SUBMITTING
     });
@@ -149,7 +154,7 @@ var Signup = React.createClass({
             <div>
               <div className="no-wrap">
                 <input onClick={this.onEmailInputClick} autoComplete="off" ref={(input) => { this.emailInput = input; }} type='email' className={emailClassName} value={this.props.email} onChange={this.emailChange} required placeholder={this.context.intl.formatMessage({id: 'email'})}/>
-                <button onClick={this.onSubmit} className={buttonClassName}>
+                <button onClick={this.onSubmit} className={desktopButtonClassName}>
                   {buttonText}
                 </button>
               </div>
@@ -170,6 +175,9 @@ var Signup = React.createClass({
                 />
               </label>
               <p className="privacy-error error-message">{this.props.privacyCheckboxError}</p>
+              <button onClick={this.onSubmit} className={mobileButtonClassName}>
+                {buttonText}
+              </button>
             </div>
           </div>
         </section>

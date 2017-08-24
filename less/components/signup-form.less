@@ -1,7 +1,29 @@
 .signup-form-background {
   padding: 25px 0;
   .signup-form-container {
-    display: flex;
+    .signup-button {
+      display: inline-block;
+      background: #000000;
+      vertical-align: bottom;
+    }
+    .mobile-button {
+      display: block;
+    }
+    .desktop-button {
+      display: none;
+    }
+    @media screen and (min-width: 931px) {
+      display: flex;
+      div:first-child {
+        padding-right: 25px;
+      }
+      .mobile-button {
+        display: none;
+      }
+      .desktop-button {
+        display: inline-block;
+      }
+    }
     .email-input {
       border: none;
       height: 40px;
@@ -15,11 +37,6 @@
     }
     .checkbox {
       margin-right: 0.4rem;
-    }
-    .signup-button {
-      display: inline-block;
-      background: #000000;
-      vertical-align: bottom;
     }
     .no-wrap {
       white-space: nowrap;

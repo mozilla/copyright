@@ -1,8 +1,14 @@
 .home {
   .impact-item-container {
-    display: flex;
     img {
-      margin-right: 20px;
+      margin: 0 auto;
+      display: block;
+    }
+    @media screen and (min-width: 401px) {
+      display: flex;
+      img {
+        margin: 0 20px 0 0;
+      }
     }
   }
   h1 {
