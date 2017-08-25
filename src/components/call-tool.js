@@ -2,6 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import CallButton from './call-button.js';
 import { prefixMap, localeCodeMap } from '../lib/call-data';
+import { FormattedMessage } from 'react-intl';
 
 module.exports = React.createClass({
   contextTypes: {
@@ -112,7 +113,16 @@ module.exports = React.createClass({
         </div>
 
         <CallButton number={this.state.number} onSuccess={s => this.handleSuccess(s)} onError={e => this.handleError(e)}/>
-        <div>{this.context.intl.formatMessage({id: 'cta_disclaimer'})}</div>
+
+        <div>
+          <FormattedMessage
+            id='cta_disclaimer'
+            values={{
+              ctaTosLink: (<a href="https://www.mozilla.org/about/legal/terms/mozilla/">{this.context.intl.formatMessage({id: 'cta_link_tos'})}</a>),
+              ctaPpLink: (<a href="https://www.mozilla.org/privacy/websites/">{this.context.intl.formatMessage({id: 'cta_link_pp'})}</a>)
+            }}
+          />
+        </div>
       </section>
     );
   },

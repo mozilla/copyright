@@ -3,6 +3,8 @@ import Footer from '../components/footer.js';
 import { SimpleNav } from '../components/nav.js';
 import CallButton from '../components/call-button.js';
 import SignupForm from '../components/signup-form.js';
+import { FormattedMessage } from 'react-intl';
+import { FormattedHTMLMessage } from 'react-intl';
 
 var Impact = React.createClass({
   render: function() {
@@ -55,7 +57,14 @@ var Resources = React.createClass({
               {this.context.intl.formatMessage({id: 'article_explanation_subtitle'})}
             </p>
             <p>
-              {this.context.intl.formatMessage({id: 'technologist_article_11_desc1'})}
+              <FormattedMessage
+                id='technologist_article_11_desc1'
+                values={{
+                  spainLink: (<a href="http://www.communia-association.org/2015/09/09/research-confirms-new-spanish-ancillary-copyright-is-actually-good-for-no-one/">{this.context.intl.formatMessage({id: 'spain_link'})}</a>),
+                  germanyLink: (<a href="http://www.project-disco.org/intellectual-property/091715-german-and-spanish-competition-authorities-got-it-right-on-the-ancillary-copyright-for-press-publishers/#.WW3eWIZLeV4">{this.context.intl.formatMessage({id: 'germany_link'})}</a>)
+                }}
+              />
+              {' '}
               {this.context.intl.formatMessage({id: 'technologist_article_11_desc2'})}
             </p>
             <p>
@@ -66,7 +75,9 @@ var Resources = React.createClass({
             </p>
             <p>
               {this.context.intl.formatMessage({id: 'technologist_article_11_fight1'})}
+              {' '}
               {this.context.intl.formatMessage({id: 'technologist_article_11_fight2'})}
+              {' '}
               {this.context.intl.formatMessage({id: 'technologist_article_11_fight3'})}
             </p>
             <p>
@@ -86,6 +97,7 @@ var Resources = React.createClass({
             </p>
             <p>
               {this.context.intl.formatMessage({id: 'technologist_article_13_desc2'})}
+              {' '}
               {this.context.intl.formatMessage({id: 'technologist_article_13_desc3'})}
             </p>
             <p className="question">
@@ -93,7 +105,9 @@ var Resources = React.createClass({
             </p>
             <p>
               {this.context.intl.formatMessage({id: 'technologist_article_13_fight1'})}
+              {' '}
               {this.context.intl.formatMessage({id: 'technologist_article_13_fight2'})}
+              {' '}
               {this.context.intl.formatMessage({id: 'technologist_article_13_fight3'})}
             </p>
             <p>
@@ -115,6 +129,7 @@ var Resources = React.createClass({
             </p>
             <p>
               {this.context.intl.formatMessage({id: 'creator_innovator_ugc_desc1'})}
+              {' '}
               {this.context.intl.formatMessage({id: 'creator_innovator_ugc_desc2'})}
             </p>
             <p className="question">
@@ -141,7 +156,7 @@ var Resources = React.createClass({
               {this.context.intl.formatMessage({id: 'article_explanation_subtitle'})}
             </p>
             <p>
-              {this.context.intl.formatMessage({id: 'scientist_librarian_article_3_desc1'})}
+              <FormattedHTMLMessage id='scientist_librarian_article_3_desc1'/>
             </p>
             <p>
               {this.context.intl.formatMessage({id: 'scientist_librarian_article_3_desc2'})}
@@ -151,6 +166,7 @@ var Resources = React.createClass({
             </p>
             <p>
               {this.context.intl.formatMessage({id: 'scientist_librarian_article_3_fight1'})}
+              {' '}
               {this.context.intl.formatMessage({id: 'scientist_librarian_article_3_fight2'})}
             </p>
             <p>
