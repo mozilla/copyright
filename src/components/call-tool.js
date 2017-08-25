@@ -1,4 +1,5 @@
 import React from 'react';
+import { FormattedMessage } from 'react-intl';
 
 var prefixMap = {
   "30": "🇬🇷",
@@ -123,7 +124,15 @@ module.exports = React.createClass({
             </span>
           </div>
           <button>{this.context.intl.formatMessage({id: 'call_now_button'})}</button>
-          <div>{this.context.intl.formatMessage({id: 'cta_disclaimer'})}</div>
+          <div>
+            <FormattedMessage
+              id='cta_disclaimer'
+              values={{
+                ctaTosLink: (<a href="https://www.mozilla.org/about/legal/terms/mozilla/">{this.context.intl.formatMessage({id: 'cta_link_tos'})}</a>),
+                ctaPpLink: (<a href="https://www.mozilla.org/privacy/websites/">{this.context.intl.formatMessage({id: 'cta_link_pp'})}</a>)
+              }}
+            />
+          </div>
         </section>
       </div>
     );

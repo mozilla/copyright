@@ -153,7 +153,7 @@ var Signup = React.createClass({
 
             <div>
               <div className="no-wrap">
-                <input onClick={this.onEmailInputClick} autoComplete="off" ref={(input) => { this.emailInput = input; }} type='email' className={emailClassName} value={this.props.email} onChange={this.emailChange} required placeholder={this.context.intl.formatMessage({id: 'email'})}/>
+                <input onClick={this.onEmailInputClick} autoComplete="off" ref={(input) => { this.emailInput = input; }} type='email' className={emailClassName} value={this.props.email} onChange={this.emailChange} required placeholder={this.context.intl.formatMessage({id: 'newsletter_placeholder'})}/>
                 <button onClick={this.onSubmit} className={desktopButtonClassName}>
                   {buttonText}
                 </button>
@@ -168,9 +168,9 @@ var Signup = React.createClass({
               <label>
                 <input onClick={this.onPrivacyCheckboxClick} className="checkbox" autoComplete="off" onChange={this.privacyCheckboxChange} value={this.props.privacyCheckbox} type="checkbox"></input>
                 <FormattedMessage
-                  id='sign_up_notice'
+                  id='newsletter_notice'
                   values={{
-                    linkPrivacyNotice: (<a href="https://www.mozilla.org/privacy/websites/">{this.context.intl.formatMessage({id: 'link_pn'})}</a>)
+                    linkPrivacyNoticeNewsletter: (<a href="https://www.mozilla.org/privacy/websites/">{this.context.intl.formatMessage({id: 'newsletter_link_pn'})}</a>)
                   }}
                 />
               </label>
