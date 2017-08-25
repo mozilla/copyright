@@ -78,7 +78,7 @@ module.exports = function(options) {
       handler: routes.call,
       config: {
         payload: {
-          maxBytes: 1000,
+          maxBytes: 2000,
           allow: 'application/json'
         },
         validate: {

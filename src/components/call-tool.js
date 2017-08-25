@@ -14,7 +14,8 @@ module.exports = React.createClass({
       countryPrefix,
       number,
       validNumber: true,
-      calling: false
+      calling: false,
+      networkError: false
     };
   },
   prefixChange: function(e) {
@@ -36,27 +37,42 @@ module.exports = React.createClass({
       calling: true
     })
   },
-  handleError: function(e) {
-    console.error(e);
+  handleError: function(status, e) {
+    if (status >= 500) {
+      // ReactGA event about a server failure?
+    }
+
     this.setState({
-      validNumber: false
-    })
+      validNumber: status !== 409,
+      networkError: status === -1 || status >= 500
+    });
+  },
+  retry: function() {
+    this.setState({
+      validNumber: true,
+      networkError: false
+    });
   },
   render: function() {
+    var content = null;
+    if (this.state.networkError) {
+      content = this.renderNetworkError();
+    } else if (this.state.calling) {
+      content = this.renderCalling();
+    } else {
+      content = this.renderForm();
+    }
+
     return (
-      <div className="call-tool-background">
-        { this.state.calling ? this.renderCalling() : this.renderForm() }
-      </div>
+      <div className="call-tool-background">{content}</div>
     );
   },
-  renderCalling: function() {
+  renderNetworkError: function() {
     return (
       <section>
-        <h2 className="bold">{this.context.intl.formatMessage({id: 'calling_headline'})}</h2>
-
-        <div>{this.context.intl.formatMessage({id: 'calling_tagline'})}</div>
-
-        <div className="bold">SOCIAL ICONS GO HERE</div>
+        <h2 className="bold">{this.context.intl.formatMessage({id: 'unknown_problems'})}</h2>
+        <h2 className="bold">{this.context.intl.formatMessage({id: 'please_retry_later'})}</h2>
+        <button onClick={() => this.retry()}>{this.context.intl.formatMessage({id: 'try_again'})}</button>
       </section>
     );
   },
@@ -97,6 +113,15 @@ module.exports = React.createClass({
 
         <CallButton number={this.state.number} onSuccess={s => this.handleSuccess(s)} onError={e => this.handleError(e)}/>
         <div>{this.context.intl.formatMessage({id: 'cta_disclaimer'})}</div>
+      </section>
+    );
+  },
+  renderCalling: function() {
+    return (
+      <section>
+        <h2 className="bold">{this.context.intl.formatMessage({id: 'calling_headline'})}</h2>
+        <div>{this.context.intl.formatMessage({id: 'calling_tagline'})}</div>
+        <div className="bold">SOCIAL ICONS GO HERE</div>
       </section>
     );
   }

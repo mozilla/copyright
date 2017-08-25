@@ -28,7 +28,7 @@ module.exports = React.createClass({
     console.error("Call failed:", status);
     errorPromise.then(error => {
       if (this.props.onError) {
-        this.props.onError(error);
+        this.props.onError(status, error);
       }
     });
   },
