@@ -9,7 +9,7 @@ var Index = React.createClass({
   render: function() {
     var metaData = this.props.metaData;
     var robots = 'index, follow';
-    var googleFonts = "https://fonts.googleapis.com/css?family=Fira+Sans+Condensed:200,300,400,700&subset=latin-ext";
+    var googleFonts = "https://fonts.googleapis.com/css?family=Open+Sans:300,400|Oswald:500|Zilla+Slab:300,400,400i,500";
 
     var localesData = [];
     if (this.props.localesInfo.length) {

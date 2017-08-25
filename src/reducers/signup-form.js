@@ -6,10 +6,7 @@ const initialState = {
   signupCheckbox: false,
   signupCheckboxError: ``,
   privacyCheckbox: false,
-  privacyCheckboxError: ``,
-  firstName: ``,
-  lastName: ``,
-  country: ``
+  privacyCheckboxError: ``
 };
 
 const signupApp = (state = initialState, action) => {
@@ -40,18 +37,6 @@ const signupApp = (state = initialState, action) => {
   case 'SET_PRIVACY_CHECKBOX_ERROR':
     return assign({}, state, {
       privacyCheckboxError: action.data
-    });
-  case 'SET_FIRST_NAME':
-    return assign({}, state, {
-      firstName: action.data
-    });
-  case 'SET_LAST_NAME':
-    return assign({}, state, {
-      lastName: action.data
-    });
-  case 'SET_COUNTRY':
-    return assign({}, state, {
-      country: action.data
     });
   default:
     return state;
