@@ -12,7 +12,7 @@ module.exports = React.createClass({
       '/api/call',
       {
         number: this.props.number,
-        country: this.context.intl.locale
+        locale: this.context.intl.locale
       },
       (result) => this.callPlaced(result),
       (status, errorPromise) => this.callFailed(status, errorPromise)

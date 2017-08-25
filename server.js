@@ -84,12 +84,13 @@ module.exports = function(options) {
         validate: {
           payload: {
             number: Joi.string().required(),
-            country: Joi.string().allow('')
+            locale: Joi.string().allow('')
           }
         },
         response: {
           schema: {
-            call_placed: Joi.boolean().required()
+            call_placed: Joi.boolean().required(),
+            error: Joi.string()
           }
         }
       }
