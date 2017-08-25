@@ -28,13 +28,14 @@
     white-space: nowrap;
 
     &:not(.valid) {
+      @bw: 2px;
       .select-container {
-        border: 1px solid red;
-        border-width: 1px 0 1px 1px;
+        border: @bw solid red;
+        border-width: @bw 0 @bw @bw;
       }
       .input-container {
-        border: 1px solid red;
-        border-width: 1px 1px 1px 0;
+        border: @bw solid red;
+        border-width: @bw @bw @bw 0;
       }
     }
   }
