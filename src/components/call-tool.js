@@ -1,4 +1,5 @@
 import React from 'react';
+import classnames from 'classnames';
 import CallButton from './call-button.js';
 import { prefixMap, localeCodeMap } from '../lib/call-data';
 
@@ -11,7 +12,9 @@ module.exports = React.createClass({
     var number = "(+" + countryPrefix + ") ";
     return {
       countryPrefix,
-      number
+      number,
+      validNumber: true,
+      callPlaced: false
     };
   },
   prefixChange: function(e) {
@@ -23,8 +26,21 @@ module.exports = React.createClass({
   },
   numberChange: function(e) {
     this.setState({
-      number: e.target.value
+      number: e.target.value,
+      validNumber: true
     });
+  },
+  handleSuccess: function(s) {
+    console.log(s);
+    this.setState({
+      callPlaced: true
+    })
+  },
+  handleError: function(e) {
+    console.error(e);
+    this.setState({
+      validNumber: false
+    })
   },
   render: function() {
     var placeholder = this.context.intl.formatMessage({id: 'enter_phone'});
@@ -39,11 +55,14 @@ module.exports = React.createClass({
         </option>
       )
     });
+    let messageId = this.state.validNumber ? 'enter_phone_title' : 'whoops_phone_number';
     return (
       <div className="call-tool-background">
         <section>
-          <h2>{this.context.intl.formatMessage({id: 'enter_phone_title'})}</h2>
-          <div className="phone-number-input-container">
+
+          <h2 className="bold">{this.context.intl.formatMessage({id: messageId})}</h2>
+
+          <div className={classnames("phone-number-input-container", { "valid": this.state.validNumber })}>
             <span className="select-container">
               <span className="country-prefix-display">
                 {prefixMap[this.state.countryPrefix]}
@@ -59,7 +78,8 @@ module.exports = React.createClass({
               </span>
             </span>
           </div>
-          <CallButton number={this.state.number} />
+
+          <CallButton number={this.state.number} onSuccess={s => this.handleSuccess(s)} onError={e => this.handleError(e)}/>
           <div>{this.context.intl.formatMessage({id: 'cta_disclaimer'})}</div>
         </section>
       </div>

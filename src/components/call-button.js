@@ -20,10 +20,17 @@ module.exports = React.createClass({
   },
   callPlaced: function(result) {
     console.log("Call placed:", result);
+    if (this.props.onSuccess) {
+      this.props.onSuccess(result);
+    }
   },
   callFailed: function(status, errorPromise) {
     console.error("Call failed:", status);
-    errorPromise.then(error => console.error(error));
+    errorPromise.then(error => {
+      if (this.props.onError) {
+        this.props.onError(error);
+      }
+    });
   },
   /**
    * render pulls double duty, in that it determines whether it
