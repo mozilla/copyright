@@ -3,11 +3,11 @@ import Footer from '../components/footer.js';
 import CallTool from '../components/call-tool.js';
 import { SimpleNav } from '../components/nav.js';
 
-import { FormattedHTMLMessage } from 'react-intl'; 
+import { FormattedHTMLMessage } from 'react-intl';
 
 var Resources = React.createClass({
   contextTypes: {
-    intl: React.PropTypes.object
+    intl: React.PropTypes.object,
   },
   render: function() {
     var className = "call-now";

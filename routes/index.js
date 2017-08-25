@@ -26,6 +26,12 @@ var routes = {
 
       reply(payload).code(201);
     });
+  },
+
+  'call': function(request, reply) {
+    var success = Math.random() > 0.5;
+    var status = success ? 200 : 409;
+    reply({ 'call_placed': success }).code(status);
   }
 };
 

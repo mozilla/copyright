@@ -1,66 +1,6 @@
 import React from 'react';
-
-var prefixMap = {
-  "30": "🇬🇷",
-  "31": "🇳🇱",
-  "32": "🇧🇪 ",
-  "33": "🇫🇷",
-  "34": "🇪🇸",
-  "36": "🇭🇺",
-  "39": "🇮🇹",
-  "40": "🇷🇴",
-  "41": "🇨🇭",
-  "43": "🇦🇹",
-  "44": "🇬🇧",
-  "45": "🇩🇰",
-  "46": "🇸🇪",
-  "47": "🇳🇴",
-  "48": "🇵🇱",
-  "49": "🇩🇪",
-  "350": "🇬🇮",
-  "351": "🇵🇹",
-  "352": "🇱🇺",
-  "353": "🇮🇪",
-  "354": "🇮🇸",
-  "355": "🇦🇱",
-  "356": "🇲🇹",
-  "357": "🇨🇾",
-  "358": "🇫🇮",
-  "359": "🇧🇬",
-  "370": "🇱🇹",
-  "371": "🇱🇻",
-  "372": "🇪🇪",
-  "373": "🇲🇩",
-  "374": "🇦🇲",
-  "375": "🇧🇾",
-  "376": "🇦🇩",
-  "377": "🇲🇨",
-  "378": "🇸🇲",
-  "379": "🇻🇦",
-  "380": "🇺🇦",
-  "381": "🇷🇸",
-  "382": "🇲🇪",
-  "383": "🇽🇰",
-  "385": "🇭🇷",
-  "386": "🇸🇮",
-  "387": "🇧🇦",
-  "389": "🇲🇰",
-  "420": "🇨🇿",
-  "421": "🇸🇰",
-  "423": "🇱🇮"
-};
-
-var localeCodeMap = {
-  "el": "30",
-  "nl": "31",
-  "fr": "33",
-  "es": "34",
-  "it": "39",
-  "en-GB": "40",
-  "en-US": "40",
-  "de": "49",
-  "pl": "48"
-};
+import CallButton from './call-button.js';
+import { prefixMap, localeCodeMap } from '../lib/call-data';
 
 module.exports = React.createClass({
   contextTypes: {
@@ -91,6 +31,14 @@ module.exports = React.createClass({
     if (!this.state.number || this.state.number !== "(+" + this.state.countryPrefix + ") ") {
       placeholder = "";
     }
+    const localeOptions = Object.keys(prefixMap).map((value) => {
+      var prefixObject = prefixMap[value];
+      return (
+        <option key={value} value={value}>
+          {prefixObject + " (+" + value + ")"}
+        </option>
+      )
+    });
     return (
       <div className="call-tool-background">
         <section>
@@ -101,18 +49,7 @@ module.exports = React.createClass({
                 {prefixMap[this.state.countryPrefix]}
                 <i className="fa fa-caret-down" aria-hidden="true"></i>
               </span>
-              <select onChange={this.prefixChange} value={this.state.countryPrefix}>
-              {
-                Object.keys(prefixMap).map((value) => {
-                  var prefixObject = prefixMap[value];
-                  return (
-                    <option key={value} value={value}>
-                      {prefixObject + " (+" + value + ")"}
-                    </option>
-                  )
-                })
-              }
-              </select>
+              <select onChange={this.prefixChange} value={this.state.countryPrefix}>{localeOptions}</select>
             </span>
             <span className="input-container">
               <input ref={(input) => { this.textInput = input; }} onChange={this.numberChange} value={this.state.number} placeholder={this.context.intl.formatMessage({id: 'enter_phone'})}/>
@@ -122,7 +59,7 @@ module.exports = React.createClass({
               </span>
             </span>
           </div>
-          <button>{this.context.intl.formatMessage({id: 'call_now_button'})}</button>
+          <CallButton number={this.state.number} />
           <div>{this.context.intl.formatMessage({id: 'cta_disclaimer'})}</div>
         </section>
       </div>

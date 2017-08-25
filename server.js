@@ -74,6 +74,28 @@ module.exports = function(options) {
   server.route([
     {
       method: 'POST',
+      path: '/api/call',
+      handler: routes.call,
+      config: {
+        payload: {
+          maxBytes: 1000,
+          allow: 'application/json'
+        },
+        validate: {
+          payload: {
+            number: Joi.string().required(),
+            country: Joi.string().allow('')
+          }
+        },
+        response: {
+          schema: {
+            call_placed: Joi.boolean().required()
+          }
+        }
+      }
+    },
+    {
+      method: 'POST',
       path: '/api/signup/basket',
       handler: routes.signup,
       config: {

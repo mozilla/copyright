@@ -1,5 +1,5 @@
-function submit(action, props, success, error) {
-  fetch(action, {
+function submit(url, props, success, error) {
+  fetch(url, {
     method: 'post',
     credentials: 'same-origin',
     headers: {
@@ -8,20 +8,18 @@ function submit(action, props, success, error) {
     },
     body: JSON.stringify(props)
   }).then(function(response) {
+    if (!success) return;
     var responseContent;
-    var callback = success;
     if (!response.headers.get("content-type")) {
       responseContent = response.text();
     } else {
       responseContent = response.json();
     }
     if (!response.ok) {
-      callback = error;
+      return error ? error(response.status, responseContent) : null;
     }
     responseContent.then(function(result) {
-      if (callback) {
-        callback(result);
-      }
+      success(result);
     });
   });
 }
