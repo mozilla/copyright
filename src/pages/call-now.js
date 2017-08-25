@@ -7,7 +7,7 @@ import { FormattedHTMLMessage } from 'react-intl';
 
 var Resources = React.createClass({
   contextTypes: {
-    intl: React.PropTypes.object,
+    intl: React.PropTypes.object
   },
   render: function() {
     var className = "call-now";
