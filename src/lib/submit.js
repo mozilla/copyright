@@ -1,4 +1,4 @@
-function submit(url, props, success, error) {
+function submit(url, props, onSuccess, onError) {
   fetch(url, {
     method: 'post',
     credentials: 'same-origin',
@@ -7,8 +7,9 @@ function submit(url, props, success, error) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(props)
-  }).then(function(response) {
-    if (!success) return;
+  })
+  .then(function(response) {
+    if (!onSuccess) return;
     var responseContent;
     if (!response.headers.get("content-type")) {
       responseContent = response.text();
@@ -16,11 +17,18 @@ function submit(url, props, success, error) {
       responseContent = response.json();
     }
     if (!response.ok) {
-      return error ? error(response.status, responseContent) : null;
+      return onError ? onError(response.status, responseContent) : null;
     }
     responseContent.then(function(result) {
-      success(result);
+      onSuccess(result);
     });
+  })
+  .catch(function(error) {
+    if (onError) {
+      onError(-1, new Promise((resolve, reject) => {
+        resolve(error);
+      }));
+    }
   });
 }
 
