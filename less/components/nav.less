@@ -5,7 +5,8 @@
     &.open {
       height: auto;
     }
-    background: #000000;
+    @bg-color: #000000;
+    background: @bg-color;
     width: 100%;
     .nav-logo-container {
       padding: 16px;
@@ -17,6 +18,10 @@
       font-size: 0.8rem;
       display: block;
       text-align: center;
+
+      option {
+        background: @bg-color;
+      }
     }
     .bars-container {
       display: inline-flex;
