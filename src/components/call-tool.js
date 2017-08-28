@@ -1,6 +1,7 @@
 import React from 'react';
 import classnames from 'classnames';
 import CallButton from './call-button.js';
+import Social from './social.js';
 import { prefixMap, localeCodeMap } from '../lib/call-data';
 import { FormattedMessage } from 'react-intl';
 
@@ -55,13 +56,13 @@ module.exports = React.createClass({
   },
   render: function() {
     var content = null;
-    if (this.state.networkError) {
-      content = this.renderNetworkError();
-    } else if (this.state.calling) {
+    //if (this.state.networkError) {
+    //  content = this.renderNetworkError();
+    //} else if (this.state.calling) {
       content = this.renderCalling();
-    } else {
-      content = this.renderForm();
-    }
+    //} else {
+    //  content = this.renderForm();
+    //}
 
     return (
       <div className="call-tool-background">{content}</div>
@@ -130,7 +131,15 @@ module.exports = React.createClass({
       <section>
         <h2 className="bold">{this.context.intl.formatMessage({id: 'calling_headline'})}</h2>
         <div>{this.context.intl.formatMessage({id: 'calling_tagline'})}</div>
-        <div className="bold">SOCIAL ICONS GO HERE</div>
+        <Social/>
+        <p className="try-again">
+          <FormattedMessage
+            id='call_again'
+            values={{
+              callAgain: (<a href="#">{this.context.intl.formatMessage({id: 'call_again_link'})}</a>)
+            }}
+          />
+        </p>
       </section>
     );
   }
