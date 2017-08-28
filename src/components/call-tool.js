@@ -33,7 +33,6 @@ module.exports = React.createClass({
     });
   },
   handleSuccess: function(s) {
-    console.log(s);
     this.setState({
       calling: true
     })
