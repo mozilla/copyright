@@ -111,7 +111,11 @@ module.exports = React.createClass({
           </span>
         </div>
 
-        <CallButton number={this.state.number} onSuccess={s => this.handleSuccess(s)} onError={e => this.handleError(e)}/>
+        <CallButton
+          number={this.state.number}
+          onSuccess={s => this.handleSuccess(s)}
+          onError={e => this.handleError(e)}
+        />
 
         <div>
           <FormattedMessage
