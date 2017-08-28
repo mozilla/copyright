@@ -131,7 +131,19 @@ module.exports = React.createClass({
       <section>
         <h2 className="bold">{this.context.intl.formatMessage({id: 'calling_headline'})}</h2>
         <div>{this.context.intl.formatMessage({id: 'calling_tagline'})}</div>
-        <div className="bold">SOCIAL ICONS GO HERE</div>
+        <div className="social-container">
+          <i className="fa fa-facebook" aria-hidden="true"/>
+          <i className="fa fa-twitter" aria-hidden="true"/>
+          <i className="fa fa-envelope" aria-hidden="true"/>
+        </div>
+        <p className="try-again">
+          <FormattedMessage
+            id='call_again'
+            values={{
+              callAgain: (<a href="#">{this.context.intl.formatMessage({id: 'call_again_link'})}</a>)
+            }}
+          />
+        </p>
       </section>
     );
   }
