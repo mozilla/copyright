@@ -36,9 +36,9 @@ function routeFileContent(locales) {
       var localesInfo = [locale];
       var query = queryParser(request.query);
 
-      var fbDesc = messages.fb_share_desc_a.replace("{fbLink}", siteUrl);
-      var fbTitle =  messages.fb_share_title_a;
-      var twShare = messages.twitter_share_a.replace("{twitterLink}", siteUrl);;
+      var fbDesc = messages.sharing_fb_internet_title_a;
+      var fbTitle =  messages.sharing_fb_desc_a;
+      var twShare = messages.sharing_twitter_a;
 
       function createElement(Component, props) {
         // make sure you pass all the props in!
