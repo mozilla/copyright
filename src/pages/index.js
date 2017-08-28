@@ -95,6 +95,11 @@ var Index = React.createClass({
           }
         </head>
         <body>
+          <div className="share-progress-holder">
+            <div className="sp_182920 sp_fb_small"></div>
+            <div className="sp_182921 sp_tw_small"></div>
+            <div className="sp_182919 sp_em_small"></div>
+          </div>
           <div id="my-app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
           <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css"/>
           <link rel="stylesheet" href={googleFonts}/>
