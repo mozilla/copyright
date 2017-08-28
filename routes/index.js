@@ -26,7 +26,9 @@ var routes = {
 
       reply(payload).code(201);
     });
-  }
+  },
+
+  'call': require('./call')
 };
 
 module.exports = routes;

@@ -26,6 +26,18 @@
     max-width: 381px;
     display: inline-block;
     white-space: nowrap;
+
+    &:not(.valid) {
+      @bw: 2px;
+      .select-container {
+        border: @bw solid red;
+        border-width: @bw 0 @bw @bw;
+      }
+      .input-container {
+        border: @bw solid red;
+        border-width: @bw @bw @bw 0;
+      }
+    }
   }
   .select-container {
     position: relative;
@@ -34,6 +46,11 @@
     border: 1px solid #000000;
     border-right: none;
     overflow: hidden;
+
+    select {
+      outline: none;
+      user-select: none;
+    }
   }
   .input-container {
     position: relative;
@@ -42,6 +59,11 @@
     border: 1px solid #000000;
     border-left: none;
     overflow: hidden;
+
+    input {
+      outline: none;
+      user-select: none;
+    }
   }
   .placeholder-container {
     position: absolute;

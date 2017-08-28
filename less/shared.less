@@ -23,10 +23,18 @@ p {
   line-height: 1.5rem;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 h2 {
   font-family: Open Sans, sans-serif;
   font-size: 1.2rem;
   font-weight: 300;
+
+  & + h2 {
+    margin-top: -0.5em;
+  }
 }
 
 h3 {
@@ -116,7 +124,7 @@ a.button {
   justify-content: center;
 }
 
-button {
+button, .button-styling {
   height: 40px;
   margin: 0 auto;
   padding: 0 60px;

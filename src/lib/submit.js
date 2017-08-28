@@ -1,5 +1,5 @@
-function submit(action, props, success, error) {
-  fetch(action, {
+function submit(url, props, onSuccess, onError) {
+  fetch(url, {
     method: 'post',
     credentials: 'same-origin',
     headers: {
@@ -7,22 +7,28 @@ function submit(action, props, success, error) {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(props)
-  }).then(function(response) {
+  })
+  .then(function(response) {
+    if (!onSuccess) return;
     var responseContent;
-    var callback = success;
     if (!response.headers.get("content-type")) {
       responseContent = response.text();
     } else {
       responseContent = response.json();
     }
     if (!response.ok) {
-      callback = error;
+      return onError ? onError(response.status, responseContent) : null;
     }
     responseContent.then(function(result) {
-      if (callback) {
-        callback(result);
-      }
+      onSuccess(result);
     });
+  })
+  .catch(function(error) {
+    if (onError) {
+      onError(-1, new Promise((resolve, reject) => {
+        resolve(error);
+      }));
+    }
   });
 }
 
