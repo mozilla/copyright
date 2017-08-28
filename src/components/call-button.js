@@ -7,7 +7,14 @@ module.exports = React.createClass({
   contextTypes: {
     intl: React.PropTypes.object
   },
+  getInitialState: function() {
+    return { submitting: false };
+  },
   callMEP: function() {
+    this.setState({
+      submitting: true
+    });
+
     submit(
       '/api/call',
       {
@@ -19,17 +26,18 @@ module.exports = React.createClass({
     );
   },
   callPlaced: function(result) {
-    console.log("Call placed:", result);
     if (this.props.onSuccess) {
       this.props.onSuccess(result);
     }
   },
   callFailed: function(status, errorPromise) {
-    console.error("Call failed:", status);
     errorPromise.then(error => {
       if (this.props.onError) {
         this.props.onError(status, error);
       }
+    });
+    this.setState({
+      submitting: false
     });
   },
   /**
@@ -58,8 +66,11 @@ module.exports = React.createClass({
     );
   },
   renderCallButton: function() {
+    const classNames = classnames({
+      "submitting": this.state.submitting
+    });
     return (
-      <button onClick={() => this.callMEP()}>{this.context.intl.formatMessage({id: 'call_now_button'})}</button>
+      <button className={classNames} onClick={() => this.callMEP()}>{this.context.intl.formatMessage({id: 'call_now_button'})}</button>
     )
   }
 });
