@@ -2,21 +2,20 @@ import React from 'react';
 import Social from './social.js';
 import reactGA from 'react-ga';
 
+// ShareProgress is a third party service that does share message AB tests.
 var ShareProgressButton = React.createClass({
   componentDidMount: function() {
-    var shareProgressHolder = document.querySelector(".share-progress-holder");
-    var shareProgressButton = shareProgressHolder.querySelector("." + this.props.shareProgress);
-    if (shareProgressButton) {
-      shareProgressHolder.removeChild(shareProgressButton);
-      this.shareProgressContainer.appendChild(shareProgressButton);
+    this.shareProgressHolder = document.querySelector(".share-progress-holder");
+    this.shareProgressButton = this.shareProgressHolder.querySelector("." + this.props.shareProgress);
+    if (this.shareProgressButton && this.shareProgressContainer) {
+      this.shareProgressHolder.removeChild(this.shareProgressButton);
+      this.shareProgressContainer.appendChild(this.shareProgressButton);
     }
   },
   componentWillUnmount: function() {
-    var shareProgressButton = this.shareProgressContainer.querySelector("." + this.props.shareProgress);
-    var shareProgressHolder = document.querySelector(".share-progress-holder");
-    if (shareProgressButton) {
-      this.shareProgressContainer.removeChild(shareProgressButton);
-      shareProgressHolder.appendChild(shareProgressButton);
+    if (this.shareProgressButton && this.shareProgressContainer) {
+      this.shareProgressContainer.removeChild(this.shareProgressButton);
+      this.shareProgressHolder.appendChild(this.shareProgressButton);
     }
   },
   render: function() {
@@ -32,7 +31,7 @@ var ShareProgressButton = React.createClass({
 var SocialButton = React.createClass({
   render: function() {
     return (
-      <a onClick={this.props.onClick} href={this.props.href} target="_blank">
+      <a {...this.props} target="_blank">
         {this.props.children}
       </a>
     );
@@ -69,6 +68,8 @@ module.exports = React.createClass({
     var emailBody = this.context.intl.formatMessage({id: 'sharing_email_body_a'});
     var emailShareURL = 'mailto:someone@example.com?subject='+ emailSubject +'&body='+ emailBody +'';
 
+    // We only support ShareProgress in English based locales.
+    // For other locales we just directly use the share APIs.
     if (/^(en)(\b|$)/.test(locale)) {
       return (
         <div className="social-container">
