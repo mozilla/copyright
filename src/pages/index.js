@@ -57,6 +57,12 @@ var Index = React.createClass({
       polyfillLocale = '&locale=' + this.props.locale;
     }
 
+    const ShareProgressClasses = {
+      facebook: "sp_182920 sp_fb_small",
+      twitter: "sp_182921 sp_tw_small",
+      email: "sp_182919 sp_em_small"
+    };
+
     return (
       <html lang={this.props.locale}>
         <head>
@@ -95,6 +101,11 @@ var Index = React.createClass({
           }
         </head>
         <body>
+          <div className="share-progress-holder">
+            <div className={`${ShareProgressClasses.facebook}`}></div>
+            <div className={`${ShareProgressClasses.twitter}`}></div>
+            <div className={`${ShareProgressClasses.email}`}></div>
+          </div>
           <div id="my-app" dangerouslySetInnerHTML={{__html: this.props.markup}}></div>
           <link rel="stylesheet" href="https://code.cdn.mozilla.net/fonts/fira.css"/>
           <link rel="stylesheet" href={googleFonts}/>
