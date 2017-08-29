@@ -136,7 +136,7 @@ module.exports = React.createClass({
           <FormattedMessage
             id='call_again'
             values={{
-              callAgain: (<a href="#">{this.context.intl.formatMessage({id: 'call_again_link'})}</a>)
+              callAgain: (<a href={`/${this.context.intl.locale}/call-now`}>{this.context.intl.formatMessage({id: 'call_again_link'})}</a>)
             }}
           />
         </p>
