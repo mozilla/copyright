@@ -1,5 +1,6 @@
 var fetch = require('node-fetch');
 var FormData = require('form-data');
+var parseNumber = require('libphonenumber-js').parse;
 
 const CALL_POWER_URL = process.env.CALL_POWER_URL;
 const COPYRIGHT_CAMPAIGN_ID = process.env.COPYRIGHT_CAMPAIGN_ID;
@@ -18,17 +19,24 @@ function getCorrespondingCountry(locale) {
   return country.toUpperCase();
 }
 
+/**
+ * Check whether the provided number is valid for
+ * the country it supposedly belongs to.
+ */
+function isValidNumber(number, country) {
+  return !!parseNumber(number, country).phone;
+}
+
 module.exports = function(request, reply) {
   var callInformation = request.payload;
   const number = '+' + callInformation.number.replace(/\D/g,'');
   const country = getCorrespondingCountry(callInformation.locale);
 
   // Verify that the number we've been given is a proper number.
-  var __isValidNumber = (number, country) => true; // hack hack hack
-  if (!__isValidNumber(number, country)) {
+  if (!isValidNumber(number, country)) {
     return reply({
       'call_placed': false,
-      error: 'Phone number does not match locale format'
+      error: `Phone number does not match the format required in ${country}`
     }).code(409);
   }
 
