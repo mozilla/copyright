@@ -100,9 +100,10 @@ module.exports = React.createClass({
           <span className="placeholder-width">{placeholder}&nbsp;</span>
         </span>
       );
+    }
     // This state is for when the input is not empty and not default.
     // Example: "(+44) 12345678"
-    } else if (this.state.number !== "(+" + this.state.countryPrefix + ") ") {
+    else if (this.state.number !== "(+" + this.state.countryPrefix + ") ") {
       placeholderContainer = (
         <span className="placeholder-container">
           <span className="placeholder-width">{this.state.number}&nbsp;</span>
