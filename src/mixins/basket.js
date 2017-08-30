@@ -34,9 +34,6 @@ var BasketMixin = {
   },
   signupSuccess: function(result) {
     var shareLink = "/" + this.context.intl.locale + "/share";
-    if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
-      shareLink = "http://share.mozilla.org/352/179362";
-    }
     this.doSignupSuccess(result, shareLink);
   },
   basket: function(props) {
