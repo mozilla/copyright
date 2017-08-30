@@ -3,7 +3,6 @@ import { FormattedMessage } from 'react-intl';
 import { setEmailError, setEmail, setSignupCheckbox, setSignupCheckboxError, setPrivacyCheckbox, setPrivacyCheckboxError } from '../actions';
 import { connect } from 'react-redux';
 import classnames from "classnames";
-import StickyContainer from './sticky-container.js';
 import reactGA from 'react-ga';
 
 var NOT_SUBMITTING = 0;
@@ -91,12 +90,6 @@ var Signup = React.createClass({
       action: "Form Step",
       label: "Get Involved Clicked"
     });
-  },
-  getPosition: function() {
-    if (!this.stickyContainer) {
-      return 0;
-    }
-    return this.stickyContainer.getClientRects()[0].top + this.stickyContent.offsetHeight + window.scrollY - window.innerHeight;
   },
   onEmailInputClick: function() {
     reactGA.event({

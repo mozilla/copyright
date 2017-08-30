@@ -1,6 +1,6 @@
 import React  from 'react';
 import Footer from '../components/footer.js';
-import Header from '../components/header.js';
+import Social from '../components/social.js';
 import { SimpleNav } from '../components/nav.js';
 
 var Signup = React.createClass({
@@ -36,17 +36,7 @@ var Signup = React.createClass({
                 <p>
                   {this.context.intl.formatMessage({id: 'headline'})}
                 </p>
-                <div className="share-buttons">
-                  <a className="share-button email-button" href={emailShareURL} target="_blank">
-                    <i className="fa fa-envelope fa-1x"></i>
-                  </a>
-                  <a className="share-button facebook-button" href={facebookShareURL} target="_blank">
-                    <i className="fa fa-facebook fa-1x"></i>
-                  </a>
-                  <a className="share-button twitter-button" href={twitterShareURL} target="_blank">
-                    <i className="fa fa-twitter fa-1x"></i>
-                  </a>
-                </div>
+                <Social/>
               </div>
             </div>
           </div>
