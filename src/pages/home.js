@@ -44,7 +44,9 @@ var Signup = React.createClass({
             >
               {this.context.intl.formatMessage({id: 'explanation_technologist_desc'})}
               &nbsp;
-              {this.context.intl.formatMessage({id: 'explanation_learn_more'})}
+              <a href={`/${this.context.intl.locale}/impact#technologist`}>
+                {this.context.intl.formatMessage({id: 'explanation_learn_more'})}
+              </a>
             </Impact>
             <Impact
               header={this.context.intl.formatMessage({id: 'explanation_creator_innovator'})}
@@ -52,7 +54,9 @@ var Signup = React.createClass({
             >
               {this.context.intl.formatMessage({id: 'explanation_creator_innovator_desc'})}
               &nbsp;
-              {this.context.intl.formatMessage({id: 'explanation_learn_more'})}
+              <a href={`/${this.context.intl.locale}/impact#creator-innovator`}>
+                {this.context.intl.formatMessage({id: 'explanation_learn_more'})}
+              </a>
             </Impact>
             <Impact
               header={this.context.intl.formatMessage({id: 'explanation_scientists_librarian'})}
@@ -60,7 +64,9 @@ var Signup = React.createClass({
             >
               {this.context.intl.formatMessage({id: 'explanation_scientists_librarian_desc'})}
               &nbsp;
-              {this.context.intl.formatMessage({id: 'explanation_learn_more'})}
+              <a href={`/${this.context.intl.locale}/impact#scientist-librarian`}>
+                {this.context.intl.formatMessage({id: 'explanation_learn_more'})}
+              </a>
             </Impact>
           </section>
           <CallButton/>
