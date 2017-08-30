@@ -43,7 +43,7 @@ module.exports = function handleCallRequest(request, reply) {
   if (!parsed.phone) {
     return reply({
       'call_placed': false,
-      error: `Phone number does not match the format required in ${country}`
+      error: 'Phone number does not match the format required.'
     }).code(409);
   }
 
