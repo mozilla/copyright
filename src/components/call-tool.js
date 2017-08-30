@@ -78,9 +78,37 @@ module.exports = React.createClass({
     );
   },
   renderForm: function() {
+    // We need to ensure there is enough space in the
+    // input to show the placeholder in ultiple languages.
     var placeholder = this.context.intl.formatMessage({id: 'enter_phone'});
-    if (!this.state.number || this.state.number !== "(+" + this.state.countryPrefix + ") ") {
-      placeholder = "";
+    var countryPrefix = "(+" + this.state.countryPrefix + ")";
+
+    // Default placeholder state is a fresh page load state.
+    // Example: "(+44) placeholder text"
+    var placeholderContainer = (
+      <span className="placeholder-container">
+        <span className="placeholder-width">{countryPrefix}&nbsp;</span>
+        <span className="placeholder">{placeholder}&nbsp;</span>
+      </span>
+    );
+
+    // This state is for when the input has been cleared,
+    // completely empty, so no county prefix.
+    if (!this.state.number) {
+      placeholderContainer = (
+        <span className="placeholder-container">
+          <span className="placeholder-width">{placeholder}&nbsp;</span>
+        </span>
+      );
+    }
+    // This state is for when the input is not empty and not default.
+    // Example: "(+44) 12345678"
+    else if (this.state.number !== "(+" + this.state.countryPrefix + ") ") {
+      placeholderContainer = (
+        <span className="placeholder-container">
+          <span className="placeholder-width">{this.state.number}&nbsp;</span>
+        </span>
+      );
     }
     const localeOptions = Object.keys(prefixMap).map((value) => {
       var prefixObject = prefixMap[value];
@@ -90,7 +118,9 @@ module.exports = React.createClass({
         </option>
       )
     });
+
     const messageId = this.state.validNumber ? 'enter_phone_title' : 'whoops_phone_number';
+
     return (
       <section>
         <h2 className="bold">{this.context.intl.formatMessage({id: messageId})}</h2>
@@ -104,11 +134,8 @@ module.exports = React.createClass({
             <select onChange={this.prefixChange} value={this.state.countryPrefix}>{localeOptions}</select>
           </span>
           <span className="input-container">
-            <input ref={(input) => { this.textInput = input; }} onChange={this.numberChange} value={this.state.number} placeholder={this.context.intl.formatMessage({id: 'enter_phone'})}/>
-            <span className="placeholder-container">
-              <span className="placeholder-width">{"(+" + this.state.countryPrefix + ")"}&nbsp;</span>
-              <span className="placeholder">{placeholder}</span>
-            </span>
+            <input autoComplete="off" ref={(input) => { this.textInput = input; }} onChange={this.numberChange} value={this.state.number} placeholder={this.context.intl.formatMessage({id: 'enter_phone'})}/>
+            {placeholderContainer}
           </span>
         </div>
 
