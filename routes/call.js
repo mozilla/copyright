@@ -1,10 +1,11 @@
+"use strict";
+
 var fetch = require('node-fetch');
 var FormData = require('form-data');
 var parseNumber = require('libphonenumber-js').parse;
 
 const CALL_POWER_URL = process.env.CALL_POWER_URL;
 const getCopyrightCampaign = require('./campaign-ids');
-
 
 /**
  * Resolve a locale code back to a country code. For
@@ -13,7 +14,7 @@ const getCopyrightCampaign = require('./campaign-ids');
  * the country code.
  */
 function getCorrespondingCountry(locale) {
-  matched = locale.match(/^(\w\w)(-(\w\w))?$/)
+  const matched = locale.match(/^(\w\w)(-(\w\w))?$/)
   if (!matched) return undefined;
   const country = (matched[3] ? matched[3] : matched[1]);
   if (!country) return undefined;
@@ -37,7 +38,7 @@ module.exports = function handleCallRequest(request, reply) {
   const number = callInformation.number.replace(/[^0-9+]/g,'');
   const locale = callInformation.locale || '';
   const country = getCorrespondingCountry(locale);
-  const parsed = getParsedNumber(number, country)
+  const parsed = getParsedNumber(number, country);
 
   // Verify that the number we've been given is a proper number.
   if (!parsed.phone) {
