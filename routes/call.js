@@ -14,7 +14,7 @@ const getCopyrightCampaign = require('./campaign-ids');
  * the country code.
  */
 function getCorrespondingCountry(locale) {
-  const matched = locale.match(/^(\w\w)(-(\w\w))?$/)
+  const matched = locale.match(/^(\w\w)(-(\w\w))?$/);
   if (!matched) return undefined;
   const country = (matched[3] ? matched[3] : matched[1]);
   if (!country) return undefined;
