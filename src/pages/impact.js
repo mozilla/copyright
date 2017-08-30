@@ -3,6 +3,7 @@ import Footer from '../components/footer.js';
 import { SimpleNav } from '../components/nav.js';
 import CallButton from '../components/call-button.js';
 import SignupForm from '../components/signup-form.js';
+import StickyContainer from '../components/sticky-container.js';
 import { FormattedMessage } from 'react-intl';
 import { FormattedHTMLMessage } from 'react-intl';
 
@@ -24,6 +25,12 @@ var Impact = React.createClass({
 var Resources = React.createClass({
   contextTypes: {
     intl: React.PropTypes.object
+  },
+  getPosition: function() {
+    if (!this.stickyContainer) {
+      return 0;
+    }
+    return this.stickyContainer.getClientRects()[0].top + this.stickyContent.offsetHeight + window.scrollY - window.innerHeight;
   },
   render: function() {
     var className = "impact";
@@ -181,7 +188,13 @@ var Resources = React.createClass({
             </p>
 
           </section>
-          <CallButton/>
+          <div ref={(element) => { this.stickyContainer = element; }}>
+            <StickyContainer className="sticky-container" stickyTo={this.getPosition}>
+              <div className="sticky-content" ref={(element) => { this.stickyContent = element; }}>
+                <CallButton/>
+              </div>
+            </StickyContainer>
+          </div>
           <SignupForm/>
         </div>
         <Footer/>
