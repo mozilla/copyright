@@ -20,6 +20,16 @@ module.exports = React.createClass({
       networkError: false
     };
   },
+  componentDidMount: function() {
+    // If the browser has a saved value via a soft refresh,
+    // we can might as well use it.
+    var countryPrefix = this.selectInput.value;
+    var number = this.textInput.value;
+    this.setState({
+      countryPrefix,
+      number
+    });
+  },
   prefixChange: function(e) {
     this.textInput.focus();
     this.setState({
@@ -124,17 +134,16 @@ module.exports = React.createClass({
     return (
       <section>
         <h2 className="bold">{this.context.intl.formatMessage({id: messageId})}</h2>
-
         <div className={classnames("phone-number-input-container", { "valid": this.state.validNumber })}>
           <span className="select-container">
             <span className="country-prefix-display">
               {prefixMap[this.state.countryPrefix]}
               <i className="fa fa-caret-down" aria-hidden="true"></i>
             </span>
-            <select onChange={this.prefixChange} value={this.state.countryPrefix}>{localeOptions}</select>
+            <select ref={(input) => { this.selectInput = input; }} onChange={this.prefixChange} value={this.state.countryPrefix}>{localeOptions}</select>
           </span>
           <span className="input-container">
-            <input autoComplete="off" ref={(input) => { this.textInput = input; }} onChange={this.numberChange} value={this.state.number} placeholder={this.context.intl.formatMessage({id: 'enter_phone'})}/>
+            <input ref={(input) => { this.textInput = input; }} onChange={this.numberChange} value={this.state.number} placeholder={this.context.intl.formatMessage({id: 'enter_phone'})}/>
             {placeholderContainer}
           </span>
         </div>
