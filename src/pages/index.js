@@ -44,14 +44,7 @@ var Index = React.createClass({
       robots = 'noindex, nofollow';
     }
     var fileHashes = JSON.parse(fs.readFileSync(Path.join(__dirname, '../../public/webpack-assets.json')));
-    var ga = `
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
-      ga('create', 'UA-49796218-44', 'auto');
-      ga('send', 'pageview');
-    `;
+
     var polyfillLocale = "";
     if (this.props.locale) {
       polyfillLocale = '&locale=' + this.props.locale;
@@ -90,7 +83,6 @@ var Index = React.createClass({
           <Optimizely/>
           <link rel="icon" href={this.props.favicon} type="image/x-icon"/>
           <link rel="stylesheet" href={'/' + fileHashes.main.css}/>
-          <script dangerouslySetInnerHTML={{__html: ga}}></script>
           <script dangerouslySetInnerHTML={{__html: l10nCountryData}}></script>
           {
             localesData.map((localeData, index) => {
