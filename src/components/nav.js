@@ -2,7 +2,6 @@ import React from 'react';
 import classnames from "classnames";
 import localesDataArr from '../data/locales.js';
 import locales from '../../public/locales.json';
-import reactGA from 'react-ga';
 var enabledLocales = [];
 
 localesDataArr.forEach(function(localeData) {
@@ -12,20 +11,13 @@ localesDataArr.forEach(function(localeData) {
 });
 
 var MenuLink = React.createClass({
-  onClick: function() {
-    reactGA.event({
-      category: "User Flow",
-      action: "Clicked Navigation",
-      label: this.props.item
-    });
-  },
   render: function() {
     var className = classnames(`nav-link`, {
       "active": this.props.active === this.props.item
     });
 
     return (
-      <a onClick={this.onClick} className={className} href={this.props.href}>{this.props.children}</a>
+      <a className={className} href={this.props.href}>{this.props.children}</a>
     );
   }
 });
@@ -200,11 +192,6 @@ var Dropdown = React.createClass({
       }
       this.props.onChange(change);
     }
-    reactGA.event({
-      category: "User Flow",
-      action: "Changed Language",
-      label: change.newValue
-    });
     this.setState({selected: e.target.value});
   }
 });

@@ -49,10 +49,6 @@ module.exports = React.createClass({
     })
   },
   handleError: function(status, e) {
-    if (status >= 500) {
-      // ReactGA event about a server failure?
-    }
-
     this.setState({
       validNumber: status !== 409,
       networkError: status === -1 || status >= 500

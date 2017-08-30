@@ -1,5 +1,4 @@
 import React from 'react';
-import reactGA from 'react-ga';
 import classnames from 'classnames';
 import submit from '../lib/submit.js';
 
