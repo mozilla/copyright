@@ -10,10 +10,12 @@ var Impact = React.createClass({
   render: function() {
     return (
       <div className="impact-item-container">
-        <img height="126" width="126" src="/assets/images/126x126.jpg"/>
-        <div>
-          <h2>{this.props.children}</h2>
-        </div>
+        <a href={this.props.href}>
+          <img height="126" width="126" src={this.props.icon}/>
+          <div>
+            <h2>{this.props.children}</h2>
+          </div>
+        </a>
       </div>
     );
   }
@@ -35,19 +37,19 @@ var Resources = React.createClass({
           <section>
             <h1>{this.context.intl.formatMessage({id: 'impact_main_title'})}</h1>
             <div className="impact-items-container">
-              <Impact>
+              <Impact href="#technologist" icon="/assets/images/01_Technologist.png">
                 {this.context.intl.formatMessage({id: 'impact_technologist'})}
               </Impact>
-              <Impact>
+              <Impact href="#creator-innovator" icon="/assets/images/02_Creator.png">
                 {this.context.intl.formatMessage({id: 'impact_creator_innovator'})}
               </Impact>
-              <Impact>
+              <Impact href="#scientist-librarian" icon="/assets/images/03_Librarian.png">
                 {this.context.intl.formatMessage({id: 'impact_scientist_librarian'})}
               </Impact>
             </div>
           </section>
           <section>
-            <h1>
+            <h1 id="technologist">
               {this.context.intl.formatMessage({id: 'technologist_section'})}
             </h1>
             <h3>
@@ -118,7 +120,7 @@ var Resources = React.createClass({
           </section>
           <section>
             <div className="horizontal-rule"></div>
-            <h1>
+            <h1 id="creator-innovator">
               {this.context.intl.formatMessage({id: 'creator_innovator_section'})}
             </h1>
             <h3>
@@ -146,7 +148,7 @@ var Resources = React.createClass({
           </section>
           <section>
             <div className="horizontal-rule"></div>
-            <h1>
+            <h1  id="scientist-librarian">
               {this.context.intl.formatMessage({id: 'scientist_librarian_section'})}
             </h1>
             <h3>
