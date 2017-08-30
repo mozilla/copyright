@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * This is the mapping for "country" to "campaign id"
  * to be used to resolve the locale to the right campaign.
