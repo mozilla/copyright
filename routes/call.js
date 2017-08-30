@@ -3,48 +3,44 @@ var FormData = require('form-data');
 var parseNumber = require('libphonenumber-js').parse;
 
 const CALL_POWER_URL = process.env.CALL_POWER_URL;
-const COPYRIGHT_CAMPAIGN_ID = process.env.COPYRIGHT_CAMPAIGN_ID;
-
-/**
- * Resolve a locale code back to a country code. For
- * two-letter locales, these are already the country
- * code; for two-dash-two, the last two lettters are
- * the country code.
- */
-function getCorrespondingCountry(locale) {
-  matched = locale.match(/^(\w\w)(-(\w\w))?$/)
-  if (!matched) return undefined;
-  const country = (matched[3] ? matched[3] : matched[1]);
-  if (!country) return undefined;
-  return country.toUpperCase();
-}
+const getCopyrightCampaign = require('./campaign-ids');
 
 /**
  * Check whether the provided number is valid for
  * the country it supposedly belongs to.
  */
-function isValidNumber(number, country) {
-  return !!parseNumber(number, country).phone;
+function getParsedNumber(number, country) {
+  if (number.indexOf('+')>-1) {
+    return parseNumber(number);
+  }
+  return parseNumber(number, country);
 }
 
-module.exports = function(request, reply) {
+
+module.exports = function handleCallRequest(request, reply) {
   var callInformation = request.payload;
-  const number = '+' + callInformation.number.replace(/\D/g,'');
-  const country = getCorrespondingCountry(callInformation.locale);
+  let number = callInformation.number.replace(/[^0-9+]/g,'');
+  const locale = callInformation.locale || '';
+  const parsed = getParsedNumber(number);
 
   // Verify that the number we've been given is a proper number.
-  if (!isValidNumber(number, country)) {
+  if (!parsed.phone) {
     return reply({
       'call_placed': false,
-      error: `Phone number does not match the format required in ${country}`
+      error: 'Phone number does not match the format required.'
     }).code(409);
   }
 
-  // Set up a call through call-power
+  // If we get here, we know the phone number is legit.
+  // Extract the country for this number and the cleaned
+  // number, and process with invoking a campaign calll.
+  const country = parsed.country;
+  const cid = getCopyrightCampaign(country);
+
   var form = new FormData();
-  form.append('userPhone', number);
+  form.append('userPhone', parsed.phone);
   form.append('userCountry', country);
-  form.append('campaignId', COPYRIGHT_CAMPAIGN_ID);
+  form.append('campaignId', cid);
 
   fetch(CALL_POWER_URL, { method: 'POST', body: form })
   .then(res => res.json())
@@ -55,6 +51,7 @@ module.exports = function(request, reply) {
     reply({ 'call_placed': true }).code(200);
   })
   .catch(error => {
-    reply({ 'call_placed': false, error: error }).code(409);
+    console.error(`error for ${number}/${locale}/cid:${cid}(${parsed.country}):`, error);
+    reply({ 'call_placed': false, error: error }).code(500);
   });
 };
