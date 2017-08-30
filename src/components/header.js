@@ -12,7 +12,7 @@ module.exports = React.createClass({
         <p><span className="blue-highlight">{this.context.intl.formatMessage({id: 'epic_battle_tagline_mep'})}</span></p>
         <p className="header-paragraph">{this.context.intl.formatMessage({id: 'main_title_desc_september'})}</p>
         <CallButton shadow={true} />
-        <p className="italic"><a href="#">{this.context.intl.formatMessage({id: 'cta_tagline_calling'})}</a></p>
+        <p className="italic"><a href={`/${this.context.intl.locale}/call-now`}>{this.context.intl.formatMessage({id: 'cta_tagline_calling'})}</a></p>
       </header>
     );
   }
