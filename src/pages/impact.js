@@ -83,7 +83,7 @@ var Resources = React.createClass({
               {this.context.intl.formatMessage({id: 'technologist_article_11_fight3'})}
             </p>
             <p>
-              <a href="#">
+              <a href="http://copyright4creativity.eu/wp-content/uploads/2017/01/DCDSM-Article11-C4CFactsheet.pdf">
                 {this.context.intl.formatMessage({id: 'technologist_learn_more'})}
               </a>
             </p>
@@ -113,7 +113,7 @@ var Resources = React.createClass({
               {this.context.intl.formatMessage({id: 'technologist_article_13_fight3'})}
             </p>
             <p>
-              <a href="#">
+              <a href="http://copyright4creativity.eu/wp-content/uploads/2016/12/DCDSM-Article13-C4CFactsheet.pdf">
                 {this.context.intl.formatMessage({id: 'technologist_learn_more'})}
               </a>
             </p>
@@ -141,7 +141,7 @@ var Resources = React.createClass({
               {this.context.intl.formatMessage({id: 'creator_innovator_ugc_fight'})}
             </p>
             <p>
-              <a href="#">
+              <a href="http://www.communia-association.org/2017/06/15/keeping-eye-fine-print-ugc-exception-juri-committee/">
                 {this.context.intl.formatMessage({id: 'creator_innovator_learn_more'})}
               </a>
             </p>
@@ -175,7 +175,7 @@ var Resources = React.createClass({
               {this.context.intl.formatMessage({id: 'scientist_librarian_article_3_fight3'})}
             </p>
             <p>
-              <a href="#">
+              <a href="http://libereurope.eu/text-data-mining/">
                 {this.context.intl.formatMessage({id: 'scientist_librarian_learn_more'})}
               </a>
             </p>
