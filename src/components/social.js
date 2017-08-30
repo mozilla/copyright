@@ -62,10 +62,10 @@ module.exports = React.createClass({
   render: function() {
     var appURL = process.env.APPLICATION_URI;
     var locale = this.context.intl.locale;
-    var twitterShareURL = 'https://twitter.com/share?url=' + appURL +'/' + locale + '/&text=' + encodeURIComponent(this.context.intl.formatMessage({id: 'sharing_twitter_a'}));
+    var twitterShareURL = 'https://twitter.com/share?url=' + appURL +'/' + locale + '/&text=' + encodeURIComponent(this.context.intl.formatMessage({id: 'sharing_twitter_b'}));
     var facebookShareURL = 'https://www.facebook.com/sharer/sharer.php?u=' + appURL + '/' + locale + '/';
-    var emailSubject = this.context.intl.formatMessage({id: 'sharing_email_subject_a'});
-    var emailBody = this.context.intl.formatMessage({id: 'sharing_email_body_a'});
+    var emailSubject = this.context.intl.formatMessage({id: 'sharing_email_internet_subject_b'});
+    var emailBody = this.context.intl.formatMessage({id: 'sharing_email_body_b'});
     var emailShareURL = 'mailto:someone@example.com?subject='+ emailSubject +'&body='+ emailBody +'';
 
     // We only support ShareProgress in English based locales.
