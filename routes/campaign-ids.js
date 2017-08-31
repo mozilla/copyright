@@ -15,5 +15,12 @@ module.exports = function getCopyrightCampaignID(locale) {
   locale = locale || DEFAULT_LOCALE;
   if (locale==='en-US') locale = 'GB';
   locale = locale.toUpperCase();
-  return COPYRIGHT_CAMPAIGN_IDS[locale];
+  let cid = COPYRIGHT_CAMPAIGN_IDS[locale];
+
+  // allow US/Canada calls, but ONLY on staging.
+  if(!cid && process.env.NODE_ENV !== 'production') {
+    cid = 1;
+  }
+
+  return cid;
 };
