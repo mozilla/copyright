@@ -4,7 +4,7 @@ module.exports = [
       code: 'de'
   },
   {
-      description: 'English (GB)',
+      description: 'English',
       code: 'en-US'
   },
   {
