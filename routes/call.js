@@ -25,6 +25,10 @@ module.exports = function handleCallRequest(request, reply) {
   const locale = callInformation.locale || '';
   const parsed = getParsedNumber(number);
 
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(number, locale, parsed);
+  }
+
   // Verify that the number we've been given is a proper number.
   if (!parsed.phone) {
     return reply({
@@ -38,6 +42,10 @@ module.exports = function handleCallRequest(request, reply) {
   // number, and process with invoking a campaign calll.
   const country = parsed.country;
   const cid = getCopyrightCampaign(country);
+
+  if (process.env.NODE_ENV !== 'production') {
+    console.log(parsed.phone, country, cid);
+  }
 
   var form = new FormData();
   form.append('userPhone', parsed.phone);
