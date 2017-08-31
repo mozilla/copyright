@@ -21,31 +21,35 @@ function getParsedNumber(number, country) {
 
 module.exports = function handleCallRequest(request, reply) {
   var callInformation = request.payload;
-
-  // Does this number contain illegal characters?
   let number = callInformation.number;
-  if ((/[^0-9+ \.\-,]/).test(number)) {
+
+  // Make sure the user didn't remove a country code.
+  if (number.indexOf('+') === -1) {
     return reply({
       'call_placed': false,
-      error: 'Phone number does not match the format required.'
+      error: 'Phone number is missing a country code'
     }).code(409);
   }
 
-  // It does not. Strip out inert characters and continue.
+  // Also make sure the number does not contain illegal characters.
+  if ((/[^0-9+ ,\(\)\.\-]/).test(number)) {
+    return reply({
+      'call_placed': false,
+      error: 'Phone number contains illegal characters.'
+    }).code(409);
+  }
+
+  // It does not: strip out inert characters and continue.
   number = number.replace(/[^0-9+]/g,'');
   const locale = callInformation.locale || '';
   const parsed = getParsedNumber(number);
-
-  if (process.env.NODE_ENV !== 'production') {
-    console.log(number, locale, parsed);
-  }
 
   // Verify that the number we've been given is a proper number
   // for whatever country the country code said it was for.
   if (!parsed.phone) {
     return reply({
       'call_placed': false,
-      error: 'Phone number does not match the format required.'
+      error: 'Phone number does not match the format required based on country code.'
     }).code(409);
   }
 
@@ -54,10 +58,6 @@ module.exports = function handleCallRequest(request, reply) {
   // number, and process with invoking a campaign calll.
   const country = parsed.country;
   const cid = getCopyrightCampaign(country);
-
-  if (process.env.NODE_ENV !== 'production') {
-    console.log(parsed.phone, country, cid);
-  }
 
   var form = new FormData();
   form.append('userPhone', number);
