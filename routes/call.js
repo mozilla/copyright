@@ -21,7 +21,18 @@ function getParsedNumber(number, country) {
 
 module.exports = function handleCallRequest(request, reply) {
   var callInformation = request.payload;
-  let number = callInformation.number.replace(/[^0-9+]/g,'');
+
+  // Does this number contain illegal characters?
+  let number = callInformation.number;
+  if ((/[^0-9+ \.\-,]/).test(number)) {
+    return reply({
+      'call_placed': false,
+      error: 'Phone number does not match the format required.'
+    }).code(409);
+  }
+
+  // It does not. Strip out inert characters and continue.
+  number = number.replace(/[^0-9+]/g,'');
   const locale = callInformation.locale || '';
   const parsed = getParsedNumber(number);
 
@@ -29,7 +40,8 @@ module.exports = function handleCallRequest(request, reply) {
     console.log(number, locale, parsed);
   }
 
-  // Verify that the number we've been given is a proper number.
+  // Verify that the number we've been given is a proper number
+  // for whatever country the country code said it was for.
   if (!parsed.phone) {
     return reply({
       'call_placed': false,
@@ -48,7 +60,7 @@ module.exports = function handleCallRequest(request, reply) {
   }
 
   var form = new FormData();
-  form.append('userPhone', parsed.phone);
+  form.append('userPhone', number);
   form.append('userCountry', country);
   form.append('campaignId', cid);
 
