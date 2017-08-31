@@ -32,7 +32,7 @@ module.exports = function handleCallRequest(request, reply) {
   }
 
   // It does not. Strip out inert characters and continue.
-  let number = callInformation.number.replace(/[^0-9+]/g,'');
+  number = number.replace(/[^0-9+]/g,'');
   const locale = callInformation.locale || '';
   const parsed = getParsedNumber(number);
 
