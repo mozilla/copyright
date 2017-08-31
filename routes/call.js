@@ -8,20 +8,6 @@ const CALL_POWER_URL = process.env.CALL_POWER_URL;
 const getCopyrightCampaign = require('./campaign-ids');
 
 /**
- * Resolve a locale code back to a country code. For
- * two-letter locales, these are already the country
- * code; for two-dash-two, the last two lettters are
- * the country code.
- */
-function getCorrespondingCountry(locale) {
-  const matched = locale.match(/^(\w\w)(-(\w\w))?$/);
-  if (!matched) return undefined;
-  const country = (matched[3] ? matched[3] : matched[1]);
-  if (!country) return undefined;
-  return country.toUpperCase();
-}
-
-/**
  * Check whether the provided number is valid for
  * the country it supposedly belongs to.
  */
@@ -35,10 +21,9 @@ function getParsedNumber(number, country) {
 
 module.exports = function handleCallRequest(request, reply) {
   var callInformation = request.payload;
-  const number = callInformation.number.replace(/[^0-9+]/g,'');
+  let number = callInformation.number.replace(/[^0-9+]/g,'');
   const locale = callInformation.locale || '';
-  const country = getCorrespondingCountry(locale);
-  const parsed = getParsedNumber(number, country);
+  const parsed = getParsedNumber(number);
 
   // Verify that the number we've been given is a proper number.
   if (!parsed.phone) {
@@ -48,11 +33,15 @@ module.exports = function handleCallRequest(request, reply) {
     }).code(409);
   }
 
-  // Set up a call through call-power
-  const cid = getCopyrightCampaign(parsed.country);
+  // If we get here, we know the phone number is legit.
+  // Extract the country for this number and the cleaned
+  // number, and process with invoking a campaign calll.
+  const country = parsed.country;
+  const cid = getCopyrightCampaign(country);
+
   var form = new FormData();
   form.append('userPhone', parsed.phone);
-  form.append('userCountry', parsed.country);
+  form.append('userCountry', country);
   form.append('campaignId', cid);
 
   fetch(CALL_POWER_URL, { method: 'POST', body: form })

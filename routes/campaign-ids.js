@@ -1,23 +1,19 @@
 "use strict";
 
-/**
- * This is the mapping for "country" to "campaign id"
- * to be used to resolve the locale to the right campaign.
- */
+const DEFAULT_LOCALE = 'GB';
+
 const COPYRIGHT_CAMPAIGN_IDS = {
-  'EN': 1, // testing-only campaign id
-  'GB': 2,
-  'FR': 3,
-  'DE': 4,
-  'IT': 5,
-  'PL': 6,
-  'ES': 7
+  'GB': 2, // UK English
+  'FR': 3, // French
+  'DE': 4, // German
+  'IT': 5, // Italian
+  'PL': 6, // Polish
+  'ES': 7  // Spanish
 };
 
-const DEFAULT_CAMPAIGN_ID = 1;
-
-module.exports = function getCopyrightCampaignID(country) {
-  let id = COPYRIGHT_CAMPAIGN_IDS[country];
-  if (!id) return DEFAULT_CAMPAIGN_ID;
-  return id;
+module.exports = function getCopyrightCampaignID(locale) {
+  locale = locale || DEFAULT_LOCALE;
+  if (locale==='en-US') locale = 'GB';
+  locale = locale.toUpperCase();
+  return COPYRIGHT_CAMPAIGN_IDS[locale];
 };
