@@ -1,3 +1,5 @@
+"use strict";
+
 var fetch = require('node-fetch');
 var FormData = require('form-data');
 var parseNumber = require('libphonenumber-js').parse;

@@ -1,5 +1,4 @@
 import React from 'react';
-import reactGA from 'react-ga';
 import submit from '../lib/submit';
 
 var NOT_SUBMITTING = 0;
@@ -10,11 +9,6 @@ var BasketMixin = {
     intl: React.PropTypes.object
   },
   doSignupSuccess: function(result, location) {
-    reactGA.event({
-      category: "Signup",
-      action: "Submitted the form",
-      label: "copyright"
-    });
     var page = location;
     window.location = page;
   },
@@ -34,9 +28,6 @@ var BasketMixin = {
   },
   signupSuccess: function(result) {
     var shareLink = "/" + this.context.intl.locale + "/share";
-    if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
-      shareLink = "http://share.mozilla.org/352/179362";
-    }
     this.doSignupSuccess(result, shareLink);
   },
   basket: function(props) {

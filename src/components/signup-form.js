@@ -3,9 +3,6 @@ import { FormattedMessage } from 'react-intl';
 import { setEmailError, setEmail, setSignupCheckbox, setSignupCheckboxError, setPrivacyCheckbox, setPrivacyCheckboxError } from '../actions';
 import { connect } from 'react-redux';
 import classnames from "classnames";
-import StickyContainer from './sticky-container.js';
-import reactGA from 'react-ga';
-
 var NOT_SUBMITTING = 0;
 var SIGNUP_SUBMITTING = 1;
 
@@ -39,85 +36,26 @@ var Signup = React.createClass({
     if (!this.props.email.trim()) {
       valid = false;
       this.props.setEmailError(this.context.intl.formatMessage({id: "please_complete"}));
-      reactGA.event({
-        category: "Signup",
-        action: "Form Error",
-        label: "Empty Email Error"
-      });
     } else if (!this.emailInput.validity.valid) {
       valid = false;
       this.props.setEmailError(this.context.intl.formatMessage({id: "email_invalid"}));
-      reactGA.event({
-        category: "Signup",
-        action: "Form Error",
-        label: "Invalid Email Error"
-      });
     }
 
     if (!this.props.privacyCheckbox) {
       valid = false;
       this.props.setPrivacyCheckboxError(this.context.intl.formatMessage({id: "please_complete"}));
-      reactGA.event({
-        category: "Signup",
-        action: "Form Error",
-        label: "Privacy Policy Error"
-      });
     }
 
     if (!this.props.signupCheckbox) {
       valid = false;
       this.props.setSignupCheckboxError(this.context.intl.formatMessage({id: "please_complete"}));
-      reactGA.event({
-        category: "Signup",
-        action: "Form Error",
-        label: "Opt-in Error"
-      });
     }
 
     if (valid) {
-      reactGA.event({
-        category: "Signup",
-        action: "Submitting the form",
-        label: "Copyright"
-      });
       this.basket({
         email: this.props.email
       });
     }
-  },
-  mobileGetInvolved: function() {
-    reactGA.event({
-      category: "Signup",
-      action: "Form Step",
-      label: "Get Involved Clicked"
-    });
-  },
-  getPosition: function() {
-    if (!this.stickyContainer) {
-      return 0;
-    }
-    return this.stickyContainer.getClientRects()[0].top + this.stickyContent.offsetHeight + window.scrollY - window.innerHeight;
-  },
-  onEmailInputClick: function() {
-    reactGA.event({
-      category: "Signup",
-      action: "Form Step",
-      label: "Email Focus"
-    });
-  },
-  onPrivacyCheckboxClick: function() {
-    reactGA.event({
-      category: "Signup",
-      action: "Form Step",
-      label: "Privacy Checkbox Focus"
-    });
-  },
-  onSignupCheckboxClick: function() {
-    reactGA.event({
-      category: "Signup",
-      action: "Form Step",
-      label: "Opt-in Checkbox Focus"
-    });
   },
   render: function() {
     var emailClassName = classnames("email-input", {
@@ -153,7 +91,7 @@ var Signup = React.createClass({
 
             <div>
               <div className="no-wrap">
-                <input onClick={this.onEmailInputClick} autoComplete="off" ref={(input) => { this.emailInput = input; }} type='email' className={emailClassName} value={this.props.email} onChange={this.emailChange} required placeholder={this.context.intl.formatMessage({id: 'newsletter_placeholder'})}/>
+                <input autoComplete="off" ref={(input) => { this.emailInput = input; }} type='email' className={emailClassName} value={this.props.email} onChange={this.emailChange} required placeholder={this.context.intl.formatMessage({id: 'newsletter_placeholder'})}/>
                 <button onClick={this.onSubmit} className={desktopButtonClassName}>
                   {buttonText}
                 </button>
@@ -161,12 +99,12 @@ var Signup = React.createClass({
               <p className="error-message">{this.props.emailError}</p>
               <p className="error-message">{this.state.signupError}</p>
               <label>
-                <input onClick={this.onSignupCheckboxClick} className="checkbox" autoComplete="off" onChange={this.signupCheckboxChange} value={this.props.signupCheckbox} type="checkbox"></input>
+                <input className="checkbox" autoComplete="off" onChange={this.signupCheckboxChange} value={this.props.signupCheckbox} type="checkbox"></input>
                 {this.context.intl.formatMessage({id: 'signup_checkbox'})}
               </label>
               <p className="privacy-error error-message">{this.props.signupCheckboxError}</p>
               <label>
-                <input onClick={this.onPrivacyCheckboxClick} className="checkbox" autoComplete="off" onChange={this.privacyCheckboxChange} value={this.props.privacyCheckbox} type="checkbox"></input>
+                <input className="checkbox" autoComplete="off" onChange={this.privacyCheckboxChange} value={this.props.privacyCheckbox} type="checkbox"></input>
                 <FormattedMessage
                   id='newsletter_notice'
                   values={{

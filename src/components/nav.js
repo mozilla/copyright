@@ -2,7 +2,6 @@ import React from 'react';
 import classnames from "classnames";
 import localesDataArr from '../data/locales.js';
 import locales from '../../public/locales.json';
-import reactGA from 'react-ga';
 var enabledLocales = [];
 
 localesDataArr.forEach(function(localeData) {
@@ -12,20 +11,13 @@ localesDataArr.forEach(function(localeData) {
 });
 
 var MenuLink = React.createClass({
-  onClick: function() {
-    reactGA.event({
-      category: "User Flow",
-      action: "Clicked Navigation",
-      label: this.props.item
-    });
-  },
   render: function() {
     var className = classnames(`nav-link`, {
       "active": this.props.active === this.props.item
     });
 
     return (
-      <a onClick={this.onClick} className={className} href={this.props.href}>{this.props.children}</a>
+      <a className={className} href={this.props.href}>{this.props.children}</a>
     );
   }
 });
@@ -52,17 +44,17 @@ var SimpleNav = React.createClass({
         {
           text: this.context.intl.formatMessage({id: `nav_fix_copyright`}),
           item: `home`,
-          href: `/`
+          href: `/${this.context.intl.locale}/`
         },
         {
           text: this.context.intl.formatMessage({id: `nav_impact`}),
           item: `impact`,
-          href: `/impact`
+          href: `/${this.context.intl.locale}/impact`
         },
         {
           text: this.context.intl.formatMessage({id: `nav_call_now`}),
           item: `call-now`,
-          href: `/call-now`
+          href: `/${this.context.intl.locale}/call-now`
         }
       ];
       if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
@@ -200,11 +192,6 @@ var Dropdown = React.createClass({
       }
       this.props.onChange(change);
     }
-    reactGA.event({
-      category: "User Flow",
-      action: "Changed Language",
-      label: change.newValue
-    });
     this.setState({selected: e.target.value});
   }
 });

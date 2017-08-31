@@ -3,6 +3,7 @@ import Footer from '../components/footer.js';
 import { SimpleNav } from '../components/nav.js';
 import CallButton from '../components/call-button.js';
 import SignupForm from '../components/signup-form.js';
+import StickyContainer from '../components/sticky-container.js';
 import { FormattedMessage } from 'react-intl';
 import { FormattedHTMLMessage } from 'react-intl';
 
@@ -24,6 +25,12 @@ var Impact = React.createClass({
 var Resources = React.createClass({
   contextTypes: {
     intl: React.PropTypes.object
+  },
+  getPosition: function() {
+    if (!this.stickyContainer) {
+      return 0;
+    }
+    return this.stickyContainer.getClientRects()[0].top + this.stickyContent.offsetHeight + window.scrollY - window.innerHeight;
   },
   render: function() {
     var className = "impact";
@@ -83,7 +90,7 @@ var Resources = React.createClass({
               {this.context.intl.formatMessage({id: 'technologist_article_11_fight3'})}
             </p>
             <p>
-              <a href="#">
+              <a href="http://copyright4creativity.eu/wp-content/uploads/2017/01/DCDSM-Article11-C4CFactsheet.pdf">
                 {this.context.intl.formatMessage({id: 'technologist_learn_more'})}
               </a>
             </p>
@@ -113,7 +120,7 @@ var Resources = React.createClass({
               {this.context.intl.formatMessage({id: 'technologist_article_13_fight3'})}
             </p>
             <p>
-              <a href="#">
+              <a href="http://copyright4creativity.eu/wp-content/uploads/2016/12/DCDSM-Article13-C4CFactsheet.pdf">
                 {this.context.intl.formatMessage({id: 'technologist_learn_more'})}
               </a>
             </p>
@@ -141,7 +148,7 @@ var Resources = React.createClass({
               {this.context.intl.formatMessage({id: 'creator_innovator_ugc_fight'})}
             </p>
             <p>
-              <a href="#">
+              <a href="http://www.communia-association.org/2017/06/15/keeping-eye-fine-print-ugc-exception-juri-committee/">
                 {this.context.intl.formatMessage({id: 'creator_innovator_learn_more'})}
               </a>
             </p>
@@ -175,13 +182,19 @@ var Resources = React.createClass({
               {this.context.intl.formatMessage({id: 'scientist_librarian_article_3_fight3'})}
             </p>
             <p>
-              <a href="#">
+              <a href="http://libereurope.eu/text-data-mining/">
                 {this.context.intl.formatMessage({id: 'scientist_librarian_learn_more'})}
               </a>
             </p>
 
           </section>
-          <CallButton/>
+          <div ref={(element) => { this.stickyContainer = element; }}>
+            <StickyContainer className="sticky-container" stickyTo={this.getPosition}>
+              <div className="sticky-content" ref={(element) => { this.stickyContent = element; }}>
+                <CallButton/>
+              </div>
+            </StickyContainer>
+          </div>
           <SignupForm/>
         </div>
         <Footer/>

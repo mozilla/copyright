@@ -1,3 +1,5 @@
+"use strict";
+
 const DEFAULT_LOCALE = 'GB';
 
 const COPYRIGHT_CAMPAIGN_IDS = {
