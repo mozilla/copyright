@@ -12,7 +12,7 @@ var Impact = React.createClass({
     return (
       <div className="impact-item-container">
         <a href={this.props.href}>
-          <img height="126" width="126" src={this.props.icon}/>
+          <img height="237" width="219" src={this.props.icon}/>
           <div>
             <h2>{this.props.children}</h2>
           </div>
