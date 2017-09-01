@@ -56,12 +56,11 @@ module.exports = function handleCallRequest(request, reply) {
   // If we get here, we know the phone number is legit.
   // Extract the country for this number and the cleaned
   // number, and process with invoking a campaign calll.
-  const country = parsed.country;
-  const cid = getCopyrightCampaign(country);
+  const cid = getCopyrightCampaign(locale);
 
   var form = new FormData();
   form.append('userPhone', number);
-  form.append('userCountry', country);
+  form.append('userCountry', parsed.country);
   form.append('campaignId', cid);
 
   fetch(CALL_POWER_URL, { method: 'POST', body: form })
