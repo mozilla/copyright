@@ -7,18 +7,6 @@ var parseNumber = require('libphonenumber-js').parse;
 const CALL_POWER_URL = process.env.CALL_POWER_URL;
 const getCopyrightCampaign = require('./campaign-ids');
 
-/**
- * Check whether the provided number is valid for
- * the country it supposedly belongs to.
- */
-function getParsedNumber(number, country) {
-  if (number.indexOf('+')>-1) {
-    return parseNumber(number);
-  }
-  return parseNumber(number, country);
-}
-
-
 module.exports = function handleCallRequest(request, reply) {
   var callInformation = request.payload;
   let number = callInformation.number;
@@ -42,7 +30,7 @@ module.exports = function handleCallRequest(request, reply) {
   // It does not: strip out inert characters and continue.
   number = number.replace(/[^0-9+]/g,'');
   const locale = callInformation.locale || '';
-  const parsed = getParsedNumber(number);
+  const parsed = parseNumber(number);
 
   // Verify that the number we've been given is a proper number
   // for whatever country the country code said it was for.
@@ -56,12 +44,11 @@ module.exports = function handleCallRequest(request, reply) {
   // If we get here, we know the phone number is legit.
   // Extract the country for this number and the cleaned
   // number, and process with invoking a campaign calll.
-  const country = parsed.country;
-  const cid = getCopyrightCampaign(country);
+  const cid = getCopyrightCampaign(locale);
 
   var form = new FormData();
   form.append('userPhone', number);
-  form.append('userCountry', country);
+  form.append('userCountry', parsed.country);
   form.append('campaignId', cid);
 
   fetch(CALL_POWER_URL, { method: 'POST', body: form })
