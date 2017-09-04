@@ -37,8 +37,8 @@ function routeFileContent(locales) {
       var localesInfo = [locale];
       var query = queryParser(request.query);
 
-      var fbDesc = messages.sharing_fb_internet_title_a;
-      var fbTitle = messages.sharing_fb_desc_a;
+      var fbDesc = messages.sharing_fb_desc_a;
+      var fbTitle = messages.sharing_fb_internet_title_a;
       var twShare = messages.sharing_twitter_b;
 
       function createElement(Component, props) {
