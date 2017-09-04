@@ -33,7 +33,7 @@ function routeFileContent(locales) {
       var twitterImage = "/assets/images/Copyright-social-01.jpg";
       var facebookImage = "/assets/images/Copyright-social-01.jpg";
       var siteUrl = url.resolve(process.env.APPLICATION_URI, locale + '/');
-            var siteTitle = messages.main_title_digital_age;
+      var siteTitle = messages.main_title_digital_age;
       var localesInfo = [locale];
       var query = queryParser(request.query);
 
