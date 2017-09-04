@@ -32,12 +32,13 @@ function routeFileContent(locales) {
       var favicon = "/assets/images/favicon.png";
       var twitterImage = "/assets/images/Copyright-social-01.jpg";
       var facebookImage = "/assets/images/Copyright-social-01.jpg";
-      var siteUrl = url.resolve(process.env.APPLICATION_URI, locale + '/')
+      var siteUrl = url.resolve(process.env.APPLICATION_URI, locale + '/');
+      var siteTitle = messages.main_title_digital_age;
       var localesInfo = [locale];
       var query = queryParser(request.query);
 
-      var fbDesc = messages.sharing_fb_internet_title_a;
-      var fbTitle = messages.sharing_fb_desc_a;
+      var fbDesc = messages.sharing_fb_desc_a;
+      var fbTitle = messages.sharing_fb_internet_title_a;
       var twShare = messages.sharing_twitter_b;
 
       function createElement(Component, props) {
@@ -68,7 +69,7 @@ function routeFileContent(locales) {
             title: ``,
             site_name: 'mozilla.org',
             site_url: siteUrl,
-            site_title: ``,
+            site_title: siteTitle,
             facebook_image: process.env.APPLICATION_URI + facebookImage,
             twitter_image: process.env.APPLICATION_URI + twitterImage
           }}
