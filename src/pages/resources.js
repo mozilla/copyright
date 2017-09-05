@@ -67,6 +67,13 @@ var readResources = [
 ];
 var watchResources = [
   {
+    title: "A Meme is born",
+    titleLink: "https://www.youtube.com/watch?v=Exc9PAXhOd0",
+    paragraph: "Learn how outdate copyright laws threaten online creativity.",
+    author: "Mozilla",
+    authorLink: "https://www.mozilla.org/"
+  },
+  {
     title: "Copy (aka copyright) Tells the Story of His Life",
     titleLink: "https://www.youtube.com/watch?v=0fdUDecJ6jc",
     paragraph: "Learn about copyright from birth to internet explosion.",
