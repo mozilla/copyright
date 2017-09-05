@@ -2,7 +2,7 @@ import React from 'react';
 import classnames from 'classnames';
 import CallButton from './call-button.js';
 import Social from './social.js';
-import { prefixMap, localeCodeMap } from '../lib/call-data';
+import { prefixMap, localeCodeMap, iconMap } from '../lib/call-data';
 import { FormattedMessage } from 'react-intl';
 
 module.exports = React.createClass({
@@ -117,7 +117,7 @@ module.exports = React.createClass({
       );
     }
     const localeOptions = Object.keys(prefixMap).map((value) => {
-      var prefixObject = prefixMap[value];
+      var prefixObject = iconMap[prefixMap[value]];
       return (
         <option key={value} value={value}>
           {prefixObject + " (+" + value + ")"}
@@ -133,7 +133,7 @@ module.exports = React.createClass({
         <div className={classnames("phone-number-input-container", { "valid": this.state.validNumber })}>
           <span className="select-container">
             <span className="country-prefix-display">
-              {prefixMap[this.state.countryPrefix]}
+              <span className="flag-background" style={{backgroundImage: 'url(/assets/images/flags/' + prefixMap[this.state.countryPrefix] + '.svg)'}}></span>
               <i className="fa fa-caret-down" aria-hidden="true"></i>
             </span>
             <select ref={(input) => { this.selectInput = input; }} onChange={this.prefixChange} value={this.state.countryPrefix}>{localeOptions}</select>

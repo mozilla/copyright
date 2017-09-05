@@ -32,6 +32,8 @@
     display: inline-block;
     white-space: nowrap;
     font-size: 0.75rem;
+    height: 1.8rem;
+    overflow: hidden;
 
     &:not(.valid) {
       @bw: 2px;
@@ -48,7 +50,8 @@
   .select-container {
     position: relative;
     display: inline-block;
-    height: 1.8rem;
+    height: 100%;
+    vertical-align: top;
     border: 1px solid #000000;
     border-right: none;
     overflow: hidden;
@@ -68,7 +71,8 @@
   .input-container {
     position: relative;
     display: inline-block;
-    height: 1.8rem;
+    height: 100%;
+    vertical-align: top;
     border: 1px solid #000000;
     border-left: none;
     overflow: hidden;
@@ -79,6 +83,7 @@
       outline: none;
       user-select: none;
       position: absolute;
+      border-radius: 0;
       width: 100%;
       left: 0;
       top: 0;
@@ -123,11 +128,16 @@
     padding-left: 0.4rem;
     display: inline-flex;
     align-items: center;
-    padding-top: 0.136rem;
-    font-family: "Babel Stone Flags";
   }
   .fa-caret-down {
     margin-left: 0.2rem;
     margin-right: 0.4rem;
   }
+}
+
+.flag-background {
+  width: 1rem;
+  height: 0.8rem;
+  background-size: 1rem 0.8rem;
+  outline: 1px solid #000000;
 }
