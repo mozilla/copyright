@@ -55,12 +55,19 @@ module.exports = function handleCallRequest(request, reply) {
   .then(res => res.json())
   .then(json => {
     if (json.error) {
-      throw new Error(json.error);
+      throw new Error(JSON.stringify(json));
     }
     reply({ 'call_placed': true }).code(200);
   })
   .catch(error => {
+    var error = error.message;
+    var status = 500;
+    try {
+      var data = JSON.parse(error);
+      error = data.error;
+      status = data.status;
+    } catch (e) { /* error message was not JSON data */ }
     console.error(`error for ${number}/${locale}/cid:${cid}(${parsed.country}):`, error);
-    reply({ 'call_placed': false, error: error }).code(500);
+    reply({ 'call_placed': false, error: error }).code(status);
   });
 };

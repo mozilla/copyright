@@ -5,19 +5,38 @@ import Social from './social.js';
 import { prefixMap, localeCodeMap, iconMap } from '../lib/call-data';
 import { FormattedMessage } from 'react-intl';
 
+/**
+ * This function is responsible for mapping HTTP status numbers to
+ * specific string ids for generating page content to inform the user
+ * about what that status code means in terms of their ability to call.
+ */
+function getCustomError(status) {
+  if (status === -1 || status >= 500) {
+    return ['unknown_problems', 'please_retry_later'];
+  }
+  if (status === 400) {
+    return ['we_cannot_call'];
+  }
+  if (status === 429) {
+    return ['hourly_limit_reached'];
+  }
+  return false;
+}
+
+
 module.exports = React.createClass({
   contextTypes: {
     intl: React.PropTypes.object
   },
-  getInitialState: function() {
-    var countryPrefix = localeCodeMap[this.context.intl.locale] || "30";
-    var number = "(+" + countryPrefix + ") ";
+  getInitialState: function(countryPrefix, number) {
+    var countryPrefix = countryPrefix || localeCodeMap[this.context.intl.locale] || "30";
+    var number = number || "(+" + countryPrefix + ") ";
     return {
       countryPrefix,
       number,
       validNumber: true,
       calling: false,
-      networkError: false
+      customError: false
     };
   },
   componentDidMount: function() {
@@ -51,34 +70,28 @@ module.exports = React.createClass({
   handleError: function(status, e) {
     this.setState({
       validNumber: status !== 409,
-      networkError: status === -1 || status >= 500
+      customError: getCustomError(status)
     });
   },
   retry: function() {
-    this.setState({
-      validNumber: true,
-      networkError: false
-    });
+    var state = this.getInitialState(this.state.countryPrefix, this.state.number);
+    this.setState(state);
   },
   render: function() {
     var content = null;
-    if (this.state.networkError) {
-      content = this.renderNetworkError();
+    if (this.state.customError) {
+      content = this.renderCustomError();
     } else if (this.state.calling) {
       content = this.renderCalling();
     } else {
       content = this.renderForm();
     }
-
-    return (
-      <div className="call-tool-background">{content}</div>
-    );
+    return <div className="call-tool-background">{content}</div>;
   },
-  renderNetworkError: function() {
+  renderCustomError: function() {
     return (
       <section>
-        <h2 className="bold">{this.context.intl.formatMessage({id: 'unknown_problems'})}</h2>
-        <h2 className="bold">{this.context.intl.formatMessage({id: 'please_retry_later'})}</h2>
+        { this.state.customError.map( id => <h2 className="bold" key={id}>{this.context.intl.formatMessage({id})}</h2> )}
         <button onClick={() => this.retry()}>{this.context.intl.formatMessage({id: 'try_again'})}</button>
       </section>
     );
@@ -116,8 +129,9 @@ module.exports = React.createClass({
         </span>
       );
     }
-    const localeOptions = Object.keys(prefixMap).map((value) => {
-      var prefixObject = iconMap[prefixMap[value]];
+    const localeOptions = Object.keys(prefixMap).map(value => {
+      var prefix = prefixMap[value]
+      var prefixObject = iconMap[prefix];
       return (
         <option key={value} value={value}>
           {prefixObject + " (+" + value + ")"}
