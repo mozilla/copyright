@@ -7,7 +7,7 @@ module.exports = React.createClass({
   },
   render: function() {
     var title = 'main_title_desc_september';
-    if (/^(en|fr)(\b|$)/.test(this.context.intl.locale)) {
+    if (/^(de|en|es|fr|pl)(\b|$)/.test(this.context.intl.locale)) {
       title = 'main_title_desc';
     }
     return (
