@@ -40,6 +40,9 @@ module.exports = React.createClass({
     };
   },
   componentDidMount: function() {
+    if (!this.selectInput || !this.textInput) {
+      return;
+    }
     // If the browser has a saved value via a soft refresh,
     // we can might as well use it.
     var countryPrefix = this.selectInput.value;
@@ -77,15 +80,29 @@ module.exports = React.createClass({
     var state = this.getInitialState(this.state.countryPrefix, this.state.number);
     this.setState(state);
   },
+  isBusinessClosed: function() {
+    var date = new Date();
+    date.setUTCHours(date.getUTCHours() + 2);
+    var day = date.getUTCDay();
+    var hour = date.getUTCHours();
+
+    if (day > 0 && day < 6 && hour > 8 && hour < 18) {
+      return false;
+    }
+    return true;
+  },
   render: function() {
     var content = null;
-    if (this.state.customError) {
+    if (this.isBusinessClosed()) {
+      content = this.renderClosedSign();
+    } else if (this.state.customError) {
       content = this.renderCustomError();
     } else if (this.state.calling) {
       content = this.renderCalling();
     } else {
       content = this.renderForm();
     }
+
     return <div className="call-tool-background">{content}</div>;
   },
   renderCustomError: function() {
@@ -96,7 +113,33 @@ module.exports = React.createClass({
       </section>
     );
   },
+  isAfterOct29: function() {
+    var date = new Date();
+    date.setUTCHours(date.getUTCHours() + 2);
+    var day = date.getUTCDate();
+    var month = date.getUTCMonth();
+    if (month >= 9 && day >= 29) {
+      return true;
+    }
+    return false;
+  },
+  renderClosedSign: function() {
+    var hoursString = "business_hours_cest";
+    if (this.isAfterOct29()) {
+      hoursString = "business_hours_cet";
+    }
+    return (
+      <section>
+        <h2>
+          {this.context.intl.formatMessage({id: 'closed_for_business'})}
+          <br/>
+          {this.context.intl.formatMessage({id: hoursString})}
+        </h2>
+      </section>
+    );
+  },
   renderForm: function() {
+
     // We need to ensure there is enough space in the
     // input to show the placeholder in ultiple languages.
     var placeholder = this.context.intl.formatMessage({id: 'enter_phone'});

@@ -9,10 +9,25 @@ var Resources = React.createClass({
   contextTypes: {
     intl: React.PropTypes.object
   },
+  isAfterOct29: function() {
+    var date = new Date();
+    date.setUTCHours(date.getUTCHours() + 2);
+    var day = date.getUTCDate();
+    var month = date.getUTCMonth();
+    if (month >= 9 && day >= 29) {
+      return true;
+    }
+    return false;
+  },
   render: function() {
     var className = "call-now";
     if (this.props.test) {
       className += " " + this.props.test;
+    }
+    var hoursString = "business_hours_cest";
+    var hoursString = "business_hours_cest";
+    if (this.isAfterOct29()) {
+      hoursString = "business_hours_cet";
     }
     return (
       <div className={className}>
@@ -22,6 +37,13 @@ var Resources = React.createClass({
             <h1>{this.context.intl.formatMessage({id: 'call_tool_headline'})}</h1>
 
             <ol>
+              <li>
+                <p className="bold">
+                  {this.context.intl.formatMessage({id: 'closed_for_business'})}
+                  {" "}
+                  {this.context.intl.formatMessage({id: hoursString})}
+                </p>
+              </li>
               <li>
                 <p className="bold">{this.context.intl.formatMessage({id: 'script_step_1'})}</p>
               </li>
