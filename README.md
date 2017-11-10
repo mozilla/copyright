@@ -6,7 +6,7 @@ This is the repository for [https://changecopyright.org](https://changecopyright
 
 Clone a copy of the repository using something like [git](http://git-scm.com/).
 
-To get a local version of the site running, you'll need [node](http://nodejs.org/) 4 or higher installed on your local machine.
+To get a local version of the site running, you'll need [node](http://nodejs.org/) 8 or higher installed on your local machine.
 
 ## Build
 
