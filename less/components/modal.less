@@ -1,0 +1,40 @@
+/**
+ * We need to do some stylin' here
+ */
+
+@primary_lightblue: #5381B9;
+@primary_darkblue: #005189;
+@primary_red: #F46060;
+
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.5);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+}
+
+.modal-close {
+  position: absolute;
+  right: .5rem;
+  top: .5rem;
+  color: white;
+  cursor: pointer;
+  &:before{
+    font-size: 1.25em;
+  }
+}
+
+.modal {
+  background-color: @primary_lightblue;
+  z-index:101;
+  padding: 1rem;
+  margin: 1rem auto;
+  position: relative;
+  box-shadow: 0 0 8px rgba(0,0,0,.5);
+  max-height: 100vh;
+}
