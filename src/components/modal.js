@@ -13,7 +13,7 @@ var Modal = React.createClass({
   render: function() {
     return (
       <div className={this.props.className}>
-        <div className="modal-overlay" onClick={this.checkEventTarget}>
+        <div className="modal-overlay" onClick={this.props.onClose}>
           <div className="modal" aria-role="dialog">
             <div onClick={this.props.onClose} className="modal-close">
               <i className="fa fa-times" aria-hidden="true"></i>

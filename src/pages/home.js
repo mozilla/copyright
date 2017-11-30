@@ -34,6 +34,9 @@ var Signup = React.createClass({
       dismissedModal: false
     };
   },
+  getString: function(id) {
+    return this.context.intl.formatMessage({ id });
+  },
   componentDidMount: function() {
     if (typeof window !== "undefined" && window.addEventListener) {
       this._withScroll = e => this.handleScroll(e);
@@ -73,16 +76,10 @@ var Signup = React.createClass({
     return (
       <Modal onClose={() => this.closeModal()}>
         <section className="donate-container">
-          <h2>We all love the web.<br/> Join Mozilla in defending it.</h2>
-          <p className="playfair">
-            The future of the Internet is at stake, with new threats to our online privacy and security almost every day. M<span className="blankSpace">&nbsp;</span>ozilla fights to save a healthy Internet, with grassroots advocacy work and software that enables the open web.
-          </p>
-          <p className="playfair emphasized">
-            As a non-profit we rely on your support, so please donate today.
-          </p>
-          <a href="https://donate.mozilla.org" className="donate-button">
-            DONATE NOW
-          </a>
+          <h2>{ this.getString('love_the_web') }<br/> { this.getString('join_the_defense') }</h2>
+          <p className="playfair">{ this.getString('save_the_future') } { this.getString('mozilla_fights') }</p>
+          <p className="playfair emphasized">{ this.getString('please_donate') }</p>
+          <a href="https://donate.mozilla.org" className="donate-button">{ this.getString('donate_now') }</a>
         </section>
       </Modal>
     );
