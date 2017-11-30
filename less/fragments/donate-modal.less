@@ -1,12 +1,9 @@
-.donate-container {
-  padding: 40px 30px;
+// Modal styles specific to the donate CTA
+
+.modal-overlay .donate-container {
+  padding: 40px;
   max-width: 90vw;
   text-align: center;
-
-  @media screen and (min-width: 768px) {
-    max-width: 60vw;
-  }
-
   background-color: #ffffff;
   animation: popupAppear .15s ease-out;
 
@@ -14,16 +11,24 @@
     0% { transform: scale(.85) }
   }
 
+  @media screen and (min-width: 768px) {
+    max-width: 60vw;
+  }
+
   h2 {
     margin-top: 0;
+    font-size: 1.5em;
   }
 
   p {
-    margin: 0 auto 15px;
-    color: #000000;
+    margin: 0 auto 25px auto;
+    color: rgba(0,0,0,.7);
+    font-size: 1em;
+    line-height: 1.25em;
 
     &.emphasized {
       font-weight: bold;
+      margin-bottom: 35px;
     }
   }
 
@@ -34,11 +39,32 @@
   .donate-button {
     background: #f42c2c;
     color: #FFFFFF;
-    height: 52px;
-    padding: 0 36px;
-    margin: 15px 0 0;
-    display: inline-flex;
+    padding: 15px 36px;
+    display: inline-block;
+    margin: 0 auto;
     align-items: center;
     text-decoration: none;
+    transition: .1s all ease-out;
+    font-weight: 700;
+
+    &:hover {
+      transform: scale(1.03);
+    }
+
+    &:active {
+      background: #cc1c1c;
+      opacity: 1;
+      transform: scale(.97);
+    }
   }
- }
+
+  @media screen and (max-width: 768px) {
+    h2 {
+      font-size: 1.7em;
+    }
+
+    p {
+      font-size: 1.12em;
+    }
+  }
+}
