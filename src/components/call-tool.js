@@ -113,19 +113,19 @@ module.exports = React.createClass({
       </section>
     );
   },
-  isAfterOct29: function() {
+  isCet: function() {
     var date = new Date();
     date.setUTCHours(date.getUTCHours() + 2);
     var day = date.getUTCDate();
     var month = date.getUTCMonth();
-    if (month >= 9 && day >= 29) {
+    if ((month >= 9 && day >= 29) || (month <= 2 && day < 25)) {
       return true;
     }
     return false;
   },
   renderClosedSign: function() {
     var hoursString = "business_hours_cest";
-    if (this.isAfterOct29()) {
+    if (this.isCet()) {
       hoursString = "business_hours_cet";
     }
     return (
