@@ -1,0 +1,48 @@
+// General modal styles
+
+.modal-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,.5);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+
+  .modal {
+    z-index: 101;
+    margin: 1rem auto;
+    position: relative;
+    box-shadow: 0 0 8px rgba(0,0,0,.5);
+    max-height: 100vh;
+    overflow: hidden;
+    animation: backgroundFadeIn .15s ease-out;
+
+    @keyframes backgroundFadeIn {
+      0% { background: rgba(0,0,0,0) }
+    }
+  }
+
+  .modal-close {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    display: block;
+    opacity: 1;
+
+    i {
+      display: block;
+      text-align: center;
+      height: 18px;
+      width: 18px;
+      position: absolute;
+      left: ~"calc(50% - 9px)";
+      top: ~"calc(50% - 11px)";
+    }
+  }
+}
