@@ -25,3 +25,11 @@ After successfully building and running the server, go to [localhost:4000/](http
 You can now start changing files in the `/src` directory, such that saving your changes and refreshing the browser will show your changes.
 
 Files outside of /src require npm start to be rerun.
+
+## Location ID
+
+To switch campaign IDs based on location, change the env `LOCATION_ID`
+
+Brussels = `1` is also the default.
+
+Strasbourg = `2`
