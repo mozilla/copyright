@@ -86,7 +86,7 @@ var SimpleNav = React.createClass({
       <div className="nav-container">
         <div className={navClassName}>
           <div className="nav-logo-container">
-            <a href="https://mozilla.org/" className="nav-logo"></a>
+            <a href="https://foundation.mozilla.org/" className="nav-logo"></a>
           </div>
           <div onClick={this.onBarsClick} className="bars-container">
             <i className="fa fa-bars fa-2x"></i>
