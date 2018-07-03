@@ -15,7 +15,7 @@ var COPYRIGHT_CAMPAIGN_IDS = {
 };
 
 // Strasbourg
-if (LOCATION_ID === 2) {
+if (LOCATION_ID === '2') {
   COPYRIGHT_CAMPAIGN_IDS = {
     'GB': 13, // UK English
     'FR': 12, // French
