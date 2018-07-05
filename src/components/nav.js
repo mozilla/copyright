@@ -50,11 +50,6 @@ var SimpleNav = React.createClass({
           text: this.context.intl.formatMessage({id: `nav_impact`}),
           item: `impact`,
           href: `/${this.context.intl.locale}/impact`
-        },
-        {
-          text: this.context.intl.formatMessage({id: `nav_call_now`}),
-          item: `call-now`,
-          href: `/${this.context.intl.locale}/call-now`
         }
       ];
       if (/^(en)(\b|$)/.test(this.context.intl.locale)) {
