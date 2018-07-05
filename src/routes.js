@@ -14,7 +14,6 @@ var routes = (
             <IndexRoute component={require('./pages/home.js')}/>
             <Route path='home' component={require('./pages/home.js')}/>
             <Route path='impact' component={require('./pages/impact.js')}/>
-            <Route path='call-now' component={require('./pages/call-now.js')}/>
             <Route path='share' component={require('./pages/share.js')}/>
             <Route path='resources' component={require('./pages/resources.js')}/>
             <Redirect from="*" to={"/" + locale} />

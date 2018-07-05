@@ -69,7 +69,6 @@ var Signup = React.createClass({
               </a>
             </Impact>
           </section>
-          <CallButton/>
           <SignupForm/>
         </div>
         <Footer/>
