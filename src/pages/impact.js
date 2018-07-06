@@ -188,13 +188,6 @@ var Resources = React.createClass({
             </p>
 
           </section>
-          <div ref={(element) => { this.stickyContainer = element; }}>
-            <StickyContainer className="sticky-container" stickyTo={this.getPosition}>
-              <div className="sticky-content" ref={(element) => { this.stickyContent = element; }}>
-                <CallButton/>
-              </div>
-            </StickyContainer>
-          </div>
           <SignupForm/>
         </div>
         <Footer/>
