@@ -57,8 +57,8 @@ var Resources = React.createClass({
                 <p className="bold">{this.context.intl.formatMessage({id: 'script_step_4'})}</p>
 
                 <p><FormattedHTMLMessage id='script_desc_1'/></p>
-                <p><FormattedHTMLMessage id='script_desc_2b'/></p>
-                <p><FormattedHTMLMessage id='script_desc_3b'/></p>
+                <p><FormattedHTMLMessage id='script_desc_2c'/></p>
+                <p><FormattedHTMLMessage id='script_desc_3c'/></p>
                 <p><FormattedHTMLMessage id='script_desc_4'/></p>
               </li>
             </ol>
