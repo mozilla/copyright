@@ -1,0 +1,80 @@
+{
+  "name": "copyright",
+  "scripts": {
+  },
+  "env": {
+    "APPLICATION_URI": {
+      "required": true
+    },
+    "AWS_ACCESS_KEY_ID": {
+      "required": true
+    },
+    "AWS_SECRET_ACCESS_KEY": {
+      "required": true
+    },
+    "CALL_POWER_URL": {
+      "required": true
+    },
+    "COPYRIGHT_CAMPAIGN_ID": {
+      "required": true
+    },
+    "ENABLE_PONTOON": {
+      "required": true
+    },
+    "ENABLE_XFRAMEOPTIONS": {
+      "required": true
+    },
+    "FULL_SUBDOMAIN_FOR_COOKIE": {
+      "required": true
+    },
+    "HATCHET_APP_NAME": {
+      "required": true
+    },
+    "HATCHET_QUEUE_REGION": {
+      "required": true
+    },
+    "HATCHET_QUEUE_URL": {
+      "required": true
+    },
+    "HOST": {
+      "required": true
+    },
+    "LOCATION_ID": {
+      "required": true
+    },
+    "NEW_RELIC_ENABLED": {
+      "required": true
+    },
+    "NODE_ENV": {
+      "required": true
+    },
+    "NPM_CONFIG_PRODODUCTION": {
+      "required": true
+    },
+    "OPTIMIZELY_ACTIVE": {
+      "required": true
+    },
+    "OPTIMIZELY_ID": {
+      "required": true
+    },
+    "SIGNUP": {
+      "required": true
+    },
+    "SUPPORTED_LOCALES": {
+      "required": true
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}
