@@ -2,7 +2,6 @@ import React  from 'react';
 import Footer from '../components/footer.js';
 import Header from '../components/header.js';
 import { SimpleNav } from '../components/nav.js';
-import CallButton from '../components/call-button.js';
 import SignupForm from '../components/signup-form.js';
 
 var Impact = React.createClass({
@@ -69,7 +68,6 @@ var Signup = React.createClass({
               </a>
             </Impact>
           </section>
-          <CallButton/>
           <SignupForm/>
         </div>
         <Footer/>
